@@ -14,6 +14,7 @@ import Blogs from "./pages/Blogs";
 import BlogPost from "./pages/BlogPost";
 import ScrollToTop from "./components/ScrollToTop";
 import Services from "./pages/Services";
+import Mugs from "./pages/Mugs";
 
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/people" element={<People />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/mugs" element={<Mugs />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
