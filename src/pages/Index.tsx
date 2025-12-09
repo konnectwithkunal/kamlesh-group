@@ -13,6 +13,7 @@ import HowWeHelp from "@/components/HowWeHelp";
 import Testimonials from "@/components/Testimonials";
 import Work from "@/components/Work";
 import News from "@/components/News";
+import Brands from "@/components/Brands";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -43,6 +44,7 @@ const Index = () => {
       <Testimonials />
         {/* <Work /> */}
       <News />
+      <Brands />
       <Footer />
     </div>
   );
