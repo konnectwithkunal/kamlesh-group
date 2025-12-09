@@ -39,7 +39,7 @@ const Header = () => {
           <img
             src={isScrolled ? "/img/colorblack.png" : "/img/colorwhite.png"}
             alt="NewsMakerIndia Logo"
-            className="h-14 w-auto transition-all duration-300"
+            className="h-14 pl-10 w-auto transition-all duration-300"
           />
         </Link>
 
@@ -62,9 +62,9 @@ const Header = () => {
           </a>
 
 
-          <a onClick={() => navigate("/people")} className={`cursor-pointer text-lg transition-colors duration-300 ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"}`}>
+          {/*<a onClick={() => navigate("/people")} className={`cursor-pointer text-lg transition-colors duration-300 ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"}`}>
             People
-          </a>
+          </a> */}
           <a
             onClick={() => navigate("/news")}
             className={`cursor-pointer text-lg transition-colors duration-300 ${
@@ -120,7 +120,7 @@ const Header = () => {
             >
               Services
             </a>
-            <a
+            {/*<a
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 navigate("/people");
@@ -128,7 +128,8 @@ const Header = () => {
               className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
             >
               People
-            </a>
+            </a> */}
+            
             <a
               onClick={() => {
                 setIsMobileMenuOpen(false);

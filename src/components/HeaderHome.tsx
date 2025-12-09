@@ -60,11 +60,11 @@ const HeaderHome = () => {
           >
             Services
           </a>
-
-
-          <a onClick={() => navigate("/people")} className={`cursor-pointer text-lg transition-colors duration-300 ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-primary"}`}>
+{/*<a onClick={() => navigate("/people")} className={`cursor-pointer text-lg transition-colors duration-300 ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-primary"}`}>
             People
-          </a>
+          </a>*/}
+
+          
           <a
             onClick={() => navigate("/news")}
             className={`cursor-pointer text-lg transition-colors duration-300 ${
@@ -120,7 +120,7 @@ const HeaderHome = () => {
             >
               Services
             </a>
-            <a
+            {/*<a
               onClick={() => {
                 setIsMobileMenuOpen(false);
                 navigate("/people");
@@ -128,7 +128,8 @@ const HeaderHome = () => {
               className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
             >
               People
-            </a>
+            </a>*/}
+            
             <a
               onClick={() => {
                 setIsMobileMenuOpen(false);
