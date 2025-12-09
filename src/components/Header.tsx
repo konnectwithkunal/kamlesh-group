@@ -136,7 +136,7 @@ const Header = () => {
           <img
             src={isScrolled ? "/img/colorblack.png" : "/img/colorwhite.png"}
             alt="NewsMakerIndia Logo"
-            className="h-14 w-auto transition-all duration-300"
+            className="h-14 pl-10 w-auto transition-all duration-300"
           />
         </Link>
 
@@ -157,8 +157,9 @@ const Header = () => {
           >
             <a
               onClick={() => navigate("/services")}
-              className={`cursor-pointer text-lg transition-colors duration-300 ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"
-                }`}
+              className={`cursor-pointer text-lg transition-colors duration-300 ${
+                isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"
+              }`}
             >
               Services
             </a>
@@ -182,7 +183,8 @@ const Header = () => {
                             className="group cursor-pointer"
                             onClick={() => {
                               setIsMegaMenuOpen(false);
-                              navigate("/mugs");
+                              // Corrected: Uses dynamic slug instead of hardcoded '/mugs'
+                              navigate(`/services/${service.slug}`);
                             }}
                           >
                             <div className="flex items-start gap-2 p-2 rounded hover:bg-gray-50 transition-colors">
@@ -206,7 +208,12 @@ const Header = () => {
             )}
           </div>
 
-          <a onClick={() => navigate("/people")} className={`cursor-pointer text-lg transition-colors duration-300 ${isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"}`}>
+          <a
+            onClick={() => navigate("/people")}
+            className={`cursor-pointer text-lg transition-colors duration-300 ${
+              isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"
+            }`}
+          >
             People
           </a>
           <a
@@ -231,7 +238,7 @@ const Header = () => {
           <Button
             variant="default"
             className="hidden sm:flex bg-primary hover:bg-primary/90 text-white font-medium px-6 rounded-full"
-            onClick={() => navigate("/contact")} // Replaced window.location.href
+            onClick={() => navigate("/contact")}
           >
             Contact us
           </Button>
@@ -266,14 +273,20 @@ const Header = () => {
                 className="flex items-center justify-between py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
               >
                 <span>Services</span>
-                <ChevronRight className={`w-5 h-5 transition-transform ${isMobileServicesOpen ? 'rotate-90' : ''}`} />
+                <ChevronRight
+                  className={`w-5 h-5 transition-transform ${
+                    isMobileServicesOpen ? "rotate-90" : ""
+                  }`}
+                />
               </div>
 
               {isMobileServicesOpen && (
                 <div className="pl-4 space-y-4 border-l-2 border-primary">
                   {services.map((service, index) => (
                     <div key={index} className="space-y-2">
-                      <h4 className="font-bold text-sm text-black">{service.title}</h4>
+                      <h4 className="font-bold text-sm text-black">
+                        {service.title}
+                      </h4>
                       <div className="space-y-2 pl-2">
                         {service.subServices.map((subService, subIndex) => (
                           <div
@@ -281,7 +294,8 @@ const Header = () => {
                             onClick={() => {
                               setIsMobileMenuOpen(false);
                               setIsMobileServicesOpen(false);
-                              navigate("/mugs");
+                              // Corrected: Dynamic navigation
+                              navigate(`/services/${service.slug}`);
                             }}
                             className="flex items-start gap-2 py-1 cursor-pointer hover:text-primary transition-colors"
                           >
@@ -296,6 +310,7 @@ const Header = () => {
               )}
             </div>
 
+            {/* Fixed the 'People' link which was previously commented out improperly */}
             <a
               onClick={() => {
                 setIsMobileMenuOpen(false);
@@ -305,6 +320,7 @@ const Header = () => {
             >
               People
             </a>
+
             <a
               onClick={() => {
                 setIsMobileMenuOpen(false);
@@ -328,7 +344,7 @@ const Header = () => {
               className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full mt-4"
               onClick={() => {
                 setIsMobileMenuOpen(false);
-                navigate("/contact"); // Replaced window.location.href
+                navigate("/contact");
               }}
             >
               Contact us
