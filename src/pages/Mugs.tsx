@@ -1,8 +1,10 @@
 import { useState } from "react";
-import Header from "@/components/Header"; 
+import { useNavigate } from "react-router-dom";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { fadeInUp } from "../animation/variants";
+import { mugProducts } from "../data/mugProducts";
 import {
   Select,
   SelectContent,
@@ -13,117 +15,7 @@ import {
 
 const Mugs = () => {
   const [sortBy, setSortBy] = useState("featured");
-
-  const mugProducts = [
-    {
-      id: 1,
-      name: "Ceramic Mugs (11oz\\15oz\\20oz)",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66dae136fc79245ff401e2c5.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d6f521b03e7e858b0c89f6.jpg"
-    },
-    {
-      id: 2,
-      name: "Two-Tone Coffee Mug, 11oz",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d88b702b79a14b010f9033.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d88b6f3e7448d5f80acb13.jpg"
-    },
-    {
-      id: 3,
-      name: "Black Coffee Cup, 11oz",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d59099145f601bbe0df503.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d590985a89615b7f0cf626.jpg"
-    },
-    {
-      id: 4,
-      name: "Colorful Mugs, 11oz",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d1c18a9722d8c74d080ba9.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d1c189795f4d42d40e31ea.jpg"
-    },
-    {
-      id: 5,
-      name: "Accent Mugs, 11oz",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cdb3dcaf9e7dd2e20af443.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66f51ab0528b1c85ba01e493.jpg"
-    },
-    {
-      id: 6,
-      name: "Heart-Shaped Mug",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cf273e4946a53c0d08e834.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cf273c4946a53c0d08e833.jpg"
-    },
-    {
-      id: 7,
-      name: "Magic Mug",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d06f3e1f66afa463006102.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d06f401f66afa463006103.jpg"
-    },
-    {
-      id: 8,
-      name: "Latte Mug, 12oz",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cd880123cb8ec974071c46.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cd87ff9debc007dc092902.jpg"
-    },
-    {
-      id: 9,
-      name: "Color-Changing Mug, 11oz",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d5917d454c143567072543.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d5917c9bcb23130900a2a4.jpg"
-    },
-    {
-      id: 10,
-      name: "Mason Jar",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cc71d3d0f7f62df0037b98.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cc71d24ba8f64842057242.jpg"
-    },
-    {
-      id: 11,
-      name: "Frosted Glass Mug",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d577c16a5e4d4516004be8.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d577c06a5e4d4516004be7.jpg"
-    },
-    {
-      id: 12,
-      name: "White Ceramic Mug, 11oz and 15oz",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cda8ab4b912339550e2f02.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cda8aa743d7f18ad0b2a83.jpg"
-    },
-    {
-      id: 13,
-      name: "Accent Coffee Mug (11, 15oz)",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d6f97d50ee8a97570253e3.jpg",
-      hoverImage: null 
-    },
-    {
-      id: 14,
-      name: "Ceramic Mug, (11oz, 15oz)",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d94e6bab0893d4fe01b186.jpg",
-      hoverImage: null 
-    },
-    {
-      id: 15,
-      name: "Black Mug (11oz, 15oz)",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cc8b04c77dfeb419012646.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66cc8afaa8cab123e602b234.jpg"
-    },
-    {
-      id: 16,
-      name: "Tapered Glass Mug, 15.5 oz (Engraving)",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/6931a308ca89167bd1096702.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/6931a30393146626640e3e42.jpg"
-    },
-    {
-      id: 17,
-      name: "Sipper Glass with Straw, 16oz (Engraving)",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/6874c127e1230089bb0e1c82.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/688a250b23b511052d039f42.jpg"
-    },
-    {
-      id: 18,
-      name: "Frosted Glass Beer Mug",
-      image: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d58bd77af6f80eef04b33e.jpg",
-      hoverImage: "https://printify.com/cdn-cgi/image/width=320,quality=90,format=avif/https://images.printify.com/api/catalog/66d58bd57dd31e0a3b0ecd13.jpg"
-    },
-  ];
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-white">
@@ -201,11 +93,10 @@ const Mugs = () => {
               <motion.div
                 key={product.id}
                 variants={fadeInUp}
-                className="group cursor-pointer"
+                className="group cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                onClick={() => navigate(`/mugs/${product.id}`)}
               >
-                {/* Image Container */}
-                <div className="relative overflow-hidden bg-[#EAEAEA] rounded-xl mb-4 aspect-square">
-                  {/* Default Image */}
+                <div className="relative overflow-hidden bg-gray-100 aspect-square">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -222,10 +113,25 @@ const Mugs = () => {
                     />
                   )}
                 </div>
-                {/* Product Title */}
-                <h3 className="text-base font-semibold text-black group-hover:underline decoration-1 underline-offset-4">
-                  {product.name}
-                </h3>
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-black group-hover:text-primary transition-colors duration-300 mb-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-2">By Kamlesh Group of Companies</p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xl font-bold text-primary">
+                        ${product.price}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {product.sizes.join(", ")}
+                      </p>
+                    </div>
+                    <button className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                      View Details →
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
