@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
@@ -13,67 +14,92 @@ import {
 
 const Mugs = () => {
   const [sortBy, setSortBy] = useState("featured");
+  const navigate = useNavigate();
 
   const mugProducts = [
     {
       id: 1,
       name: "White Glossy Mug",
       image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=500&q=80",
+      price: 12.99,
+      sizes: ["11oz", "15oz"],
     },
     {
       id: 2,
       name: "Black Matte Mug",
       image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&q=80",
+      price: 14.99,
+      sizes: ["11oz", "15oz"],
     },
     {
       id: 3,
       name: "Ceramic Coffee Mug",
       image: "https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?w=500&q=80",
+      price: 11.99,
+      sizes: ["11oz", "15oz"],
     },
     {
       id: 4,
       name: "Travel Mug",
       image: "https://images.unsplash.com/photo-1534256516093-ce5437f92d7b?w=500&q=80",
+      price: 18.99,
+      sizes: ["16oz", "20oz"],
     },
     {
       id: 5,
       name: "Stainless Steel Mug",
       image: "https://images.unsplash.com/photo-1565696157652-bbb07261ce33?w=500&q=80",
+      price: 16.99,
+      sizes: ["11oz", "15oz"],
     },
     {
       id: 6,
       name: "Color Changing Mug",
       image: "https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=500&q=80",
+      price: 15.99,
+      sizes: ["11oz"],
     },
     {
       id: 7,
       name: "Enamel Camping Mug",
       image: "https://images.unsplash.com/photo-1578297886026-f7b34e8e2b5c?w=500&q=80",
+      price: 13.99,
+      sizes: ["12oz"],
     },
     {
       id: 8,
       name: "Two-Tone Mug",
       image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=500&q=80",
+      price: 12.99,
+      sizes: ["11oz", "15oz"],
     },
     {
       id: 9,
       name: "Frosted Glass Mug",
       image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500&q=80",
+      price: 14.49,
+      sizes: ["11oz", "15oz"],
     },
     {
       id: 10,
       name: "Classic White Mug",
       image: "https://images.unsplash.com/photo-1514315384763-ba401779410f?w=500&q=80",
+      price: 10.99,
+      sizes: ["11oz", "15oz"],
     },
     {
       id: 11,
       name: "Insulated Tumbler",
       image: "https://images.unsplash.com/photo-1584557091304-1c0d0b3e6c0e?w=500&q=80",
+      price: 19.99,
+      sizes: ["20oz", "30oz"],
     },
     {
       id: 12,
       name: "Vintage Style Mug",
       image: "https://images.unsplash.com/photo-1571863533956-01c88e79957e?w=500&q=80",
+      price: 13.49,
+      sizes: ["11oz", "15oz"],
     },
   ];
 
@@ -145,9 +171,10 @@ const Mugs = () => {
               <motion.div
                 key={product.id}
                 variants={fadeInUp}
-                className="group cursor-pointer"
+                className="group cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
+                onClick={() => navigate(`/mugs/${product.id}`)}
               >
-                <div className="relative overflow-hidden bg-gray-100 rounded-lg mb-4 aspect-square">
+                <div className="relative overflow-hidden bg-gray-100 aspect-square">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -155,9 +182,25 @@ const Mugs = () => {
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-black group-hover:text-primary transition-colors duration-300">
-                  {product.name}
-                </h3>
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-black group-hover:text-primary transition-colors duration-300 mb-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-2">By Kamlesh Group of Companies</p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xl font-bold text-primary">
+                        ${product.price}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        {product.sizes.join(", ")}
+                      </p>
+                    </div>
+                    <button className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                      View Details →
+                    </button>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
