@@ -1,157 +1,244 @@
-import { useEffect, useRef, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+import React, { useState, useEffect, useRef } from 'react';
 
-const Testimonials = () => {
+export default function Testimonials() {
+  const [expandedCard, setExpandedCard] = useState(null);
+  const [headerInView, setHeaderInView] = useState(false);
+  const [cardsInView, setCardsInView] = useState(false);
+
+  const headerRef = useRef(null);
+  const cardsRef = useRef(null);
+
   const testimonials = [
     {
-      quote:
-        "Working with Newsmaker Media Group over the past one and a half years has been an incredibly positive experience. They truly understand the essence of the Marching Sheep brand and have consistently ensured that our voice and message are communicated with clarity and integrity.",
-      author: "Sonica Aron",
-      position: "Founder & Managing Partner, Marching Sheep",
-      image:
-        "/lovable-uploads/8627fc4e-bc55-434f-9cb2-1d389766d227.png",
+      id: 1,
+      name: 'Ravi Bagaria',
+      rating: 4,
+      shortText:
+        'Others have already said plenty about their quality of their TMT bars and steel products. One thing that I believe should be talked more about Shyam Metallics in their CSR initiati...',
+      fullText:
+        'Others have already said plenty about their quality of their TMT bars and steel products. One thing that I believe should be talked more about Shyam Metallics in their CSR initiatives. They are doing wonderful work in the communities around their facilities, and it shows their commitment to being more than just a manufacturer.',
     },
     {
-      quote:
-        "Its been nearly four years I have been associated with Newsmaker Media Group. The journey has been tumultuous and so rewarding. Ankit and his team are my go-to guys when I have any issues regarding media whether it is print, digital or screen.",
-      author: "Dr. Ridhima Khamesra",
-      position: "Dietician",
-      image:
-        "/lovable-uploads/10ca7487-f6ca-439e-8cbb-92550a9cd052.png",
+      id: 2,
+      name: 'Saurav Agarwal',
+      rating: 4,
+      shortText:
+        'I was looking for best quality TMT bars, and having heard a lot about Shyam Metalics, so I finally decided to contact them. Comparing the TMT bar price in West Bengal, they are aff...',
+      fullText:
+        'I was looking for best quality TMT bars, and having heard a lot about Shyam Metalics, so I finally decided to contact them. Comparing the TMT bar price in West Bengal, they are affordable and the quality is top-notch. Their customer service team was very helpful throughout the process.',
     },
     {
-      quote:
-        "Newsmaker Media Group has been a valuable partner in amplifying IATO's voice across the industry. Their professionalism, creativity, and deep understanding of the tourism sector have consistently delivered impactful results. We truly appreciate their dedication and look forward to continued collaboration",
-      author: "Ravi Gosain",
-      position: "President, IATO",
-      image:
-        "/lovable-uploads/22ae4ec2-13b6-4e38-8321-7adb9d755bcf.png",
+      id: 3,
+      name: 'Biplap Kar',
+      rating: 4,
+      shortText:
+        'We have been working with Shyam Metalics since 2004. We have worked with them on many projects throughout the years. They do an excellent job from start to finish. We enjoy working...',
+      fullText:
+        'We have been working with Shyam Metalics since 2004. We have worked with them on many projects throughout the years. They do an excellent job from start to finish. We enjoy working with them and would highly recommend their services to anyone looking for quality steel products and reliable delivery.',
     },
     {
-      quote:
-        "Newsmaker Media Group has been a trusted partner for SMFG Credit India. Their expertise in media relations and storytelling has helped us build a strong brand presence. Professional, responsive, and results-driven - we've seen tangible benefits from their work. Highly recommended for any organization looking to elevate their media footprint.",
-      author: "Mr. Kumar Gaurav",
-      position: "Chief Marketing Officer, SMFG India Credit Pvt. Ltd",
-      image:
-        "/lovable-uploads/kumar.jpeg",
+      id: 4,
+      name: 'Priya Sharma',
+      rating: 5,
+      shortText:
+        'Shyam Metalics has been our trusted partner for over 5 years. Their commitment to quality and timely delivery has never disappointed us. The TMT bars we received have consistently ...',
+      fullText:
+        'Shyam Metalics has been our trusted partner for over 5 years. Their commitment to quality and timely delivery has never disappointed us. The TMT bars we received have consistently met our high standards, and their professional approach to business makes them stand out in the industry.',
     },
-    
-    {
-      quote:
-        "Working with Newsmaker Media Group has been smooth, impactful, and genuinely enriching. They have an incredible talent for capturing and conveying our brand’s vision with precision and meaning. Positive attitude and strategic media planning with commitment to excellence have made them a trusted ally in our roadmap. It's nice to work with a team that really gets our objectives and keeps producing great work.",
-      author: "Mr. Rohit Mahajan",
-      position: "Founder and Managing Partner, plutosONE",
-      image:
-        "/lovable-uploads/rohit.jpeg",
-    },
-    {
-      quote:
-        "Newsmaker Media Group has been instrumental in amplifying Corover.ai's presence in the media landscape. Their expertise in crafting compelling narratives and securing coverage in top-tier publications has been invaluable. Their team's dedication and passion for delivering results-driven PR solutions have truly impressed me. I highly recommend Newsmaker Media Group to any organization looking to elevate their brand story.",
-      author: "Mr. Ankush Sabharwal",
-      position: "Founder, CoRover.ai and BharatGPT",
-      image:
-        "/lovable-uploads/ankush.jpeg",
-    },
-   
   ];
 
-  const [api, setApi] = useState<CarouselApi | null>(null);
-  const pausedRef = useRef(false);
-
   useEffect(() => {
-    if (!api) return;
-    const id = setInterval(() => {
-      if (!pausedRef.current) api.scrollNext();
-    }, 5000);
-    return () => clearInterval(id);
-  }, [api]);
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px',
+    };
 
-  const handleMouseEnter = () => {
-    pausedRef.current = true;
+    const headerObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setHeaderInView(true);
+      }
+    }, observerOptions);
+
+    const cardsObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setCardsInView(true);
+      }
+    }, observerOptions);
+
+    if (headerRef.current) headerObserver.observe(headerRef.current);
+    if (cardsRef.current) cardsObserver.observe(cardsRef.current);
+
+    return () => {
+      if (headerRef.current) headerObserver.unobserve(headerRef.current);
+      if (cardsRef.current) cardsObserver.unobserve(cardsRef.current);
+    };
+  }, []);
+
+  const toggleExpand = (id) => {
+    setExpandedCard(expandedCard === id ? null : id);
   };
-  const handleMouseLeave = () => {
-    pausedRef.current = false;
+
+  const StarRating = ({ rating }) => {
+    return (
+      <div className="flex gap-1 mt-1">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <svg
+            key={star}
+            className={`w-4 h-4 ${
+              star <= rating ? 'text-[#F9B233]' : 'text-gray-300'
+            }`}
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        ))}
+      </div>
+    );
   };
 
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4">
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-black mb-6">
-            What Our Clients Say
-          </h2>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Hear from our valued clients about their experience working
-            with Newsmaker Media and Communications
-          </p>
-        </div>
-
-        {/* Carousel */}
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          setApi={setApi}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          className="w-full max-w-5xl mx-auto"
+      <section className="py-12 md:py-16 px-4 lg:px-16 relative bg-white grid-mob-light">
+    <div className="max-w-7xl mx-auto relative z-10">
+      {/* Header with Animation */}
+      <div ref={headerRef} className="text-center mb-8 md:mb-12">
+        <h2
+          className={`text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3 md:mb-4 text-black transition-all duration-1000 ${
+            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+          }`}
         >
-          <CarouselContent>
-            {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="basis-full">
-                <Card className="bg-white border border-gray-200 shadow-xl rounded-2xl h-full">
-                  <CardContent className="p-10 flex flex-col md:flex-row items-center gap-10 h-full">
-                    {/* Profile Section - Left Side */}
-                    <div className="flex flex-col items-center text-center md:w-1/3">
-                      <div className="w-40 h-40 md:w-52 md:h-52 rounded-xl overflow-hidden shadow-2xl border-4 border-primary/40 transform hover:scale-105 transition-transform duration-500">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.author}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="mt-6 bg-primary/5 px-4 py-3 rounded-xl shadow-sm">
-                        <h4 className="font-bold text-black text-xl md:text-2xl">
-                          {testimonial.author}
-                        </h4>
-                        <p className="text-primary font-medium text-base md:text-lg">
-                          {testimonial.position}
-                        </p>
-                      </div>
-                    </div>
+          What Our
+          <br />
+          Customer Says
+        </h2>
+        <p
+          className={`text-gray-600 text-base md:text-lg max-w-3xl mx-auto px-4 transition-all duration-1000 ${
+            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+          }`}
+          style={{ transitionDelay: headerInView ? '200ms' : '0ms' }}
+        >
+          Every great relationship starts with trust. These are the voices of
+          our clients sharing how our work made a real difference in their
+          journey.
+        </p>
+      </div>
 
-                    {/* Quote Section - Right Side */}
-                    <div className="flex-1 md:w-2/3 text-center md:text-left">
-                      <div className="text-6xl md:text-7xl text-primary/30 font-black mb-4 leading-none">
-                        "
-                      </div>
-                      <p className="text-xl md:text-2xl leading-relaxed text-gray-800 italic">
-                        {testimonial.quote}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+        {/* Cards with Staggered Animation */}
+        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={testimonial.id}
+              style={{
+                opacity: cardsInView ? 1 : 0,
+                transform: cardsInView ? 'translateY(0) scale(1)' : 'translateY(80px) scale(0.9)',
+                transition: 'opacity 0.7s, transform 0.7s',
+                transitionDelay: cardsInView ? `${index * 150}ms` : '0ms',
+              }}
+            >
+              <div className="bg-white rounded-2xl md:rounded-[30px] shadow-[0_8px_30px_rgba(0,0,0,0.08)] relative flex flex-col cursor-pointer border border-gray-100 overflow-hidden group transition-all duration-150 hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_8px_10px_-6px_rgba(0,0,0,0.1)] hover:-translate-y-2 hover:scale-[1.03]">
+                {/* Red top corner */}
+                <div
+                  className="absolute top-0 right-0"
+                  style={{
+                    opacity: cardsInView ? 1 : 0,
+                    transform: cardsInView ? 'scale(1) rotate(0deg)' : 'scale(0) rotate(-90deg)',
+                    transition: 'opacity 0.7s, transform 0.7s',
+                    transitionDelay: cardsInView ? `${index * 150 + 200}ms` : '0ms',
+                  }}
+                >
+                  <div className="w-0 h-0 border-t-[40px] md:border-t-[60px] border-t-[#EE4343] border-l-[40px] md:border-l-[60px] border-l-transparent" />
+                </div>
 
-          {/* Navigation */}
-          <CarouselPrevious className="hidden md:flex -left-20" />
-          <CarouselNext className="hidden md:flex -right-20" />
-        </Carousel>
+                <div className="p-4 md:p-6 pb-3 md:pb-4 flex-1">
+                  {/* Avatar + name + stars */}
+                  <div
+                    className="flex items-start gap-2 md:gap-3 mb-3 md:mb-4"
+                    style={{
+                      opacity: cardsInView ? 1 : 0,
+                      transform: cardsInView ? 'translateX(0)' : 'translateX(-20px)',
+                      transition: 'opacity 0.7s, transform 0.7s',
+                      transitionDelay: cardsInView ? `${index * 150 + 300}ms` : '0ms',
+                    }}
+                  >
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#E6ECF4] flex items-center justify-center flex-shrink-0">
+                      <svg
+                        className="w-5 h-5 md:w-7 md:h-7 text-[#5A6C7D]"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm0 2c-3.33 0-6 2.24-6 5v.5A.5.5 0 0 0 6.5 20h11a.5.5 0 0 0 .5-.5c0-2.76-2.67-5-6-5Z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-base md:text-[17px] font-semibold text-[#111827]">
+                        {testimonial.name}
+                      </h3>
+                      <StarRating rating={testimonial.rating} />
+                    </div>
+                  </div>
+
+                  {/* Text */}
+                  <p
+                    className="text-[#111827] text-xs md:text-[14px] leading-relaxed mb-4 md:mb-5 min-h-[100px] md:min-h-[120px]"
+                    style={{
+                      opacity: cardsInView ? 1 : 0,
+                      transform: cardsInView ? 'translateY(0)' : 'translateY(20px)',
+                      transition: 'opacity 0.7s, transform 0.7s',
+                      transitionDelay: cardsInView ? `${index * 150 + 400}ms` : '0ms',
+                    }}
+                  >
+                    {expandedCard === testimonial.id
+                      ? testimonial.fullText
+                      : testimonial.shortText}
+                  </p>
+
+                  {/* Read more */}
+                  <button
+                    onClick={() => toggleExpand(testimonial.id)}
+                    className="text-[#EE4343] font-semibold text-xs md:text-sm hover:opacity-80 flex items-center gap-1"
+                    style={{
+                      opacity: cardsInView ? 1 : 0,
+                      transform: cardsInView ? 'translateX(0)' : 'translateX(-20px)',
+                      transition: 'opacity 0.7s, transform 0.7s, color 0.05s',
+                      transitionDelay: cardsInView ? `${index * 150 + 500}ms` : '0ms',
+                    }}
+                  >
+                    {expandedCard === testimonial.id ? 'Show Less' : 'Read More'}
+                    <svg
+                      className="w-3 h-3 md:w-4 md:h-4 transition-transform duration-150"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      style={{
+                        transform: expandedCard === testimonial.id ? 'rotate(180deg)' : 'rotate(0deg)',
+                      }}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Red bottom line */}
+                <div
+                  className="h-[2px] md:h-[3px] bg-[#EE4343] w-full"
+                  style={{
+                    opacity: cardsInView ? 1 : 0,
+                    transform: cardsInView ? 'scaleX(1)' : 'scaleX(0)',
+                    transformOrigin: 'left',
+                    transition: 'opacity 0.7s, transform 0.7s',
+                    transitionDelay: cardsInView ? `${index * 150 + 600}ms` : '0ms',
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
-};
-
-export default Testimonials;
+}

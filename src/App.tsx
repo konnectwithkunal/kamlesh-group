@@ -1,7 +1,7 @@
 // src/App.tsx
 
 import { Toaster } from "@/components/ui/toaster";
-import { ToastProvider } from "@/components/ui/toast"; // 1. IMPORT THE PROVIDER
+import { ToastProvider } from "@/components/ui/toast";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -15,14 +15,13 @@ import BlogPost from "./pages/BlogPost";
 import ScrollToTop from "./components/ScrollToTop";
 import Services from "./pages/Services";
 import Mugs from "./pages/Mugs";
-
+import MugDetail from "./pages/MugDetail";  // ADD THIS IMPORT
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      {/* 2. WRAP YOUR APP WITH THE PROVIDER */}
       <ToastProvider> 
         <Toaster />
         <BrowserRouter>
@@ -36,6 +35,7 @@ const App = () => (
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/mugs" element={<Mugs />} />
+            <Route path="/mugs/:id" element={<MugDetail />} />  {/* ADD THIS ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
