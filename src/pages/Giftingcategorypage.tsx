@@ -21,7 +21,7 @@ import {
   giftingCategories,
   Product,
   Category
-} from '@/data/corporate-gifting-products';
+} from '@/data/corporate';
 
 // Product Card Component - Printo Style
 const ProductCard: React.FC<{ product: Product; viewMode: 'grid' | 'list' }> = ({ product, viewMode }) => {

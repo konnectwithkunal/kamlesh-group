@@ -25,7 +25,7 @@ import {
   getProductsByCategory,
   getCategoryBySlug,
   Product
-} from '@/data/corporate-gifting-products';
+} from '@/data/corporate';
 
 // Image Gallery Component
 const ImageGallery: React.FC<{ images: string[]; productName: string }> = ({ images, productName }) => {
