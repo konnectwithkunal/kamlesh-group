@@ -15,7 +15,6 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeaderWhite from '@/components/HeaderWhite';
-
 import { 
   getProductsByCategory, 
   getCategoryBySlug, 
@@ -78,17 +77,17 @@ const ProductCard: React.FC<{ product: Product; viewMode: 'grid' | 'list' }> = (
     );
   }
 
-  // Grid View - Printo Style Card
+  // Grid View - Printo Style Card with Border
   return (
     <Link to={`/corporate-gifting/${product.categorySlug}/${product.slug}`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="group cursor-pointer"
+        className="group cursor-pointer bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300"
       >
         {/* Image Container - Light Gray Background like Printo */}
-        <div className="bg-[#F5F5F5] rounded-xl overflow-hidden aspect-square mb-4 relative">
+        <div className="bg-[#F5F5F5] aspect-square relative">
           {/* NEW Badge - Top Right, Purple like Printo */}
           {product.isNew && (
             <span className="absolute top-3 right-3 z-10 px-4 py-1.5 bg-purple-600 text-white text-sm font-bold rounded-md shadow-lg">
@@ -108,14 +107,14 @@ const ProductCard: React.FC<{ product: Product; viewMode: 'grid' | 'list' }> = (
           />
         </div>
 
-        {/* Content - Centered Text Below Image */}
-        <div className="text-center">
+        {/* Content - Centered Text Below Image with White Background */}
+        <div className="text-center py-5 px-4 bg-white">
           <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-[#EE4343] transition-colors text-base md:text-lg">
             {product.name}
           </h3>
           <p className="text-gray-800">
-            <span className="font-bold">₹{product.price.toLocaleString()}</span>
-            <span className="text-gray-500 text-sm ml-1">each for {product.minOrderQty} {product.priceUnit}s</span>
+            <span className="font-bold text-lg">₹{product.price.toLocaleString()}</span>
+            <span className="text-gray-500 text-sm ml-2">each for {product.minOrderQty} {product.priceUnit}s</span>
           </p>
         </div>
       </motion.div>
@@ -218,7 +217,7 @@ const CategoryPage: React.FC = () => {
   if (!category) {
     return (
       <>
-        <div className="bg-white"><HeaderWhite /></div>
+        <div className="bg-white"><Header /></div>
         <div className="min-h-screen flex items-center justify-center mt-20">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">Category Not Found</h1>
@@ -241,7 +240,7 @@ const CategoryPage: React.FC = () => {
       <div className="min-h-screen bg-gray-50">
         {/* Breadcrumb - Fixed height spacing for header (pt-24 = 96px for proper header clearance) */}
         <div className="bg-white border-b border-gray-100">
-          <div className="max-w-7xl mx-auto px-4 py-4 pt-24">
+          <div className="max-w-full mx-auto px-20 py-4 pt-24">
             <nav className="flex items-center gap-2 text-sm text-gray-500">
               <Link to="/" className="hover:text-[#EE4343]">Home</Link>
               <ChevronRight className="w-4 h-4" />
