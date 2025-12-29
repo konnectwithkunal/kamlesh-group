@@ -2,40 +2,45 @@
 
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
-// Data for the brands section with logos - Updated with correct paths
+// Data for the brands section with logos - Updated with correct paths and links
 const brands = [
-  
   { 
     name: "Kamlesh Enterprises", 
-    link: "#",
-    logo: "/img/KAMLESH.png"
+    link: "/products/t-shirts",
+    logo: "/img/KAMLESH.png",
+    isExternal: false
   },
   { 
     name: "Mug Wale", 
-    link: "/mugs",
-    logo: "/img/MUGWALE.png"
+    link: "https://mugwale.vercel.app/mugs",
+    logo: "/img/MUGWALE.png",
+    isExternal: true
   },
-  
   { 
     name: "Powerbook", 
-    link: "#",
-    logo: "/img/POWER.png"
+    link: "/corporate-gifting",
+    logo: "/img/POWER.png",
+    isExternal: false
   },
   { 
     name: "Corporate Gifts", 
-    link: "#",
-    logo: "/img/CORPORATE.png"
+    link: "/corporate-gifting",
+    logo: "/img/CORPORATE.png",
+    isExternal: false
   },
   { 
     name: "Allure Space", 
-    link: "#",
-    logo: "/img/ALLURE.png"
+    link: "/allure-space",
+    logo: "/img/ALLURE.png",
+    isExternal: false
   },
   { 
     name: "Nars", 
-    link: "#",
-    logo: "/img/NARS.png"
+    link: "/nars",
+    logo: "/img/NARS.png",
+    isExternal: false
   },
 ];
 
@@ -73,27 +78,50 @@ function About() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="flex items-center justify-between overflow-x-auto px-4 no-scrollbar gap-8 md:gap-12">
-  {brands.map((brand, index) => (
-    <a  // <--- Add this tag
-      key={index}
-      href={brand.link}
-      className="group flex flex-col items-center gap-3 transition-all duration-300 ease-in-out hover:scale-110 cursor-pointer flex-shrink-0"
-    >
-      {/* Logo Container */}
-      <div className="h-12 md:h-16 flex items-center justify-center">
-        <img 
-          src={brand.logo} 
-          alt={brand.name}
-          className="h-full w-auto max-w-[120px] md:max-w-[150px] object-contain transition-all duration-300 hover:opacity-100 opacity-90"
-        />
-      </div>
-      {/* Brand Name */}
-      <span className="text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        {brand.name}
-      </span>
-    </a>
-  ))}
-</div>
+            {brands.map((brand, index) => (
+              brand.isExternal ? (
+                <a
+                  key={index}
+                  href={brand.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col items-center gap-3 transition-all duration-300 ease-in-out hover:scale-110 cursor-pointer flex-shrink-0"
+                >
+                  {/* Logo Container */}
+                  <div className="h-12 md:h-16 flex items-center justify-center">
+                    <img 
+                      src={brand.logo} 
+                      alt={brand.name}
+                      className="h-full w-auto max-w-[120px] md:max-w-[150px] object-contain transition-all duration-300 hover:opacity-100 opacity-90"
+                    />
+                  </div>
+                  {/* Brand Name */}
+                  <span className="text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {brand.name}
+                  </span>
+                </a>
+              ) : (
+                <Link
+                  key={index}
+                  to={brand.link}
+                  className="group flex flex-col items-center gap-3 transition-all duration-300 ease-in-out hover:scale-110 cursor-pointer flex-shrink-0"
+                >
+                  {/* Logo Container */}
+                  <div className="h-12 md:h-16 flex items-center justify-center">
+                    <img 
+                      src={brand.logo} 
+                      alt={brand.name}
+                      className="h-full w-auto max-w-[120px] md:max-w-[150px] object-contain transition-all duration-300 hover:opacity-100 opacity-90"
+                    />
+                  </div>
+                  {/* Brand Name */}
+                  <span className="text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {brand.name}
+                  </span>
+                </Link>
+              )
+            ))}
+          </div>
         </motion.div>
 
         {/* --- BLOCK 3: ARROW (LEFT) & TEXT (RIGHT) --- */}
