@@ -11,39 +11,39 @@ export default function Testimonials() {
   const testimonials = [
     {
       id: 1,
-      name: 'Ravi Bagaria',
-      rating: 4,
+      name: 'Rajesh Mehta',
+      rating: 5,
       shortText:
-        'Others have already said plenty about their quality of their TMT bars and steel products. One thing that I believe should be talked more about Shyam Metallics in their CSR initiati...',
+        'We ordered 500 customized mugs for our corporate event from Mug Wale. The print quality was exceptional and the delivery was right on time. Kamlesh Group has become our go-to for al...',
       fullText:
-        'Others have already said plenty about their quality of their TMT bars and steel products. One thing that I believe should be talked more about Shyam Metallics in their CSR initiatives. They are doing wonderful work in the communities around their facilities, and it shows their commitment to being more than just a manufacturer.',
+        'We ordered 500 customized mugs for our corporate event from Mug Wale. The print quality was exceptional and the delivery was right on time. Kamlesh Group has become our go-to for all our corporate gifting needs. Their attention to detail and willingness to accommodate last-minute changes really sets them apart.',
     },
     {
       id: 2,
-      name: 'Saurav Agarwal',
-      rating: 4,
-      shortText:
-        'I was looking for best quality TMT bars, and having heard a lot about Shyam Metalics, so I finally decided to contact them. Comparing the TMT bar price in West Bengal, they are aff...',
-      fullText:
-        'I was looking for best quality TMT bars, and having heard a lot about Shyam Metalics, so I finally decided to contact them. Comparing the TMT bar price in West Bengal, they are affordable and the quality is top-notch. Their customer service team was very helpful throughout the process.',
-    },
-    {
-      id: 3,
-      name: 'Biplap Kar',
-      rating: 4,
-      shortText:
-        'We have been working with Shyam Metalics since 2004. We have worked with them on many projects throughout the years. They do an excellent job from start to finish. We enjoy working...',
-      fullText:
-        'We have been working with Shyam Metalics since 2004. We have worked with them on many projects throughout the years. They do an excellent job from start to finish. We enjoy working with them and would highly recommend their services to anyone looking for quality steel products and reliable delivery.',
-    },
-    {
-      id: 4,
       name: 'Priya Sharma',
       rating: 5,
       shortText:
-        'Shyam Metalics has been our trusted partner for over 5 years. Their commitment to quality and timely delivery has never disappointed us. The TMT bars we received have consistently ...',
+        'Kamlesh Enterprises supplied sublimation t-shirts for our company\'s annual sports day. The fabric quality and color vibrancy exceeded our expectations. With 18+ years of experience...',
       fullText:
-        'Shyam Metalics has been our trusted partner for over 5 years. Their commitment to quality and timely delivery has never disappointed us. The TMT bars we received have consistently met our high standards, and their professional approach to business makes them stand out in the industry.',
+        'Kamlesh Enterprises supplied sublimation t-shirts for our company\'s annual sports day. The fabric quality and color vibrancy exceeded our expectations. With 18+ years of experience, they truly understand what businesses need. Their pricing is competitive and the bulk order discounts made it even better for us.',
+    },
+    {
+      id: 3,
+      name: 'Amit Gupta',
+      rating: 4,
+      shortText:
+        'We have been sourcing promotional merchandise from Kamlesh Group for the past 3 years. From cushions to keychains, photo frames to t-shirts - everything is top quality. Their Pan In...',
+      fullText:
+        'We have been sourcing promotional merchandise from Kamlesh Group for the past 3 years. From cushions to keychains, photo frames to t-shirts - everything is top quality. Their Pan India delivery network ensures we receive our orders anywhere across the country without any hassle.',
+    },
+    {
+      id: 4,
+      name: 'Sneha Patel',
+      rating: 5,
+      shortText:
+        'The Powerbook diaries we ordered for our employees were beautifully crafted. Kamlesh Group\'s team was very patient with our design requirements and provided multiple samples before f...',
+      fullText:
+        'The Powerbook diaries we ordered for our employees were beautifully crafted. Kamlesh Group\'s team was very patient with our design requirements and provided multiple samples before finalizing. Their corporate gifting solutions are perfect for companies looking to make a lasting impression on clients and employees alike.',
     },
   ];
 
@@ -98,32 +98,32 @@ export default function Testimonials() {
   };
 
   return (
-      <section className="py-12 md:py-16 px-4 lg:px-16 relative bg-white grid-mob-light">
-    <div className="max-w-7xl mx-auto relative z-10">
-      {/* Header with Animation */}
-      <div ref={headerRef} className="text-center mb-8 md:mb-12">
-        <h2
-          className={`text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3 md:mb-4 text-black transition-all duration-1000 ${
-            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
-          }`}
-        >
-          What Our
-          <br />
-          Customer Says
-        </h2>
-        <p
-          className={`text-gray-600 text-base md:text-lg max-w-3xl mx-auto px-4 transition-all duration-1000 ${
-            headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-          }`}
-          style={{ transitionDelay: headerInView ? '200ms' : '0ms' }}
-        >
-          Every great relationship starts with trust. These are the voices of
-          our clients sharing how our work made a real difference in their
-          journey.
-        </p>
-      </div>
+    <section className="py-12 md:py-16 px-4 lg:px-16 relative bg-white grid-mob-light">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header with Animation */}
+        <div ref={headerRef} className="text-center mb-8 md:mb-12">
+          <h2
+            className={`text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3 md:mb-4 text-black transition-all duration-1000 ${
+              headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+            }`}
+          >
+            What Our
+            <br />
+            Customer Says
+          </h2>
+          <p
+            className={`text-gray-600 text-base md:text-lg max-w-3xl mx-auto px-4 transition-all duration-1000 ${
+              headerInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+            }`}
+            style={{ transitionDelay: headerInView ? '200ms' : '0ms' }}
+          >
+            Every great relationship starts with trust. These are the voices of
+            our clients sharing how our work made a real difference in their
+            journey.
+          </p>
+        </div>
 
-        {/* Cards with Staggered Animation */}
+        {/* Cards with Staggered Animation - Only 4 testimonials */}
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {testimonials.map((testimonial, index) => (
             <div

@@ -30,11 +30,11 @@ const HeaderWhite = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300  ${
         isScrolled ? "bg-white shadow-lg border-b border-gray-200" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between ">
         <Link to="/">
           <img
             src={isScrolled ? "/img/colorblack.png" : "/img/colorblack.png"}
@@ -44,7 +44,7 @@ const HeaderWhite = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-8 ">
           <a
             onClick={() => handleNavClick("about")}
             className={`cursor-pointer text-lg transition-colors duration-300 ${

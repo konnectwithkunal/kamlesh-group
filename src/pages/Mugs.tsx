@@ -1,146 +1,159 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
-import { fadeInUp } from "../animation/variants";
-import { mugProducts } from "../data/mugProducts";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
 
-const Mugs = () => {
-  const [sortBy, setSortBy] = useState("featured");
+const HeaderHome = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (id) => {
+    setIsMobileMenuOpen(false); // Close mobile menu if open
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollToId: id } });
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Existing Header Component */}
-      <Header />
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-lg border-b border-gray-200" : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        <Link to="/">
+          <img
+            src={isScrolled ? "/img/colorblack.png" : "/img/colorwhite.png"}
+            alt="NewsMakerIndia Logo"
+            className="h-14 w-auto transition-all duration-300"
+          />
+        </Link>
 
-      {/* Red Hero Section */}
-      <section className="bg-[#EF4343] grid-overlay-light pt-20 pb-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl">
-            <motion.h1 
-                variants={fadeInUp}
-                initial="hidden"
-                animate="visible" 
-                className="text-6xl md:text-8xl font-bold mb-8 text-white"
-            >
-              Mugs
-            </motion.h1>
-            <motion.p 
-                variants={fadeInUp}
-                initial="hidden"
-                animate="visible" 
-                className="text-xl md:text-2xl text-white max-w-2xl leading-relaxed"
-            >
-              Discover our premium collection of customizable mugs perfect for any occasion.
-              From classic ceramic to modern insulated designs, find the perfect mug for your needs.
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-6">
-          
-          {/* Filter/Sort Section */}
-          <div className="flex flex-wrap items-center justify-between border-b pb-6 mb-8 gap-4">
-            <p className="text-gray-500">
-              {mugProducts.length} products
-            </p>
-            
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-medium text-black">Sort by:</span>
-              <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-[180px] bg-black text-white border-none rounded-md h-10">
-                  <SelectValue placeholder="Featured" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="featured">Featured</SelectItem>
-                  <SelectItem value="newest">Newest</SelectItem>
-                  <SelectItem value="price-low">Price: Low to High</SelectItem>
-                  <SelectItem value="price-high">Price: High to Low</SelectItem>
-                  <SelectItem value="name">Name: A to Z</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          {/* Product Grid */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.1,
-                },
-              },
-            }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center space-x-8">
+          <a
+            onClick={() => handleNavClick("about")}
+            className={`cursor-pointer text-lg transition-colors duration-300 ${
+              isScrolled ? "text-black hover:text-primary" : "text-white hover:text-primary"
+            }`}
           >
-            {mugProducts.map((product) => (
-              <motion.div
-                key={product.id}
-                variants={fadeInUp}
-                className="group cursor-pointer bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden"
-                onClick={() => navigate(`/mugs/${product.id}`)}
-              >
-                <div className="relative overflow-hidden bg-gray-100 aspect-square">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className={`w-full h-full object-cover transition-opacity duration-300 ${
-                      product.hoverImage ? "group-hover:opacity-0" : ""
-                    }`}
-                  />
-                  {/* Hover Image */}
-                  {product.hoverImage && (
-                    <img
-                      src={product.hoverImage}
-                      alt={`${product.name} alternate view`}
-                      className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    />
-                  )}
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-black group-hover:text-primary transition-colors duration-300 mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-2">By Kamlesh Group of Companies</p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xl font-bold text-primary">
-                        ${product.price}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        {product.sizes.join(", ")}
-                      </p>
-                    </div>
-                    <button className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-                      View Details →
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+            About us
+          </a>
+          <a
+            onClick={() => navigate("/services")}
+            className={`cursor-pointer text-lg transition-colors duration-300 ${
+              isScrolled ? "text-black hover:text-primary" : "text-white hover:text-primary"
+            }`}
+          >
+            Services
+          </a>
+          
+          <a
+            onClick={() => navigate("/news")}
+            className={`cursor-pointer text-lg transition-colors duration-300 ${
+              isScrolled ? "text-black hover:text-primary" : "text-white hover:text-primary"
+            }`}
+          >
+            In the Spotlight
+          </a>
+          <a
+            onClick={() => navigate("/blogs")}
+            className={`cursor-pointer text-lg transition-colors duration-300 ${
+              isScrolled ? "text-black hover:text-primary" : "text-white hover:text-primary"
+            }`}
+          >
+            Blog
+          </a>
+        </nav>
 
-      <Footer />
-    </div>
+        <div className="flex items-center gap-4">
+          <Button
+            variant="default"
+            className="hidden sm:flex bg-primary hover:bg-primary/90 text-white font-medium px-6 rounded-full"
+            onClick={() => navigate("/contact")} 
+          >
+            Contact us
+          </Button>
+
+          {/* Mobile menu toggle */}
+          <button
+            className={`md:hidden p-2 transition-colors duration-300 ${
+              isScrolled ? "text-black" : "text-white"
+            }`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-background border-t border-border">
+          <nav className="container mx-auto px-6 py-4 space-y-4">
+            <a
+              onClick={() => handleNavClick("about")}
+              className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+            >
+              About us
+            </a>
+            <a
+              onClick={() => {
+                setIsMobileMenuOpen(false); 
+                navigate("services");
+              }}
+              className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+            >
+              Services
+            </a>
+            
+            <a
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                navigate("/news");
+              }}
+              className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+            >
+              In the Spotlight
+            </a>
+            <a
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                navigate("/blogs");
+              }}
+              className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+            >
+              Blogs
+            </a>
+            <Button
+              variant="default"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full mt-4"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                navigate("/contact"); 
+              }}
+            >
+              Contact us
+            </Button>
+          </nav>
+        </div>
+      )}
+    </header>
   );
 };
 
-export default Mugs;
+export default HeaderHome;

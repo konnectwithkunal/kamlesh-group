@@ -136,7 +136,7 @@ const Header = () => {
           <img
             src={isScrolled ? "/img/colorblack.png" : "/img/colorwhite.png"}
             alt="NewsMakerIndia Logo"
-            className="h-14 pl-10 w-auto transition-all duration-300"
+            className="h-14  w-auto transition-all duration-300"
           />
         </Link>
 
@@ -183,7 +183,6 @@ const Header = () => {
                             className="group cursor-pointer"
                             onClick={() => {
                               setIsMegaMenuOpen(false);
-                              // Corrected: Uses dynamic slug instead of hardcoded '/mugs'
                               navigate(`/services/${service.slug}`);
                             }}
                           >
@@ -208,14 +207,6 @@ const Header = () => {
             )}
           </div>
 
-          <a
-            onClick={() => navigate("/people")}
-            className={`cursor-pointer text-lg transition-colors duration-300 ${
-              isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"
-            }`}
-          >
-            People
-          </a>
           <a
             onClick={() => navigate("/news")}
             className={`cursor-pointer text-lg transition-colors duration-300 ${
@@ -294,7 +285,6 @@ const Header = () => {
                             onClick={() => {
                               setIsMobileMenuOpen(false);
                               setIsMobileServicesOpen(false);
-                              // Corrected: Dynamic navigation
                               navigate(`/services/${service.slug}`);
                             }}
                             className="flex items-start gap-2 py-1 cursor-pointer hover:text-primary transition-colors"
@@ -309,17 +299,6 @@ const Header = () => {
                 </div>
               )}
             </div>
-
-            {/* Fixed the 'People' link which was previously commented out improperly */}
-            <a
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                navigate("/people");
-              }}
-              className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
-            >
-              People
-            </a>
 
             <a
               onClick={() => {

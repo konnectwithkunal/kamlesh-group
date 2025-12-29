@@ -15,65 +15,67 @@ const Services = () => {
           description: "The industry standard classic white ceramic mug, perfect for vibrant, full-color sublimation prints.",
           tagline: "Classic ceramic",
           subtitle: "sublimation ready",
-          image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80"
+          image: "/mug-images/1_h.jpg"
         },
         {
           title: "Color Handle Mugs",
           description: "Dual-tone mugs featuring colored handles and rims to perfectly match your brand's color palette.",
           tagline: "Dual tone",
           subtitle: "color matching",
-          image: "https://images.unsplash.com/photo-1577937927133-66ef06acdf18?w=400&q=80"
+          image: "/mug-images/2_h.jpg"
         },
         {
           title: "Magic Mugs",
           description: "Black 'Magic' mugs that reveal your custom design or photo only when hot liquid is poured inside.",
           tagline: "Heat reveal",
           subtitle: "color changing",
-          image: "https://images.unsplash.com/photo-1497515114629-f71d768fd07c?w=400&q=80"
+          image: "/mug-images/7_h.jpg"
         },
         {
           title: "Patch Mugs",
           description: "Stylish Black and White patch mugs offering a modern, contrasting aesthetic for your logos.",
           tagline: "Modern style",
           subtitle: "contrast design",
-          image: "https://images.unsplash.com/photo-1572119865084-43c285814d63?w=400&q=80"
+          image: "/mug-images/12_h.jpg"
         }
       ]
     },
     {
-      title: "Kamlesh Enterprises",
-      description: "Beyond mugs, we provide a full suite of sublimation-ready merchandise for sports events, corporate giveaways, or fashion.",
-      subServices: [
-        {
-          title: "Sublimation T-Shirts",
-          description: "High-quality polyester blend t-shirts designed specifically for durable, full-color sublimation printing.",
-          tagline: "Premium quality",
-          subtitle: "full color prints",
-          image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80"
-        },
-        {
-          title: "Sublimation Bottles",
-          description: "Durable aluminum and steel sipper bottles, ideal for sports teams, gyms, and eco-friendly corporate gifts.",
-          tagline: "Eco friendly",
-          subtitle: "durable finish",
-          image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80"
-        },
-        {
-          title: "Sublimation Cups",
-          description: "Versatile tumblers and cups available in various finishes, ready for your custom artwork.",
-          tagline: "Versatile cups",
-          subtitle: "custom artwork",
-          image: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&q=80"
-        },
-        {
-          title: "Coffee Mugs",
-          description: "Standard and custom-shaped coffee mugs for cafes, offices, and daily use.",
-          tagline: "Daily essentials",
-          subtitle: "office ready",
-          image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&q=80"
-        }
-      ]
+  title: "Kamlesh Enterprises",
+  description: "Your one-stop destination for premium sublimation-ready apparel. From polyester t-shirts to nylon wear, we offer high-quality blank garments perfect for custom printing with 18+ years of expertise.",
+  subServices: [
+    {
+      title: "Sublimation Polyester T-Shirts",
+      description: "Premium 180 GSM polyester t-shirts with round neck design. Available in sizes XS to XXL, perfect for vibrant full-color sublimation printing.",
+      tagline: "180 GSM",
+      subtitle: "vibrant prints",
+      image: "https://5.imimg.com/data5/SELLER/Default/2022/9/FZ/NP/ZP/13813473/sublimation-polyester-t-shirts-500x500.png"
     },
+   
+    {
+      title: "Sublimation Collar Matty T-Shirt",
+      description: "Professional polo neck t-shirts in 180 GSM polyester. Available in 5 colors - Black, White, Grey, Yellow & Maroon. Sizes 36 to 44.",
+      tagline: "Polo neck",
+      subtitle: "professional look",
+      image: "https://5.imimg.com/data5/SELLER/Default/2025/1/482994330/GV/RI/HF/13813473/sublimation-t-shirt-500x500.jpeg"
+    },
+    {
+      title: "Sublimation Blank T-Shirt",
+      description: "Versatile blank t-shirts in both polo and round neck styles. Dryfit polyester 180 GSM available in 9 colours with pocket options.",
+      tagline: "Multi-style",
+      subtitle: "9 colours available",
+      image: "https://5.imimg.com/data5/SELLER/Default/2023/5/309211234/LY/ZG/ZM/13813473/whatsapp-image-2023-05-19-at-10-31-34-am-500x500.jpeg"
+    },
+    {
+      title: "Cotton Feel T-Shirt",
+      description: "Sublimation cotton feel t-shirts with 160 GSM fabric. Soft touch with excellent print quality. Available in Pink, Blue, Green, Yellow and White.",
+      tagline: "160 GSM",
+      subtitle: "soft cotton feel",
+      image: "https://5.imimg.com/data5/SELLER/Default/2024/2/394647934/JM/WO/AI/13813473/whatsapp-image-2024-02-09-at-3-30-18-pm-1-500x500.jpeg"
+    },
+   
+  ]
+},
     {
       title: "Powerbook",
       description: "Strengthen business relationships with our premium corporate gifting solutions for clients, employees, and partners.",
@@ -83,28 +85,28 @@ const Services = () => {
           description: "Elegant trophies and awards to recognize achievement, milestones, and excellence within your organization.",
           tagline: "Corporate",
           subtitle: "gifting natural",
-          image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80"
+          image: "/img/powerbook_1.jpeg"
         },
         {
           title: "Branded Keychains",
           description: "Custom branded keychains in metal, leather, or plastic – a cost-effective and practical promotional item.",
           tagline: "Brand recall",
           subtitle: "practical gifts",
-          image: "https://images.unsplash.com/photo-1622434641406-a158123450f9?w=400&q=80"
+          image: "/img/powerbook_2.jpeg"
         },
         {
           title: "Luxury Pens",
           description: "Premium metal and plastic pens engraved or printed with your company logo for lasting brand recall.",
           tagline: "Executive style",
           subtitle: "lasting impression",
-          image: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80"
+          image: "/img/powerbook_3.jpeg"
         },
         {
           title: "Professional Bags",
           description: "Functional corporate bags, laptop bags, and totes designed for professionals on the move.",
           tagline: "Professional",
           subtitle: "on the move",
-          image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80"
+          image: "/img/powerbook_4.jpeg"
         }
       ]
     },
@@ -144,124 +146,121 @@ const Services = () => {
     },
     {
       title: "Allure Space",
-      description: "Premium interior and lifestyle products designed to elevate your personal and professional spaces.",
+      description: "A multidisciplinary architecture and design practice crafting sustainable, innovative, and aesthetically profound environments.",
       subServices: [
         {
-          title: "Photo Frames",
-          description: "Elegant photo frames in various materials and sizes to showcase your cherished memories.",
-          tagline: "Cherished",
-          subtitle: "memories framed",
-          image: "https://images.unsplash.com/photo-1513519245088-0e12902e35a6?w=400&q=80"
+          title: "Architectural Design",
+          description: "Comprehensive structural planning and building design, ranging from luxury residences to commercial complexes.",
+          tagline: "Visionary",
+          subtitle: "structural excellence",
+          image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&q=80" // Modern Building structure
         },
         {
-          title: "Wall Art",
-          description: "Custom wall art and canvas prints to transform any space into a personalized gallery.",
-          tagline: "Transform",
-          subtitle: "your space",
-          image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=400&q=80"
+          title: "Interior Architecture",
+          description: "Bespoke spatial planning that harmonizes functionality with luxury aesthetics for immersive experiences.",
+          tagline: "Sophisticated",
+          subtitle: "spatial harmony",
+          image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80" // Modern Interior
         },
         {
-          title: "Cushion Covers",
-          description: "Sublimation-printed cushion covers with vibrant designs for home and office decor.",
-          tagline: "Vibrant prints",
-          subtitle: "home decor",
-          image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80"
+          title: "Commercial Spaces",
+          description: "Strategic design for offices, retail, and hospitality sectors tailored to enhance brand identity and workflow.",
+          tagline: "Functional",
+          subtitle: "business environments",
+          image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80" // Corporate Office
         },
         {
-          title: "Home Decor",
-          description: "A curated collection of home decor items to add personality to any living space.",
-          tagline: "Curated",
-          subtitle: "living spaces",
-          image: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=400&q=80"
+          title: "Turnkey Projects",
+          description: "End-to-end project execution from conceptualization to handover, ensuring precision and quality.",
+          tagline: "Seamless",
+          subtitle: "concept to reality",
+          image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=80" // Construction/Architecture planning
         }
       ]
-    },
-    {
-      title: "NARS",
-      description: "Cutting-edge fashion and apparel solutions with custom printing and branding options.",
+},
+   {
+      title: "NARS Surgicals", 
+      description: "Premium disposable surgical gowns and medical fabrics engineered with Bodyguard Plus Technology for maximum protection.",
       subServices: [
         {
-          title: "Custom Apparel",
-          description: "Personalized clothing items with high-quality prints that reflect your brand identity.",
-          tagline: "Brand identity",
-          subtitle: "custom prints",
-          image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=400&q=80"
+          title: "Surgical Gowns",
+          description: "Standard and reinforced gowns meeting AAMI Levels 2, 3, & 4 standards for critical zones.",
+          tagline: "Maximum Protection",
+          subtitle: "Bodyguard Plus Tech",
+          image: "/img/nar.jpg"
         },
         {
-          title: "Sports Jerseys",
-          description: "Professional-grade sports jerseys with sublimation printing for teams and events.",
-          tagline: "Team spirit",
-          subtitle: "pro grade",
-          image: "https://images.unsplash.com/photo-1580087256394-dc596e1c8f4f?w=400&q=80"
+          title: "Laminated Fabrics",
+          description: "Impervious fabric technology providing the highest fluid and microbial barrier against blood-borne pathogens.",
+          tagline: "Viral Barrier",
+          subtitle: "Impervious & Safe",
+          image: "/img/laminate.png"
         },
         {
-          title: "Caps & Hats",
-          description: "Custom branded caps and hats perfect for outdoor events and promotional campaigns.",
-          tagline: "Outdoor ready",
-          subtitle: "brand visibility",
-          image: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&q=80"
+          title: "Biodegradable PPE",
+          description: "Oxo-biodegradable options that are 100% recyclable and degrade within 70 hours of exposure.",
+          tagline: "Eco-Conscious",
+          subtitle: "Reduced Pollution",
+          image: "/img/bio.png"
         },
         {
-          title: "Accessories",
-          description: "Fashion accessories including scarves, ties, and more with custom printing options.",
-          tagline: "Fashion forward",
-          subtitle: "custom style",
-          image: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&q=80"
+          title: "Antimicrobial Tech",
+          description: "Advanced fabrics with active additives that resist bacteria, fungi, and algae with >95% reduction.",
+          tagline: "Germ Defense",
+          subtitle: "Active Protection",
+          image: "/img/anti.png"
         }
       ]
-    }
+}
   ];
 
   return (
     <section id="services" className="py-20 bg-[#EF4343]">
       <div className="container mx-auto px-8 md:px-12 lg:px-20">
-   <div className="grid md:grid-cols-5 gap-8 md:gap-12 mb-16 items-start">
-  {/* Left - Title (40% = 2/5) */}
-  <div className="md:col-span-2">
-    <h2 className="text-4xl md:text-5xl text-center lg:text-7xl  text-white">Our Services</h2>
-  </div>
-  
-  {/* Right - Description (60% = 3/5) */}
-  <div className="md:col-span-3">
-  <p className="text-lg md:text-xl text-white/90 leading-relaxed pl-20 pr-10 text-center">
-    <span className="text-5xl md:text-6xl lg:text-3xl font-bold float-left mt-[-8px] leading-none">W</span>
-    e deliver specialized Sublimation Printing, Corporate Gifting, and Branding solutions, driven by a commitment to quality and a deep understanding of your business needs.
-  </p>
-</div>
-</div>
-        
+        <div className="grid md:grid-cols-5 gap-8 md:gap-12 mb-16 items-start">
+          {/* Left - Title (40% = 2/5) */}
+          <div className="md:col-span-2">
+            <h2 className="text-4xl md:text-5xl text-center lg:text-7xl text-white">Our Services</h2>
+          </div>
+
+          {/* Right - Description (60% = 3/5) */}
+          <div className="md:col-span-3">
+            <p className="text-lg md:text-xl text-white/90 leading-relaxed pl-20 pr-10 text-center">
+              <span className="text-5xl md:text-6xl lg:text-3xl font-bold float-left mt-[-8px] leading-none">W</span>
+              e deliver specialized Sublimation Printing, Corporate Gifting, and Branding solutions, driven by a commitment to quality and a deep understanding of your business needs.
+            </p>
+          </div>
+        </div>
+
         {/* 40/60 Split Grid */}
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-16 mb-16">
-          
+
           {/* Main Services - Left Side (40% = 2/5) */}
           <div className="lg:col-span-2 space-y-1">
             {services.map((service, index) => (
               <div key={index}>
-                <div 
-                  className={`group cursor-pointer py-8 px-4 border-b-2 transition-all duration-300 ${
-                    selectedService === index 
-                      ? 'border-white' 
+                <div
+                  className={`group cursor-pointer py-8 px-4 border-b-2 transition-all duration-300 ${selectedService === index
+                      ? 'border-white'
                       : 'border-white/40 hover:border-white'
-                  }`}
+                    }`}
                   onClick={() => setSelectedService(index)}
                   onMouseEnter={() => setSelectedService(index)}
                 >
                   <div className="flex items-center justify-between">
-                    <h3 className={`text-xl md:text-2xl font-bold transition-all duration-300 ${
-                      selectedService === index 
-                        ? 'text-white translate-x-2' 
+                    <h3 className={`text-xl md:text-2xl font-bold transition-all duration-300 ${selectedService === index
+                        ? 'text-white translate-x-2'
                         : 'text-white/80 group-hover:text-white group-hover:translate-x-2'
-                    }`}>
+                      }`}>
                       {service.title}
                     </h3>
-                    <svg 
-                      className={`w-6 h-6 transition-all duration-300 ${
-                        selectedService === index 
-                          ? 'text-white translate-x-2' 
+                    <svg
+                      className={`w-6 h-6 transition-all duration-300 ${selectedService === index
+                          ? 'text-white translate-x-2'
                           : 'text-white/60 group-hover:text-white group-hover:translate-x-2'
-                      }`}
-                      fill="none" 
-                      stroke="currentColor" 
+                        }`}
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -276,46 +275,23 @@ const Services = () => {
           <div className="lg:col-span-3 hidden md:block pl-20 pr-10">
             <div className="grid grid-cols-2 gap-5">
               {services[selectedService].subServices.map((subService, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-3"
                   onClick={() => console.log("Clicked:", subService.title)}
                 >
                   {/* Image with Overlay Card */}
                   <div className="relative h-40 rounded-xl overflow-hidden">
                     {/* Background Image */}
-                    <img 
-                      src={subService.image} 
+                    <img
+                      src={subService.image}
                       alt={subService.title}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    
-                    {/* Dark Overlay */}
-                    <div className="absolute inset-0 bg-[#4A5D5D]/1" />
-                    
-                    {/* Content on top of image */}
-                    {/* Content on top of image */}
-<div className="absolute inset-0 flex flex-col items-center justify-center p-4">
-  {/* Main Tagline - Italic Serif Style */}
-  <p className="text-white/95 group-hover:text-[#EF4343] text-lg font-light italic text-center z-10 font-serif transition-colors duration-300">
-    {subService.tagline}
-  </p>
-  <p className="text-white/95 group-hover:text-[#EF4343] text-lg font-light italic text-center z-10 font-serif transition-colors duration-300">
-    {subService.subtitle}
-  </p>
-  
-  {/* Middle small text */}
-  <p className="text-white/50 group-hover:text-[#EF4343]/70 text-[10px] uppercase tracking-[0.2em] mt-3 z-10 transition-colors duration-300">
-    Kamlesh Group
-  </p>
-  
-  {/* Bottom decorative text */}
-  <p className="text-white/40 group-hover:text-[#EF4343]/60 text-[8px] mt-1 text-center max-w-[90%] z-10 tracking-wide transition-colors duration-300">
-    Premium quality products for your business
-  </p>
-</div>
+                    {/* Dark Overlay - REMOVED */}
+                    {/* Content on top of image - REMOVED */}
                   </div>
-                  
+
                   {/* White Content Container */}
                   <div className="pt-4 pb-2 px-1">
                     <h4 className="font-bold text-gray-900 mb-2 text-sm uppercase tracking-wide">
@@ -333,32 +309,21 @@ const Services = () => {
           {/* Mobile Sub Services */}
           <div className="lg:col-span-3 md:hidden space-y-4">
             {services[selectedService].subServices.map((subService, index) => (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-lg p-3"
               >
                 {/* Image with Overlay - Mobile */}
                 <div className="relative h-32 rounded-xl overflow-hidden">
-                  <img 
-                    src={subService.image} 
+                  <img
+                    src={subService.image}
                     alt={subService.title}
                     className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-[#4A5D5D]/90" />
-                  
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-3">
-                    <p className="text-white/95 text-base font-light italic text-center font-serif">
-                      {subService.tagline}
-                    </p>
-                    <p className="text-white/95 text-base font-light italic text-center font-serif">
-                      {subService.subtitle}
-                    </p>
-                    <p className="text-white/50 text-[9px] uppercase tracking-[0.2em] mt-2">
-                      Kamlesh Group
-                    </p>
-                  </div>
+                  {/* Dark Overlay - REMOVED */}
+                  {/* Content on top of image - REMOVED */}
                 </div>
-                
+
                 <div className="pt-3 pb-1 px-1">
                   <h4 className="font-bold text-gray-900 mb-1 text-sm uppercase tracking-wide">
                     {subService.title}

@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [showCookieBanner, setShowCookieBanner] = useState(false);
@@ -59,36 +58,24 @@ const Footer = () => {
         </div>
       )}
 
-      {/* Get in touch CTA */}
-      <section aria-label="Get in touch" className="bg-primary grid-overlay-light">
+      {/* Contact Section with Red Grid Background */}
+      <section id="contact" aria-label="Contact information" className="bg-primary grid-overlay-light">
         <div className="container mx-auto px-6 py-20 md:py-28 text-center">
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight text-white mb-8">
-            Let us elevate your brand
-          </h2>
-          <Button asChild className="bg-black text-white rounded-full px-6 py-6 text-lg md:text-xl font-semibold hover:bg-black/80">
-            <a href={`mailto:${email}`} aria-label="Get in touch via email">
-              <span className="inline-flex items-center gap-3">
-                Get in touch
-                <ArrowRight className="size-5" />
-              </span>
-            </a>
-          </Button>
-        </div>
-      </section>
-
-      {/* Contact section */}
-      <section id="contact" aria-label="Contact information" className="bg-white">
-        <div className="container mx-auto px-6 py-16 md:py-24 text-center ">
           <a
             href={`mailto:${email}`}
-            className="inline-block text-xl md:text-6xl lg:text-7xl font-bold tracking-tight text-black"
+            className="inline-block text-3xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white hover:text-white/90 transition-colors"
           >
             {email}
           </a>
-          <div className="mx-auto mt-3 h-1 w-40 bg-primary" />
-          <p className="mt-6 text-lg text-gray-600">
+          
+          <div className="mx-auto mt-6 h-1 w-40 bg-white" />
+          
+          <p className="mt-6 text-lg md:text-xl text-white/90">
             Or call us at
-            <a href={`tel:${phone.replace(/[^+\d]/g, "")}`} className="ml-2 text-black hover:text-primary transition-colors">
+            <a 
+              href={`tel:${phone.replace(/[^+\d]/g, "")}`} 
+              className="ml-2 text-white font-bold hover:underline"
+            >
               {phone}
             </a>
           </p>
@@ -111,14 +98,16 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Services */}
+            {/* Services - Updated */}
             <nav aria-label="Services">
               <h4 className="font-semibold mb-6 text-black text-2xl">Services</h4>
               <ul className="space-y-3">
-                <li><Link to="/services?service=sublimation-mugs" className="text-gray-700 text-xl hover:text-primary">Sublimation Mugs</Link></li>
-                <li><Link to="/services?service=sublimation-merchandise" className="text-gray-700 text-xl hover:text-primary">Sublimation Merchandise</Link></li>
+                <li><Link to="/services?service=mug-wale" className="text-gray-700 text-xl hover:text-primary">Mug Wale</Link></li>
+                <li><Link to="/services?service=kamlesh-enterprises" className="text-gray-700 text-xl hover:text-primary">Kamlesh Enterprises</Link></li>
+                <li><Link to="/services?service=powerbook" className="text-gray-700 text-xl hover:text-primary">Powerbook</Link></li>
                 <li><Link to="/services?service=corporate-gifting" className="text-gray-700 text-xl hover:text-primary">Corporate Gifting</Link></li>
-                <li><Link to="/services?service=stationery-powerbooks" className="text-gray-700 text-xl hover:text-primary">Stationery & Powerbooks</Link></li>
+                <li><Link to="/services?service=allure-space" className="text-gray-700 text-xl hover:text-primary">Allure Space</Link></li>
+                <li><Link to="/services?service=nars-surgicals" className="text-gray-700 text-xl hover:text-primary">NARS Surgicals</Link></li>
               </ul>
             </nav>
 
@@ -128,7 +117,6 @@ const Footer = () => {
               <ul className="space-y-3">
                 <li><Link to="/" className="text-gray-700 text-xl hover:text-primary">About us</Link></li>
                 <li><Link to="/services" className="text-gray-700 text-xl hover:text-primary">Services</Link></li>
-                {/* <li><Link to="/people" className="text-gray-700 text-xl hover:text-primary">People</Link></li> */}
                 <li><Link to="/news" className="text-gray-700 text-xl hover:text-primary">Client Showcase</Link></li>
                 <li><Link to="/blogs" className="text-gray-700 text-xl hover:text-primary">Blog</Link></li>
               </ul>
