@@ -1,568 +1,400 @@
+// src/pages/Corporategiftingpage.tsx
+// Main Corporate Gifting Landing Page
+
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
-  ChevronDown, 
-  ChevronUp, 
+  ChevronRight,
   Phone, 
   Mail, 
   Gift, 
-  Users, 
   Truck,
   Shield,
-  Clock,
-  CheckCircle,
-  Star
+  Star,
+  Package,
+  Sparkles
 } from 'lucide-react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
+// Import from combined catalog
+import { 
+  productCategories,
+  getFeaturedProducts,
+  getPremiumProducts,
+  getEconomicalProducts,
+  getCatalogStats,
+  UnifiedProduct
+} from '../data/kamlesh-group-catalog';
 
 // Hero Banner Data
 const heroBanners = [
   {
     id: 1,
-    title: "Hampers That Celebrate New Beginnings",
-    subtitle: "Curated hampers designed to delight this New Year.",
-    cta: "Browse Hampers",
-    link: "#hampers",
+    title: "Premium Corporate Gifting Solutions",
+    subtitle: "153+ Products | Premium & Economical Ranges | Custom Branding Available",
+    cta: "Explore Catalog",
+    link: "#categories",
     image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=1200&q=80",
-    gradient: "from-amber-900/80 to-amber-700/60"
+    gradient: "from-gray-900/90 to-gray-800/70"
   }
 ];
 
-// Gift Kits Categories
-const giftKits = [
-  {
-    id: 1,
-    title: "Employee Engagement Kits",
-    image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&q=80",
-    link: "/corporate-gifting/employee-engagement-kits"
-  },
-  {
-    id: 2,
-    title: "Welcome Kits",
-    image: "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=600&q=80",
-    link: "/corporate-gifting/welcome-kits"
-  },
-  {
-    id: 3,
-    title: "Awards & Trophies",
-    image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=600&q=80",
-    link: "/corporate-gifting/gift-sets"
-  }
-];
+// Get categories by collection
+const premiumCats = productCategories.filter(c => c.collection === 'premium');
+const economicalCats = productCategories.filter(c => c.collection === 'economical');
 
-// Promotional Products
-const promotionalProducts = [
-  {
-    id: 1,
-    title: "Sublimation Mugs",
-    image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80",
-    link: "/corporate-gifting/sublimation-mugs"
-  },
-  {
-    id: 2,
-    title: "Drinkware",
-    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80",
-    link: "/corporate-gifting/drinkware"
-  },
-  {
-    id: 3,
-    title: "Apparel",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80",
-    link: "/corporate-gifting/apparel"
-  },
-  {
-    id: 4,
-    title: "Gift Sets",
-    image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400&q=80",
-    link: "/corporate-gifting/gift-sets"
-  },
-  {
-    id: 5,
-    title: "Desk Accessories",
-    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80",
-    link: "/products/desk-accessories"
-  },
-  {
-    id: 6,
-    title: "Pens",
-    image: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=400&q=80",
-    link: "/products/pens"
-  },
-  {
-    id: 7,
-    title: "Calendars & Diaries",
-    image: "https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=400&q=80",
-    link: "/products/calendars"
-  },
-  {
-    id: 8,
-    title: "Notebooks",
-    image: "https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=400&q=80",
-    link: "/products/notebooks"
-  },
-  {
-    id: 9,
-    title: "Photo Frames",
-    image: "https://images.unsplash.com/photo-1582053433976-25c00369fc93?w=400&q=80",
-    link: "/products/photo-frames"
-  },
-  {
-    id: 10,
-    title: "Cushions",
-    image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=400&q=80",
-    link: "/products/cushions"
-  },
-  {
-    id: 11,
-    title: "Keychains",
-    image: "https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?w=400&q=80",
-    link: "/products/keychains"
-  },
-  {
-    id: 12,
-    title: "Tote Bags",
-    image: "https://images.unsplash.com/photo-1597633425046-08f5110420b5?w=400&q=80",
-    link: "/products/tote-bags"
-  }
-];
+// Stats
+const stats = getCatalogStats();
 
-// Packaging Products
-const packagingProducts = [
-  {
-    id: 1,
-    title: "Gift Boxes",
-    image: "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?w=400&q=80",
-    link: "/products/gift-boxes"
-  },
-  {
-    id: 2,
-    title: "Mailer Boxes",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80",
-    link: "/products/mailer-boxes"
-  },
-  {
-    id: 3,
-    title: "Thank You Cards",
-    image: "https://images.unsplash.com/photo-1606567595334-d39972c85dfd?w=400&q=80",
-    link: "/products/thank-you-cards"
-  },
-  {
-    id: 4,
-    title: "Gift Wrapping Papers",
-    image: "https://images.unsplash.com/photo-1512909006721-3d6018887383?w=400&q=80",
-    link: "/products/wrapping-papers"
-  }
-];
-
-// FAQ Data
-const faqData = [
-  {
-    question: "What are some examples of corporate gifts?",
-    answer: "Welcome kits for new employees, customized awards and trophies, branded drinkware like sublimation mugs and bottles, personalized t-shirts, backpacks, calendars and diaries, notebooks, keychains, photo frames, cushions, and much more."
-  },
-  {
-    question: "Why is corporate gifting important?",
-    answer: "Corporate gifting gives you a competitive edge in the business world. Research shows that 66% of recipients recall a brand after receiving a promotional gift. A well-thought-out corporate gift helps you stand apart from competitors, maintain healthy relationships with clients, attract new clients, increase sales, and impress existing customers."
-  },
-  {
-    question: "How will I benefit by sending personalised corporate gifts to my clients?",
-    answer: "With a well-timed & personalised corporate gift, let your clients know you value their business. The right corporate gift will turn your clients into brand evangelists. Studies show that consumers with an emotional connection to a brand have a 306% higher lifetime value."
-  },
-  {
-    question: "How Can We Motivate Employees With Corporate Gifts?",
-    answer: "A motivated employee is a happy employee. When you appreciate the contributions of your employees through corporate gifts, you create a positive environment where morale is high and performances are great. You can reach your business goals faster with a motivated team."
-  },
-  {
-    question: "Can corporate gifting benefit your business?",
-    answer: "Yes! It's a great way to show you care about your clients, customers, and employees. Whether it's gaining the trust of a new client, motivating your employees, Diwali gifts, or showing appreciation for professional relationships - corporate gifts help you strike the right chord."
-  },
-  {
-    question: "Why choose Kamlesh Group for corporate gifting?",
-    answer: "With 18+ years of experience, Kamlesh Group is the trusted choice for corporate gifting needs. We offer premium sublimation products, customized merchandise, Pan India delivery, bulk order discounts, and dedicated customer support. Our quality-assured products help build lasting brand impressions."
-  }
-];
-
-// Features/Benefits
-const features = [
-  {
-    icon: Gift,
-    title: "Branded Gifting",
-    description: "Custom logo printing on all your corporate gifts and merchandise"
-  },
-  {
-    icon: Shield,
-    title: "Assured Quality",
-    description: "18+ years of expertise delivering premium quality products"
-  },
-  {
-    icon: Users,
-    title: "Seamless Experience",
-    description: "Dedicated account manager for personalized service"
-  },
-  {
-    icon: Star,
-    title: "Competitive Pricing",
-    description: "Best pricing for bulk orders with volume discounts"
-  },
-  {
-    icon: Truck,
-    title: "Pan India Delivery",
-    description: "Reliable delivery anywhere across the country"
-  }
-];
+// Helper function to get color hex
+const getColorHex = (color: string): string => {
+  const colorMap: Record<string, string> = {
+    'black': '#000000',
+    'white': '#FFFFFF',
+    'silver': '#C0C0C0',
+    'gold': '#FFD700',
+    'rose gold': '#B76E79',
+    'red': '#EF4444',
+    'blue': '#3B82F6',
+    'green': '#22C55E',
+    'pink': '#EC4899',
+  };
+  return colorMap[color.toLowerCase()] || '#888888';
+};
 
 // Product Card Component
-const ProductCard: React.FC<{ product: typeof promotionalProducts[0]; index: number }> = ({ product, index }) => {
+const ProductCard: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
+  const [imageError, setImageError] = useState(false);
+  const categorySlug = productCategories.find(c => c.name === product.category)?.slug || 'products';
+  
   return (
-    <motion.a
-      href={product.link}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.05 }}
-      className="group block"
-    >
-      <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
-        <div className="aspect-square overflow-hidden bg-gray-50">
+    <Link to={`/corporate-gifting/${categorySlug}/${product.model.toLowerCase().replace(/\s+/g, '-')}`}>
+      <motion.div
+        whileHover={{ y: -5 }}
+        className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all group"
+      >
+        <div className="bg-[#F5F5F5] aspect-square relative">
+          <span className="absolute top-2 left-2 px-2 py-1 bg-gray-900 text-white text-xs font-mono rounded z-10">
+            {product.model}
+          </span>
+          {product.collection === 'premium' && (
+            <span className="absolute top-2 right-2 px-2 py-1 bg-amber-500 text-white text-xs font-bold rounded z-10">
+              PREMIUM
+            </span>
+          )}
+          {product.price && (
+            <span className="absolute bottom-2 right-2 px-2 py-1 bg-green-600 text-white text-xs font-bold rounded z-10">
+              ₹{typeof product.price === 'number' ? product.price : product.price}
+            </span>
+          )}
           <img
-            src={product.image}
-            alt={product.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            src={imageError ? 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80' : product.images.main}
+            alt={product.name}
+            className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+            onError={() => setImageError(true)}
           />
         </div>
-        <div className="p-4 text-center">
-          <h3 className="font-semibold text-gray-800 group-hover:text-[#EE4343] transition-colors">
-            {product.title}
+        <div className="p-4">
+          <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">{product.subcategory}</p>
+          <h3 className="font-semibold text-gray-900 group-hover:text-[#EE4343] transition-colors line-clamp-2 text-sm">
+            {product.name}
           </h3>
+          <div className="flex gap-1 mt-2">
+            {product.variants.slice(0, 4).map((v, i) => (
+              <span 
+                key={i}
+                className="w-4 h-4 rounded-full border border-gray-300"
+                style={{ backgroundColor: getColorHex(v.color) }}
+                title={v.color}
+              />
+            ))}
+            {product.variants.length > 4 && (
+              <span className="text-xs text-gray-400">+{product.variants.length - 4}</span>
+            )}
+          </div>
         </div>
-      </div>
-    </motion.a>
+      </motion.div>
+    </Link>
   );
 };
 
-// FAQ Accordion Component
-const FAQAccordion: React.FC<{ faq: typeof faqData[0]; isOpen: boolean; onClick: () => void }> = ({ faq, isOpen, onClick }) => {
+// Category Card Component
+const CategoryCard: React.FC<{ 
+  category: typeof productCategories[0];
+  index: number;
+}> = ({ category, index }) => {
+  const [imageError, setImageError] = useState(false);
+  
   return (
-    <div className="border-b border-gray-200">
-      <button
-        onClick={onClick}
-        className="w-full py-4 flex items-center justify-between text-left hover:text-[#EE4343] transition-colors"
-      >
-        <span className="font-medium text-gray-800 pr-4">{faq.question}</span>
-        {isOpen ? (
-          <ChevronUp className="w-5 h-5 text-[#EE4343] flex-shrink-0" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
-        )}
-      </button>
-      <motion.div
-        initial={false}
-        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
-        className="overflow-hidden"
-      >
-        <p className="pb-4 text-gray-600 leading-relaxed">{faq.answer}</p>
-      </motion.div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <Link to={`/corporate-gifting/${category.slug}`}>
+        <div className="group relative bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
+          <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200">
+            <img
+              src={imageError ? 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80' : category.image}
+              alt={category.name}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              onError={() => setImageError(true)}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            
+            {/* Badge */}
+            <span className={`absolute top-3 right-3 px-3 py-1 text-xs font-bold rounded-full ${
+              category.collection === 'premium' 
+                ? 'bg-amber-500 text-white' 
+                : 'bg-green-500 text-white'
+            }`}>
+              {category.collection === 'premium' ? 'PREMIUM' : 'VALUE'}
+            </span>
+
+            {/* Count */}
+            <span className="absolute top-3 left-3 px-3 py-1 bg-white/90 text-gray-900 text-xs font-bold rounded-full">
+              {category.count} Products
+            </span>
+          </div>
+          
+          <div className="p-5">
+            <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#EE4343] transition-colors mb-2">
+              {category.name}
+            </h3>
+            <p className="text-sm text-gray-600 line-clamp-2 mb-3">
+              {category.description}
+            </p>
+            <span className="inline-flex items-center text-sm font-medium text-[#EE4343] group-hover:gap-2 transition-all">
+              View Products <ChevronRight className="w-4 h-4 ml-1" />
+            </span>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+};
+
+const Corporategiftingpage: React.FC = () => {
+  const featuredProducts = getFeaturedProducts(8);
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="relative pt-20">
+        {heroBanners.map((banner) => (
+          <div key={banner.id} className="relative h-[500px] md:h-[600px]">
+            <img
+              src={banner.image}
+              alt={banner.title}
+              className="w-full h-full object-cover"
+            />
+            <div className={`absolute inset-0 bg-gradient-to-r ${banner.gradient}`} />
+            <div className="absolute inset-0 flex items-center">
+              <div className="max-w-7xl mx-auto px-4 md:px-6 w-full">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="max-w-2xl"
+                >
+                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                    {banner.title}
+                  </h1>
+                  <p className="text-xl text-gray-200 mb-8">
+                    {banner.subtitle}
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    <a
+                      href={banner.link}
+                      className="px-8 py-4 bg-[#EE4343] text-white font-semibold rounded-xl hover:bg-[#d63a3a] transition-colors"
+                    >
+                      {banner.cta}
+                    </a>
+                    <a
+                      href="tel:+919876543210"
+                      className="px-8 py-4 bg-white/20 backdrop-blur text-white font-semibold rounded-xl hover:bg-white/30 transition-colors flex items-center gap-2"
+                    >
+                      <Phone className="w-5 h-5" />
+                      Get Quote
+                    </a>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Stats Bar */}
+      <section className="bg-gray-900 py-6">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white">{stats.total}+</div>
+              <div className="text-gray-400 text-sm">Total Products</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-amber-400">{stats.premium}</div>
+              <div className="text-gray-400 text-sm">Premium Range</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-400">{stats.economical}</div>
+              <div className="text-gray-400 text-sm">Economical Range</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-white">₹{stats.priceRange.min}-{stats.priceRange.max}</div>
+              <div className="text-gray-400 text-sm">Price Range</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Categories Section */}
+      <section id="categories" className="py-16">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <Sparkles className="w-5 h-5 text-amber-500" />
+                <span className="text-amber-600 font-semibold text-sm uppercase tracking-wide">Premium Collection</span>
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900">Corporate Gifting Essentials</h2>
+              <p className="text-gray-600 mt-2">Premium metal products with custom branding options</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {premiumCats.map((category, index) => (
+              <CategoryCard key={category.id} category={category} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Economical Categories Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="flex items-center justify-between mb-10">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <Package className="w-5 h-5 text-green-500" />
+                <span className="text-green-600 font-semibold text-sm uppercase tracking-wide">Value Collection</span>
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900">Budget-Friendly Options</h2>
+              <p className="text-gray-600 mt-2">Quality products at economical prices for bulk gifting</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {economicalCats.map((category, index) => (
+              <CategoryCard key={category.id} category={category} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Products</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Handpicked selection from our premium and economical ranges
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link
+              to="/corporate-gifting/bottles"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors"
+            >
+              View All Products
+              <ChevronRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Kamlesh Group?</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Your trusted partner for corporate gifting solutions
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: Gift, title: "153+ Products", desc: "Wide range of premium & economical gifts" },
+              { icon: Star, title: "Custom Branding", desc: "Logo printing on all products" },
+              { icon: Truck, title: "Pan India Delivery", desc: "Free shipping on bulk orders" },
+              { icon: Shield, title: "Quality Assured", desc: "Premium materials & finishes" }
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="text-center p-6"
+              >
+                <div className="w-16 h-16 bg-[#EE4343]/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-8 h-8 text-[#EE4343]" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gradient-to-r from-gray-900 to-gray-800">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Need Help Choosing the Perfect Gift?
+          </h2>
+          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+            Our team will help you select the best products for your budget and requirements
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="https://wa.me/919876543210"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-green-500 text-white font-semibold rounded-xl hover:bg-green-600 transition-colors flex items-center gap-2"
+            >
+              <Phone className="w-5 h-5" />
+              WhatsApp Us
+            </a>
+            <a
+              href="mailto:sales@kamleshgroup.com"
+              className="px-8 py-4 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-colors flex items-center gap-2"
+            >
+              <Mail className="w-5 h-5" />
+              Email Inquiry
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 };
 
-// Main Page Component
-const CorporateGiftingPage: React.FC = () => {
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-
-  return (
-    <>
-      <div className="bg-white">
-        <Header />
-      </div>
-
-      <div className="min-h-screen bg-white">
-        {/* Hero Banner */}
-        <section className="relative mt-20">
-          <div className="relative h-[400px] md:h-[500px] overflow-hidden">
-            <img
-              src={heroBanners[0].image}
-              alt={heroBanners[0].title}
-              className="w-full h-full object-cover"
-            />
-            <div className={`absolute inset-0 bg-gradient-to-r ${heroBanners[0].gradient}`} />
-            <div className="absolute inset-0 flex items-center">
-              <div className="container mx-auto px-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="max-w-xl"
-                >
-                  <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                    {heroBanners[0].title}
-                  </h1>
-                  <p className="text-white/90 text-lg mb-6">
-                    {heroBanners[0].subtitle}
-                  </p>
-                  <a
-                    href={heroBanners[0].link}
-                    className="inline-block px-8 py-3 bg-[#EE4343] text-white font-semibold rounded-full hover:bg-[#d63939] transition-colors"
-                  >
-                    {heroBanners[0].cta}
-                  </a>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Gift Kits Section */}
-        <section className="py-12 px-4 md:px-6 bg-gradient-to-b from-purple-50/50 to-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {giftKits.map((kit, index) => (
-                <motion.a
-                  key={kit.id}
-                  href={kit.link}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-lg"
-                >
-                  <img
-                    src={kit.image}
-                    alt={kit.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-xl md:text-2xl font-bold text-white">
-                      {kit.title}
-                    </h3>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Promotional Products Section */}
-        <section className="py-16 px-4 md:px-6">
-          <div className="max-w-7xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12"
-            >
-              Promotional Products
-            </motion.h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {promotionalProducts.map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Custom Packaging Section */}
-        <section className="py-16 px-4 md:px-6 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12"
-            >
-              Custom Packaging and Accessories to elevate every Gift
-            </motion.h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {packagingProducts.map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Bulk Corporate Gifting CTA */}
-        <section className="py-16 px-4 md:px-6 bg-gradient-to-r from-amber-50 to-orange-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80"
-                  alt="Bulk Corporate Gifting"
-                  className="rounded-2xl shadow-xl"
-                />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-[#EE4343]"
-              >
-                <span className="text-[#EE4343] font-semibold text-sm">Corporate Gifting Solutions</span>
-                <p className="text-gray-500 text-sm mb-4">One stop solution for all your custom gifts</p>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                  Bulk Corporate Gifting
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Looking to order different products with customization? We've got everything you need to take your gift-giving to the next level!
-                </p>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-start gap-2 text-gray-600">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    Our expert team will help you design & choose the product.
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-600">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    Dedicated account manager to help you find the best fit!
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-600">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    Easy ordering process & post ordering support.
-                  </li>
-                  <li className="flex items-start gap-2 text-gray-600">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    We deliver our promises anywhere on time.
-                  </li>
-                </ul>
-                <a
-                  href="#contact"
-                  className="inline-block px-8 py-3 bg-[#EE4343] text-white font-semibold rounded-full hover:bg-[#d63939] transition-colors"
-                >
-                  Contact us
-                </a>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-16 px-4 md:px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12"
-            >
-              Frequently Asked Questions
-            </motion.h2>
-            <div className="grid md:grid-cols-2 gap-x-8">
-              <div>
-                {faqData.slice(0, 3).map((faq, index) => (
-                  <FAQAccordion
-                    key={index}
-                    faq={faq}
-                    isOpen={openFAQ === index}
-                    onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                  />
-                ))}
-              </div>
-              <div>
-                {faqData.slice(3).map((faq, index) => (
-                  <FAQAccordion
-                    key={index + 3}
-                    faq={faq}
-                    isOpen={openFAQ === index + 3}
-                    onClick={() => setOpenFAQ(openFAQ === index + 3 ? null : index + 3)}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="py-16 px-4 md:px-6 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center">
-                    <feature.icon className="w-8 h-8 text-[#EE4343]" />
-                  </div>
-                  <h4 className="font-semibold text-gray-800 mb-1">{feature.title}</h4>
-                  <p className="text-gray-500 text-sm">{feature.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Corporate Gifting Made Simple Section */}
-        <section className="py-16 px-4 md:px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                Corporate Gifting Made Simple with Custom Branding
-              </h2>
-              <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                Corporate gifting is more than just a gesture—it's an opportunity to strengthen relationships, boost employee morale, and leave a lasting impression on clients and partners. At Kamlesh Group, we offer a wide range of custom-branded corporate gifts tailored to suit every occasion, from employee onboarding to client appreciation.
-              </p>
-
-              <div className="space-y-6">
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-2">Personalized Gift Hampers & Kits</h3>
-                  <p className="text-gray-600">
-                    Welcome new employees with customized joining kits or celebrate milestones with employee engagement kits. Our thoughtfully curated gift hampers make every moment special, whether it's a festival, work anniversary, or corporate event.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-2">Branded Apparel & Merchandise</h3>
-                  <p className="text-gray-600">
-                    Give your team a polished, professional look with custom sublimation t-shirts, caps, and bags. Whether for daily wear, events, or corporate outings, branded apparel helps reinforce your company identity and unity.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-2">Premium Sublimation Products</h3>
-                  <p className="text-gray-600">
-                    From mugs to photo frames, cushions to keychains—our sublimation products offer vibrant, long-lasting prints that make your brand stand out. Perfect for promotional giveaways and corporate gifts.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-2">Recognition & Awards</h3>
-                  <p className="text-gray-600">
-                    Celebrate achievements with premium awards and trophies customized with your logo and message. From employee recognition to corporate achievements, our range of awards adds a personal touch to every celebration.
-                  </p>
-                </div>
-
-                <div>
-                  <h3 className="font-bold text-gray-800 mb-2">Office & Stationery Essentials</h3>
-                  <p className="text-gray-600">
-                    Stay top of mind with practical yet stylish custom-branded pens, notebooks, desktop organizers, and diaries through our Powerbook range. These everyday essentials not only enhance productivity but also serve as a constant reminder of your brand's presence.
-                  </p>
-                </div>
-
-                <p className="text-gray-700 font-medium mt-8">
-                  Whether you're welcoming new employees, rewarding your team, or building stronger client relationships, Kamlesh Group's custom corporate gifts ensure that every gesture is meaningful. Explore our collection and make every gift count!
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      </div>
-
-      <Footer />
-    </>
-  );
-};
-
-export default CorporateGiftingPage;
+export default Corporategiftingpage;

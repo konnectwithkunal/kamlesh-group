@@ -20,10 +20,10 @@ import MugDetail from "./pages/MugDetail";
 import PrintoClone from "./pages/PrintoClone";
 import TShirtsPage from "./pages/products/TShirtsPage";
 
-// Corporate Gifting Imports
-import CorporateGiftingPage from "./pages/Corporategiftingpage"; // Main Landing Page
-import CategoryPage from "./pages/Giftingcategorypage";          // Specific Category List
-import GiftingProductPage from "./pages/Giftingproductpage";     // Specific Product Details
+// Corporate Gifting Imports - YOUR EXACT FILE NAMES
+import Corporategiftingpage from "./pages/Corporategiftingpage";   // Main Landing Page
+import Giftingcategorypage from "./pages/Giftingcategorypage";     // Category List Page
+import Giftingproductpage from "./pages/Giftingproductpage";       // Product Details Page
 
 const queryClient = new QueryClient();
 
@@ -45,19 +45,28 @@ const App = () => (
             <Route path="/ke" element={<PrintoClone />} />
             
             {/* --- Corporate Gifting Routes --- */}
-            {/* 1. Main Landing Page */}
-            <Route path="/corporate-gifting" element={<CorporateGiftingPage />} />
+            {/* IMPORTANT: Order matters! More specific routes first, then dynamic routes */}
             
-            {/* 2. Category Page (e.g., /corporate-gifting/welcome-kits) */}
-            <Route path="/corporate-gifting/:categorySlug" element={<CategoryPage />} />
+            {/* 1. Main Landing Page - EXACT path, no params */}
+            <Route path="/corporate-gifting" element={<Corporategiftingpage />} />
             
-            {/* 3. Product Details Page (e.g., /corporate-gifting/welcome-kits/standard-joining-kit) */}
-            <Route path="/corporate-gifting/:categorySlug/:productSlug" element={<GiftingProductPage />} />
+            {/* 2. Product Details Page - Most specific (has 2 params) */}
+            <Route path="/corporate-gifting/:categorySlug/:productSlug" element={<Giftingproductpage />} />
+            
+            {/* 3. Category Page - Less specific (has 1 param) */}
+            <Route path="/corporate-gifting/:categorySlug" element={<Giftingcategorypage />} />
 
+            {/* --- Product Routes --- */}
             <Route path="/products/t-shirts" element={<TShirtsPage />} />
+            
+            {/* --- Blog Routes --- */}
             <Route path="/blog/:id" element={<BlogPost />} />
+            
+            {/* --- Mug Routes --- */}
             <Route path="/mugs" element={<Mugs />} />
             <Route path="/mugs/:id" element={<MugDetail />} />
+            
+            {/* --- 404 --- */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

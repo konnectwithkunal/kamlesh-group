@@ -1,6 +1,9 @@
+// src/pages/Giftingcategorypage.tsx
+// Category listing page - shows products for each category
+
 import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   ChevronRight, 
   ChevronDown,
@@ -11,65 +14,135 @@ import {
   Phone,
   Grid3X3,
   List,
+  Filter,
+  X
 } from 'lucide-react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import HeaderWhite from '@/components/HeaderWhite';
-import { 
-  getProductsByCategory, 
-  getCategoryBySlug, 
-  giftingCategories,
-  Product,
-  Category
-} from '@/data/corporate';
 
-// Product Card Component - Printo Style
-const ProductCard: React.FC<{ product: Product; viewMode: 'grid' | 'list' }> = ({ product, viewMode }) => {
+// Import from COMBINED catalog
+import { 
+  kamleshGroupProducts,
+  productCategories,
+  getCategoryBySlug,
+  UnifiedProduct
+} from '../data/kamlesh-group-catalog';
+
+// Helper function to get color hex
+const getColorHex = (color: string): string => {
+  const colorMap: Record<string, string> = {
+    'black': '#000000',
+    'white': '#FFFFFF',
+    'silver': '#C0C0C0',
+    'gold': '#FFD700',
+    'golden': '#FFD700',
+    'rose gold': '#B76E79',
+    'grey': '#808080',
+    'gray': '#808080',
+    'red': '#EF4444',
+    'blue': '#3B82F6',
+    'green': '#22C55E',
+    'pink': '#EC4899',
+    'purple': '#8B5CF6',
+    'orange': '#F97316',
+    'brown': '#92400E',
+    'bronze': '#CD7F32',
+    'cream': '#FFFDD0',
+    'natural bamboo': '#D4A574',
+    'wood': '#DEB887',
+    'clear': '#E8E8E8',
+  };
+  return colorMap[color.toLowerCase()] || '#888888';
+};
+
+// Get products for a category page based on slug
+const getProductsForCategory = (slug: string): UnifiedProduct[] => {
+  const category = getCategoryBySlug(slug);
+  if (!category) return [];
+  
+  // Handle special cases for overlapping category names
+  if (slug === 'mobile-stands') {
+    return kamleshGroupProducts.filter(p => p.collection === 'premium' && p.category === 'Mobile Stands');
+  }
+  if (slug === 'mobile-accessories-economical') {
+    return kamleshGroupProducts.filter(p => p.collection === 'economical' && p.category === 'Mobile Accessories');
+  }
+  
+  return kamleshGroupProducts.filter(p => p.category === category.name);
+};
+
+// Product Card Component
+const ProductCard: React.FC<{ 
+  product: UnifiedProduct; 
+  viewMode: 'grid' | 'list';
+  categorySlug: string;
+}> = ({ product, viewMode, categorySlug }) => {
   const [imageError, setImageError] = useState(false);
+  const productSlug = product.model.toLowerCase().replace(/\s+/g, '-');
 
   if (viewMode === 'list') {
     return (
-      <Link to={`/corporate-gifting/${product.categorySlug}/${product.slug}`}>
+      <Link to={`/corporate-gifting/${categorySlug}/${productSlug}`}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row group"
         >
-          {/* Image */}
           <div className="md:w-64 flex-shrink-0 relative">
-            {product.isNew && (
-              <span className="absolute top-3 right-3 z-10 px-3 py-1.5 bg-purple-600 text-white text-xs font-bold rounded-md shadow-lg">
-                NEW
-              </span>
-            )}
-            {product.isFeatured && !product.isNew && (
-              <span className="absolute top-3 right-3 z-10 px-3 py-1.5 bg-[#EE4343] text-white text-xs font-bold rounded-md shadow-lg">
-                FEATURED
+            <span className="absolute top-3 left-3 z-10 px-2 py-1 bg-gray-900 text-white text-xs font-mono rounded">
+              {product.model}
+            </span>
+            {product.collection === 'premium' && (
+              <span className="absolute top-3 right-3 z-10 px-2 py-1 bg-amber-500 text-white text-xs font-bold rounded">
+                PREMIUM
               </span>
             )}
             <div className="aspect-square md:h-full relative overflow-hidden bg-[#F5F5F5]">
               <img
-                src={imageError ? '/img/placeholder.png' : product.images[0]}
+                src={imageError ? 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80' : product.images.main}
                 alt={product.name}
                 className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
                 onError={() => setImageError(true)}
               />
             </div>
           </div>
-
-          {/* Content */}
           <div className="flex-1 p-6 flex flex-col justify-center">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                {product.subcategory}
+              </span>
+              {product.price && (
+                <span className="text-xs font-bold text-green-600">
+                  ₹{typeof product.price === 'number' ? product.price : product.price}
+                </span>
+              )}
+            </div>
             <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-[#EE4343] transition-colors">
               {product.name}
             </h3>
             <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-              {product.shortDescription}
+              {product.description}
             </p>
-            
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-gray-900">₹{product.price.toLocaleString()}</span>
-              <span className="text-gray-500 text-sm">each for {product.minOrderQty} {product.priceUnit}s</span>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {product.features.slice(0, 3).map((feature, idx) => (
+                <span key={idx} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                  {feature.length > 30 ? feature.slice(0, 30) + '...' : feature}
+                </span>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-500">Colors:</span>
+              <div className="flex gap-1">
+                {product.variants.map((variant, idx) => (
+                  <span 
+                    key={idx}
+                    className="w-5 h-5 rounded-full border border-gray-300"
+                    style={{ backgroundColor: getColorHex(variant.color) }}
+                    title={variant.color}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>
@@ -77,368 +150,470 @@ const ProductCard: React.FC<{ product: Product; viewMode: 'grid' | 'list' }> = (
     );
   }
 
-  // Grid View - Printo Style Card with Border
+  // Grid View
   return (
-    <Link to={`/corporate-gifting/${product.categorySlug}/${product.slug}`}>
+    <Link to={`/corporate-gifting/${categorySlug}/${productSlug}`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         className="group cursor-pointer bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300"
       >
-        {/* Image Container - Light Gray Background like Printo */}
         <div className="bg-[#F5F5F5] aspect-square relative">
-          {/* NEW Badge - Top Right, Purple like Printo */}
-          {product.isNew && (
-            <span className="absolute top-3 right-3 z-10 px-4 py-1.5 bg-purple-600 text-white text-sm font-bold rounded-md shadow-lg">
-              NEW
+          <span className="absolute top-3 left-3 z-10 px-2 py-1 bg-gray-900 text-white text-xs font-mono rounded">
+            {product.model}
+          </span>
+          
+          {product.collection === 'premium' ? (
+            <span className="absolute top-3 right-3 z-10 px-2 py-1 bg-amber-500 text-white text-xs font-bold rounded">
+              PREMIUM
+            </span>
+          ) : product.variants.length > 2 && (
+            <span className="absolute top-3 right-3 z-10 px-2 py-1 bg-purple-600 text-white text-xs font-bold rounded">
+              {product.variants.length} COLORS
             </span>
           )}
-          {product.isFeatured && !product.isNew && (
-            <span className="absolute top-3 right-3 z-10 px-4 py-1.5 bg-[#EE4343] text-white text-sm font-bold rounded-md shadow-lg">
-              FEATURED
+
+          {product.price && (
+            <span className="absolute bottom-3 right-3 z-10 px-2 py-1 bg-green-600 text-white text-xs font-bold rounded">
+              ₹{typeof product.price === 'number' ? product.price : product.price}
             </span>
           )}
+
+          {product.customization?.logoPrinting && (
+            <span className="absolute bottom-3 left-3 z-10 px-2 py-1 bg-blue-600 text-white text-xs font-medium rounded">
+              LOGO PRINTING
+            </span>
+          )}
+
           <img
-            src={imageError ? '/img/placeholder.png' : product.images[0]}
+            src={imageError ? 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80' : product.images.main}
             alt={product.name}
             className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500"
             onError={() => setImageError(true)}
           />
         </div>
 
-        {/* Content - Centered Text Below Image with White Background */}
-        <div className="text-center py-5 px-4 bg-white">
-          <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-[#EE4343] transition-colors text-base md:text-lg">
+        <div className="p-4">
+          <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">
+            {product.subcategory}
+          </p>
+          <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-[#EE4343] transition-colors line-clamp-2">
             {product.name}
           </h3>
-          <p className="text-gray-800">
-            <span className="font-bold text-lg">₹{product.price.toLocaleString()}</span>
-            <span className="text-gray-500 text-sm ml-2">each for {product.minOrderQty} {product.priceUnit}s</span>
-          </p>
+          
+          {product.specifications?.material && (
+            <div className="text-xs text-gray-500 mb-3">
+              <span>Material: {product.specifications.material}</span>
+            </div>
+          )}
+          {product.specifications?.capacity && (
+            <div className="text-xs text-gray-500 mb-3">
+              <span>Capacity: {product.specifications.capacity}</span>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between">
+            <div className="flex gap-1">
+              {product.variants.slice(0, 4).map((variant, idx) => (
+                <span 
+                  key={idx}
+                  className="w-4 h-4 rounded-full border border-gray-300"
+                  style={{ backgroundColor: getColorHex(variant.color) }}
+                  title={variant.color}
+                />
+              ))}
+              {product.variants.length > 4 && (
+                <span className="text-xs text-gray-400">+{product.variants.length - 4}</span>
+              )}
+            </div>
+            <span className="text-xs text-[#EE4343] font-medium">View Details →</span>
+          </div>
         </div>
       </motion.div>
     </Link>
   );
 };
 
-// FAQ Accordion
-const FAQItem: React.FC<{ question: string; answer: string; isOpen: boolean; onClick: () => void }> = ({
-  question,
-  answer,
-  isOpen,
-  onClick
-}) => (
-  <div className="border-b border-gray-200">
-    <button
-      onClick={onClick}
-      className="w-full py-4 flex items-center justify-between text-left hover:text-[#EE4343] transition-colors"
-    >
-      <span className="font-medium text-gray-800 pr-4">{question}</span>
-      {isOpen ? (
-        <ChevronUp className="w-5 h-5 text-[#EE4343] flex-shrink-0" />
-      ) : (
-        <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
-      )}
-    </button>
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          className="overflow-hidden"
-        >
-          <p className="pb-4 text-gray-600 leading-relaxed">{answer}</p>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  </div>
-);
-
-// Main Category Page Component
-const CategoryPage: React.FC = () => {
-  const { categorySlug } = useParams<{ categorySlug: string }>();
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [sortBy, setSortBy] = useState('default');
-  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
-
-  const category = getCategoryBySlug(categorySlug || '');
-  const products = getProductsByCategory(categorySlug || '');
-
-  // Sort products
-  const sortedProducts = useMemo(() => {
-    const sorted = [...products];
-    switch (sortBy) {
-      case 'price-low':
-        sorted.sort((a, b) => a.price - b.price);
-        break;
-      case 'price-high':
-        sorted.sort((a, b) => b.price - a.price);
-        break;
-      case 'name':
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      default:
-        // Featured first
-        sorted.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0));
-    }
-    return sorted;
-  }, [products, sortBy]);
-
-  // FAQ data based on category
-  const faqs = [
-    {
-      question: `Do you offer bulk discounts on ${category?.name}?`,
-      answer: "Yes! We offer volume-based discounts on all our products. The more you order, the better the price. Contact our sales team for custom quotes on large orders."
-    },
-    {
-      question: "Can I customize these products with my company logo?",
-      answer: "Absolutely! All our products can be customized with your company logo, brand colors, and messaging. We offer various printing methods including sublimation, embroidery, and laser engraving."
-    },
-    {
-      question: "What is the minimum order quantity?",
-      answer: "Minimum order quantities vary by product and are listed on each product page. For most items, MOQ starts at 5-10 units. Contact us for smaller quantities."
-    },
-    {
-      question: "How long does delivery take?",
-      answer: "Standard delivery takes 5-7 business days. Express delivery options are available for select cities. Custom orders may require additional time for production."
-    },
-    {
-      question: "Do you provide samples before bulk orders?",
-      answer: "Yes, we can provide samples for quality assessment before you place bulk orders. Sample costs are adjusted against your final order."
-    },
-    {
-      question: "What payment methods do you accept?",
-      answer: "We accept bank transfers, UPI, credit/debit cards, and corporate purchase orders for established accounts."
-    }
-  ];
-
-  if (!category) {
-    return (
-      <>
-        <div className="bg-white"><Header /></div>
-        <div className="min-h-screen flex items-center justify-center mt-20">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-800 mb-4">Category Not Found</h1>
-            <Link to="/corporate-gifting" className="text-[#EE4343] hover:underline">
-              Browse all categories
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
-  }
+// Filter Sidebar Component
+const FilterSidebar: React.FC<{
+  subcategories: string[];
+  selectedSubcategory: string | null;
+  onSelectSubcategory: (sub: string | null) => void;
+  priceRanges?: { min: number; max: number; label: string }[];
+  selectedPriceRange: string | null;
+  onSelectPriceRange: (range: string | null) => void;
+}> = ({ 
+  subcategories, 
+  selectedSubcategory, 
+  onSelectSubcategory,
+  priceRanges,
+  selectedPriceRange,
+  onSelectPriceRange
+}) => {
+  const [showSubcategories, setShowSubcategories] = useState(true);
+  const [showPriceRanges, setShowPriceRanges] = useState(true);
 
   return (
-    <>
-      <div className="bg-white">
-        <HeaderWhite />
-      </div>
+    <div className="bg-white rounded-xl border border-gray-200 p-4 sticky top-24">
+      <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <Filter className="w-4 h-4" />
+        Filters
+      </h3>
 
-      <div className="min-h-screen bg-gray-50">
-        {/* Breadcrumb - Fixed height spacing for header (pt-24 = 96px for proper header clearance) */}
-        <div className="bg-white border-b border-gray-100">
-          <div className="max-w-full mx-auto px-20 py-4 pt-24">
-            <nav className="flex items-center gap-2 text-sm text-gray-500">
-              <Link to="/" className="hover:text-[#EE4343]">Home</Link>
-              <ChevronRight className="w-4 h-4" />
-              <Link to="/corporate-gifting" className="hover:text-[#EE4343]">Corporate Gifting</Link>
-              <ChevronRight className="w-4 h-4" />
-              <span className="text-gray-800 font-medium">{category.name}</span>
-            </nav>
-          </div>
-        </div>
-
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-amber-50 to-orange-50 py-16 md:py-20">
-          <div className="max-w-7xl mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center max-w-3xl mx-auto"
+      <div className="mb-6">
+        <button 
+          onClick={() => setShowSubcategories(!showSubcategories)}
+          className="w-full flex items-center justify-between text-sm font-semibold text-gray-700 mb-3"
+        >
+          Subcategory
+          {showSubcategories ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+        </button>
+        {showSubcategories && (
+          <div className="space-y-2 max-h-64 overflow-y-auto">
+            <button
+              onClick={() => onSelectSubcategory(null)}
+              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                selectedSubcategory === null 
+                  ? 'bg-[#EE4343] text-white' 
+                  : 'hover:bg-gray-100 text-gray-600'
+              }`}
             >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-                {category.name}
-              </h1>
-              <p className="text-gray-600 text-lg">
-                {category.description}
-              </p>
-            </motion.div>
+              All Subcategories
+            </button>
+            {subcategories.map((sub) => (
+              <button
+                key={sub}
+                onClick={() => onSelectSubcategory(sub)}
+                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                  selectedSubcategory === sub 
+                    ? 'bg-[#EE4343] text-white' 
+                    : 'hover:bg-gray-100 text-gray-600'
+                }`}
+              >
+                {sub}
+              </button>
+            ))}
           </div>
-        </section>
-
-        {/* All Products Section */}
-        <section className="py-12">
-          <div className="max-w-7xl mx-auto px-4">
-            {/* Section Header with Controls */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-              <h2 className="text-2xl font-bold text-gray-800">
-                All {category.name}
-              </h2>
-              <div className="flex items-center gap-4">
-                {/* Sort */}
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="px-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#EE4343]"
-                >
-                  <option value="default">Sort by: Default</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="name">Name</option>
-                </select>
-
-                {/* View Toggle */}
-                <div className="flex items-center bg-gray-100 rounded-lg p-1">
-                  <button
-                    onClick={() => setViewMode('grid')}
-                    className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white shadow-sm text-[#EE4343]' : 'text-gray-500'}`}
-                  >
-                    <Grid3X3 className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode('list')}
-                    className={`p-2 rounded ${viewMode === 'list' ? 'bg-white shadow-sm text-[#EE4343]' : 'text-gray-500'}`}
-                  >
-                    <List className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Products Grid/List */}
-            <div className={
-              viewMode === 'grid' 
-                ? 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8'
-                : 'flex flex-col gap-4'
-            }>
-              {sortedProducts.map((product) => (
-                <ProductCard key={product.id} product={product} viewMode={viewMode} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Related Categories */}
-        <section className="py-12 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-8">Related Products</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {giftingCategories
-                .filter(c => c.slug !== categorySlug)
-                .slice(0, 4)
-                .map((cat) => (
-                  <Link 
-                    key={cat.id}
-                    to={`/corporate-gifting/${cat.slug}`}
-                    className="group"
-                  >
-                    <div className="relative rounded-xl overflow-hidden aspect-[4/3]">
-                      <img 
-                        src={cat.image} 
-                        alt={cat.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <h3 className="text-white font-semibold">{cat.name}</h3>
-                        <p className="text-white/80 text-sm">{cat.productCount} Products</p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="py-12">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
-              Frequently Asked Questions
-            </h2>
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <div className="grid md:grid-cols-2 gap-x-8">
-                <div>
-                  {faqs.slice(0, 3).map((faq, index) => (
-                    <FAQItem
-                      key={index}
-                      question={faq.question}
-                      answer={faq.answer}
-                      isOpen={openFAQ === index}
-                      onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                    />
-                  ))}
-                </div>
-                <div>
-                  {faqs.slice(3).map((faq, index) => (
-                    <FAQItem
-                      key={index + 3}
-                      question={faq.question}
-                      answer={faq.answer}
-                      isOpen={openFAQ === index + 3}
-                      onClick={() => setOpenFAQ(openFAQ === index + 3 ? null : index + 3)}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Trust Badges */}
-        <section className="py-12 bg-white border-t border-gray-100">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { icon: Star, title: "Google Reviews", subtitle: "4.5 star customer rating" },
-                { icon: Truck, title: "Pan India Delivery", subtitle: "Delivery anywhere in India" },
-                { icon: Shield, title: "Quality Guaranteed", subtitle: "Free replacement if defective" },
-                { icon: Phone, title: "Support", subtitle: "Talk to us today!" }
-              ].map((badge, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-3 bg-gray-100 rounded-full flex items-center justify-center">
-                    <badge.icon className="w-8 h-8 text-[#EE4343]" />
-                  </div>
-                  <h4 className="font-semibold text-gray-800">{badge.title}</h4>
-                  <p className="text-gray-500 text-sm">{badge.subtitle}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* SEO Content */}
-        <section className="py-12 bg-gray-50">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">
-              Premium {category.name} for Corporate Gifting
-            </h2>
-            <div className="prose prose-gray max-w-none text-sm">
-              <p className="text-gray-600 leading-relaxed mb-4">
-                At Kamlesh Group, we offer premium {category.name.toLowerCase()} that are perfect for corporate gifting, 
-                employee appreciation, and promotional events. With over 18 years of experience in the industry, 
-                we understand what makes a corporate gift memorable and impactful.
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Our {category.name.toLowerCase()} can be fully customized with your company logo, brand colors, 
-                and messaging. Whether you need products for a small team or thousands of employees, 
-                we offer competitive pricing with volume discounts.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                All our products are quality-assured and come with reliable Pan India delivery. 
-                Contact our team for custom quotes, samples, or any questions about our {category.name.toLowerCase()}.
-              </p>
-            </div>
-          </div>
-        </section>
+        )}
       </div>
 
-      <Footer />
-    </>
+      {priceRanges && priceRanges.length > 0 && (
+        <div className="mb-6">
+          <button 
+            onClick={() => setShowPriceRanges(!showPriceRanges)}
+            className="w-full flex items-center justify-between text-sm font-semibold text-gray-700 mb-3"
+          >
+            Price Range
+            {showPriceRanges ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          </button>
+          {showPriceRanges && (
+            <div className="space-y-2">
+              <button
+                onClick={() => onSelectPriceRange(null)}
+                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                  selectedPriceRange === null 
+                    ? 'bg-[#EE4343] text-white' 
+                    : 'hover:bg-gray-100 text-gray-600'
+                }`}
+              >
+                All Prices
+              </button>
+              {priceRanges.map((range) => (
+                <button
+                  key={range.label}
+                  onClick={() => onSelectPriceRange(range.label)}
+                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                    selectedPriceRange === range.label 
+                      ? 'bg-[#EE4343] text-white' 
+                      : 'hover:bg-gray-100 text-gray-600'
+                  }`}
+                >
+                  {range.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {(selectedSubcategory || selectedPriceRange) && (
+        <button
+          onClick={() => {
+            onSelectSubcategory(null);
+            onSelectPriceRange(null);
+          }}
+          className="w-full py-2 text-sm text-[#EE4343] font-medium hover:bg-red-50 rounded-lg transition-colors"
+        >
+          Clear All Filters
+        </button>
+      )}
+    </div>
   );
 };
 
-export default CategoryPage;
+// Main Page Component
+const Giftingcategorypage: React.FC = () => {
+  const { categorySlug } = useParams<{ categorySlug: string }>();
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
+  const [selectedPriceRange, setSelectedPriceRange] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<'name' | 'model' | 'price'>('model');
+
+  // Get category info
+  const categoryInfo = useMemo(() => {
+    return getCategoryBySlug(categorySlug || '');
+  }, [categorySlug]);
+
+  // Get products for this category
+  const categoryProducts = useMemo(() => {
+    if (!categorySlug) return [];
+    return getProductsForCategory(categorySlug);
+  }, [categorySlug]);
+
+  // Get unique subcategories
+  const subcategories = useMemo(() => {
+    const subs = new Set(categoryProducts.map(p => p.subcategory).filter(Boolean));
+    return Array.from(subs) as string[];
+  }, [categoryProducts]);
+
+  // Price ranges for economical products
+  const priceRanges = useMemo(() => {
+    const hasEconomical = categoryProducts.some(p => p.collection === 'economical');
+    if (!hasEconomical) return [];
+    return [
+      { min: 0, max: 100, label: 'Under ₹100' },
+      { min: 100, max: 200, label: '₹100 - ₹200' },
+      { min: 200, max: 300, label: '₹200 - ₹300' },
+      { min: 300, max: 500, label: '₹300 - ₹500' },
+      { min: 500, max: 10000, label: 'Above ₹500' },
+    ];
+  }, [categoryProducts]);
+
+  // Filter and sort products
+  const filteredProducts = useMemo(() => {
+    let products = [...categoryProducts];
+
+    if (selectedSubcategory) {
+      products = products.filter(p => p.subcategory === selectedSubcategory);
+    }
+
+    if (selectedPriceRange && priceRanges.length > 0) {
+      const range = priceRanges.find(r => r.label === selectedPriceRange);
+      if (range) {
+        products = products.filter(p => {
+          if (!p.price) return false;
+          const price = typeof p.price === 'number' ? p.price : parseInt(String(p.price).split(' ')[0]);
+          return price >= range.min && price <= range.max;
+        });
+      }
+    }
+
+    if (sortBy === 'name') {
+      products.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'price') {
+      products.sort((a, b) => {
+        const priceA = typeof a.price === 'number' ? a.price : parseInt(String(a.price || '0').split(' ')[0]);
+        const priceB = typeof b.price === 'number' ? b.price : parseInt(String(b.price || '0').split(' ')[0]);
+        return priceA - priceB;
+      });
+    } else {
+      products.sort((a, b) => a.model.localeCompare(b.model));
+    }
+
+    return products;
+  }, [categoryProducts, selectedSubcategory, selectedPriceRange, priceRanges, sortBy]);
+
+  const categoryName = categoryInfo?.name || categorySlug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Products';
+  const categoryDescription = categoryInfo?.description || `Browse our collection of ${categoryName.toLowerCase()}`;
+  const isEconomical = categoryInfo?.collection === 'economical';
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className={`pt-24 pb-8 ${isEconomical ? 'bg-gradient-to-r from-green-900 to-green-700' : 'bg-gradient-to-r from-gray-900 to-gray-800'}`}>
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight className="w-4 h-4" />
+            <Link to="/corporate-gifting" className="hover:text-white transition-colors">Corporate Gifting</Link>
+            <ChevronRight className="w-4 h-4" />
+            <span className="text-white">{categoryName}</span>
+          </nav>
+
+          <div className="flex items-center gap-3 mb-4">
+            <h1 className="text-3xl md:text-5xl font-bold text-white">
+              {categoryName}
+            </h1>
+            {isEconomical ? (
+              <span className="px-3 py-1 bg-green-500 text-white text-sm font-bold rounded-full">
+                VALUE RANGE
+              </span>
+            ) : (
+              <span className="px-3 py-1 bg-amber-500 text-white text-sm font-bold rounded-full">
+                PREMIUM
+              </span>
+            )}
+          </div>
+          <p className="text-gray-300 text-lg max-w-2xl">
+            {categoryDescription}
+          </p>
+
+          <div className="flex flex-wrap gap-6 mt-8">
+            <div className="flex items-center gap-2 text-white">
+              <span className="text-2xl font-bold">{categoryProducts.length}</span>
+              <span className="text-gray-400">Products</span>
+            </div>
+            <div className="flex items-center gap-2 text-white">
+              <span className="text-2xl font-bold">{subcategories.length}</span>
+              <span className="text-gray-400">Subcategories</span>
+            </div>
+            <div className="flex items-center gap-2 text-green-400">
+              <Shield className="w-5 h-5" />
+              <span>Logo Printing Available</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-8">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="flex flex-col lg:flex-row gap-8">
+            
+            <aside className="hidden lg:block w-64 flex-shrink-0">
+              <FilterSidebar
+                subcategories={subcategories}
+                selectedSubcategory={selectedSubcategory}
+                onSelectSubcategory={setSelectedSubcategory}
+                priceRanges={priceRanges}
+                selectedPriceRange={selectedPriceRange}
+                onSelectPriceRange={setSelectedPriceRange}
+              />
+            </aside>
+
+            <div className="flex-1">
+              <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-sm text-gray-600">
+                    Showing <strong>{filteredProducts.length}</strong> products
+                  </span>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {selectedSubcategory && (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-sm rounded-full">
+                        {selectedSubcategory}
+                        <button onClick={() => setSelectedSubcategory(null)}>
+                          <X className="w-3 h-3" />
+                        </button>
+                      </span>
+                    )}
+                    {selectedPriceRange && (
+                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-sm rounded-full">
+                        {selectedPriceRange}
+                        <button onClick={() => setSelectedPriceRange(null)}>
+                          <X className="w-3 h-3" />
+                        </button>
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as 'name' | 'model' | 'price')}
+                    className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#EE4343]"
+                  >
+                    <option value="model">Sort by Model</option>
+                    <option value="name">Sort by Name</option>
+                    {isEconomical && <option value="price">Sort by Price</option>}
+                  </select>
+
+                  <div className="flex border border-gray-200 rounded-lg overflow-hidden">
+                    <button
+                      onClick={() => setViewMode('grid')}
+                      className={`p-2 ${viewMode === 'grid' ? 'bg-gray-900 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                    >
+                      <Grid3X3 className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => setViewMode('list')}
+                      className={`p-2 ${viewMode === 'list' ? 'bg-gray-900 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                    >
+                      <List className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className={
+                viewMode === 'grid' 
+                  ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' 
+                  : 'space-y-4'
+              }>
+                {filteredProducts.map((product) => (
+                  <ProductCard 
+                    key={product.id} 
+                    product={product} 
+                    viewMode={viewMode}
+                    categorySlug={categorySlug || 'products'}
+                  />
+                ))}
+              </div>
+
+              {filteredProducts.length === 0 && (
+                <div className="text-center py-16">
+                  <div className="text-gray-400 mb-4">
+                    <Filter className="w-16 h-16 mx-auto" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
+                  <p className="text-gray-600 mb-4">Try adjusting your filters or browse all products</p>
+                  <button
+                    onClick={() => {
+                      setSelectedSubcategory(null);
+                      setSelectedPriceRange(null);
+                    }}
+                    className="px-6 py-2 bg-[#EE4343] text-white rounded-lg hover:bg-[#d63a3a] transition-colors"
+                  >
+                    Clear Filters
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Badges */}
+      <section className="py-12 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { icon: Truck, title: "Pan India Delivery", desc: "Free shipping on bulk orders" },
+              { icon: Shield, title: "Quality Assured", desc: "Premium materials only" },
+              { icon: Star, title: "Logo Printing", desc: "Custom branding available" },
+              { icon: Phone, title: "Bulk Enquiry", desc: "Call: +91 98XXX XXXXX" }
+            ].map((item, idx) => (
+              <div key={idx} className="flex items-start gap-4 p-4">
+                <div className="p-3 bg-gray-100 rounded-xl">
+                  <item.icon className="w-6 h-6 text-[#EE4343]" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900">{item.title}</h4>
+                  <p className="text-sm text-gray-600">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Giftingcategorypage;
