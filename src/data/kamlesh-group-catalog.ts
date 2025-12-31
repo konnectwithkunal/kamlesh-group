@@ -850,6 +850,420 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     customization: { logoPrinting: true, branding: true },
     images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
     tags: ["rotating stand", "360", "economical"]
+  },
+
+  // ============================================
+  // PRINTO PRODUCTS - Keychains, Awards, Backpacks, Pens, Notebooks, Mousepads, Tote Bags
+  // ============================================
+
+  // KEYCHAINS (6 products)
+  {
+    id: "KC-01", model: "KC 01", name: "Hut Keychain",
+    category: "Keychains", subcategory: "Metal Keychains", collection: "economical",
+    description: "Premium metal keychain with hut design. Perfect for corporate gifting and promotions.",
+    features: ["Metal construction", "Laser engraving available", "Premium finish", "Compact design"],
+    specifications: { material: "Metal Alloy" },
+    variants: [{ color: "Silver" }, { color: "Gold" }],
+    price: 261, ctnPacking: "100 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    tags: ["keychain", "metal", "corporate gift", "economical"]
+  },
+  {
+    id: "KC-02", model: "KC 02", name: "Ace Keychain",
+    category: "Keychains", subcategory: "Metal Keychains", collection: "economical",
+    description: "Stylish ace-shaped metal keychain. Great for promotional events.",
+    features: ["Unique ace design", "Metal construction", "Laser engraving", "Durable"],
+    specifications: { material: "Metal Alloy" },
+    variants: [{ color: "Silver" }, { color: "Black" }],
+    price: 261, ctnPacking: "100 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    tags: ["keychain", "ace", "metal", "economical"]
+  },
+  {
+    id: "KC-03", model: "KC 03", name: "Pulse Metal Keychain",
+    category: "Keychains", subcategory: "Metal Keychains", collection: "economical",
+    description: "Modern pulse design metal keychain with premium grey finish.",
+    features: ["Modern design", "Grey finish", "Laser engraving", "Premium quality"],
+    specifications: { material: "Metal" },
+    variants: [{ color: "Grey" }, { color: "Silver" }],
+    price: 273, ctnPacking: "100 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    tags: ["keychain", "pulse", "metal", "economical"]
+  },
+  {
+    id: "KC-04", model: "KC 04", name: "Square Acrylic Keychain",
+    category: "Keychains", subcategory: "Acrylic Keychains", collection: "economical",
+    description: "Custom printed square acrylic keychain. Full color printing available.",
+    features: ["Acrylic material", "Full color printing", "Scratch resistant", "Photo printing"],
+    specifications: { material: "Acrylic", thickness: "3mm" },
+    variants: [{ color: "Clear" }],
+    price: 189, ctnPacking: "200 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    tags: ["keychain", "acrylic", "custom print", "economical"]
+  },
+  {
+    id: "KC-05", model: "KC 05", name: "Heart Acrylic Keychain",
+    category: "Keychains", subcategory: "Acrylic Keychains", collection: "economical",
+    description: "Heart-shaped acrylic keychain. Perfect for personalized gifts.",
+    features: ["Heart shape", "Photo printing", "Acrylic protection", "Gift ready"],
+    specifications: { material: "Acrylic", thickness: "3mm" },
+    variants: [{ color: "Clear" }],
+    price: 189, ctnPacking: "200 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    tags: ["keychain", "heart", "acrylic", "gift", "economical"]
+  },
+  {
+    id: "KC-06", model: "KC 06", name: "Vintage Leather Keychain",
+    category: "Keychains", subcategory: "Leather Keychains", collection: "economical",
+    description: "Premium vintage leather keychain in brown. Executive quality.",
+    features: ["Genuine leather", "Vintage design", "Premium brown finish", "Executive gift"],
+    specifications: { material: "Leather" },
+    variants: [{ color: "Brown" }, { color: "Black" }],
+    price: 453, ctnPacking: "50 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    tags: ["keychain", "leather", "vintage", "premium", "economical"]
+  },
+
+  // AWARDS & TROPHIES (7 products)
+  {
+    id: "AW-01", model: "AW 01", name: "Crownstar Trophy",
+    category: "Awards & Trophies", subcategory: "Wooden Trophies", collection: "economical",
+    description: "Premium wooden trophy with crown star design. Ideal for recognition events.",
+    features: ["Wooden base", "Metal crown accent", "Engraving available", "Gift box included"],
+    specifications: { height: "10 inches", material: "Wood & Metal" },
+    variants: [{ color: "Wood" }, { color: "Gold" }],
+    price: 1637, ctnPacking: "10 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    tags: ["trophy", "award", "wooden", "recognition", "economical"]
+  },
+  {
+    id: "AW-02", model: "AW 02", name: "Viva Crest Trophy",
+    category: "Awards & Trophies", subcategory: "Wooden Trophies", collection: "economical",
+    description: "Elegant viva crest wooden trophy for corporate awards.",
+    features: ["Crest design", "Wood finish", "Laser engraving", "Premium quality"],
+    specifications: { height: "8 inches", material: "Wood" },
+    variants: [{ color: "Wood" }],
+    price: 944, ctnPacking: "15 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    tags: ["trophy", "crest", "wooden", "corporate", "economical"]
+  },
+  {
+    id: "AW-03", model: "AW 03", name: "Spirit Crystal Trophy",
+    category: "Awards & Trophies", subcategory: "Crystal Trophies", collection: "economical",
+    description: "Premium crystal trophy with 3D laser engraving capability.",
+    features: ["Crystal clear glass", "3D laser engraving", "Premium finish", "Gift box"],
+    specifications: { height: "9 inches", material: "Crystal" },
+    variants: [{ color: "Clear" }],
+    price: 2342, ctnPacking: "8 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    tags: ["trophy", "crystal", "premium", "3d engraving", "economical"]
+  },
+  {
+    id: "AW-04", model: "AW 04", name: "Titan Trophy Gold",
+    category: "Awards & Trophies", subcategory: "Metal Trophies", collection: "economical",
+    description: "Grand titan trophy in gold finish. Perfect for top achievers.",
+    features: ["Metal construction", "Gold plating", "Engraving plate", "Impressive size"],
+    specifications: { height: "12 inches", material: "Metal Gold Plated" },
+    variants: [{ color: "Gold" }, { color: "Silver" }, { color: "Bronze" }],
+    price: 2517, ctnPacking: "5 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    tags: ["trophy", "titan", "gold", "achievement", "economical"]
+  },
+  {
+    id: "AW-05", model: "AW 05", name: "Empyrean Trophy",
+    category: "Awards & Trophies", subcategory: "Wooden Trophies", collection: "economical",
+    description: "Budget-friendly empyrean trophy for events and competitions.",
+    features: ["Compact design", "Wood finish", "Engraving available", "Value pricing"],
+    specifications: { height: "6 inches", material: "Wood & Acrylic" },
+    variants: [{ color: "Wood" }],
+    price: 528, ctnPacking: "20 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    tags: ["trophy", "budget", "wooden", "event", "economical"]
+  },
+  {
+    id: "AW-06", model: "AW 06", name: "Grace Acrylic Trophy",
+    category: "Awards & Trophies", subcategory: "Acrylic Trophies", collection: "economical",
+    description: "Elegant grace acrylic trophy for recognition programs.",
+    features: ["Clear acrylic", "UV printing", "Modern design", "Lightweight"],
+    specifications: { height: "7 inches", material: "Acrylic" },
+    variants: [{ color: "Clear" }],
+    price: 429, ctnPacking: "25 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    tags: ["trophy", "acrylic", "grace", "recognition", "economical"]
+  },
+  {
+    id: "AW-07", model: "AW 07", name: "Oblisk Crystal Award",
+    category: "Awards & Trophies", subcategory: "Crystal Trophies", collection: "economical",
+    description: "Sleek oblisk-shaped crystal award for corporate recognition.",
+    features: ["Oblisk shape", "Crystal material", "Laser etching", "Executive quality"],
+    specifications: { height: "8 inches", material: "Crystal" },
+    variants: [{ color: "Clear" }],
+    price: 1108, ctnPacking: "12 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    tags: ["award", "crystal", "oblisk", "corporate", "economical"]
+  },
+
+  // BACKPACKS & LAPTOP BAGS (6 products)
+  {
+    id: "BP-01", model: "BP 01", name: "PLUS Laptop Bag",
+    category: "Backpacks", subcategory: "Laptop Bags", collection: "economical",
+    description: "Premium plus laptop bag with multiple compartments. Fits 15.6 inch laptops.",
+    features: ["15.6 inch laptop fit", "Multiple compartments", "Padded straps", "Water resistant"],
+    specifications: { capacity: "25L", material: "Polyester" },
+    variants: [{ color: "Black" }, { color: "Grey" }],
+    price: 3057, ctnPacking: "10 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    tags: ["backpack", "laptop bag", "premium", "corporate", "economical"]
+  },
+  {
+    id: "BP-02", model: "BP 02", name: "Supreme Laptop Bag",
+    category: "Backpacks", subcategory: "Laptop Bags", collection: "economical",
+    description: "Supreme quality laptop bag for professionals. Ergonomic design.",
+    features: ["Ergonomic design", "Laptop compartment", "USB port", "Anti-theft pocket"],
+    specifications: { capacity: "22L", material: "Nylon" },
+    variants: [{ color: "Black" }, { color: "Navy" }],
+    price: 2472, ctnPacking: "12 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    tags: ["backpack", "laptop bag", "supreme", "professional", "economical"]
+  },
+  {
+    id: "BP-03", model: "BP 03", name: "CORE Laptop Bag",
+    category: "Backpacks", subcategory: "Laptop Bags", collection: "economical",
+    description: "Essential core laptop bag for everyday use. Great value pricing.",
+    features: ["Essential design", "Laptop sleeve", "Front pocket", "Value pricing"],
+    specifications: { capacity: "18L", material: "Polyester" },
+    variants: [{ color: "Black" }, { color: "Grey" }, { color: "Blue" }],
+    price: 885, ctnPacking: "20 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    tags: ["backpack", "laptop bag", "core", "value", "economical"]
+  },
+  {
+    id: "BP-04", model: "BP 04", name: "Supasac Emperor",
+    category: "Backpacks", subcategory: "Premium Backpacks", collection: "economical",
+    description: "Premium supasac emperor backpack with executive features.",
+    features: ["Premium build", "Multiple pockets", "Trolley strap", "Rain cover"],
+    specifications: { capacity: "30L", material: "Premium Polyester" },
+    variants: [{ color: "Black" }],
+    price: 3893, ctnPacking: "5 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    tags: ["backpack", "supasac", "emperor", "premium", "economical"]
+  },
+  {
+    id: "BP-05", model: "BP 05", name: "THIN CASE Laptop Sleeve",
+    category: "Backpacks", subcategory: "Laptop Sleeves", collection: "economical",
+    description: "Ultra-thin laptop sleeve for minimal protection. Fits 14 inch laptops.",
+    features: ["Ultra thin", "Soft lining", "Zipper closure", "Lightweight"],
+    specifications: { capacity: "14 inch", material: "Neoprene" },
+    variants: [{ color: "Black" }, { color: "Grey" }],
+    price: 1197, ctnPacking: "30 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    tags: ["laptop sleeve", "thin", "minimal", "portable", "economical"]
+  },
+  {
+    id: "BP-06", model: "BP 06", name: "Supasac Rally",
+    category: "Backpacks", subcategory: "Sports Backpacks", collection: "economical",
+    description: "Sporty rally backpack for outdoor activities and travel.",
+    features: ["Sports design", "Breathable back", "Side pockets", "Durable"],
+    specifications: { capacity: "28L", material: "Polyester" },
+    variants: [{ color: "Black" }, { color: "Red" }, { color: "Blue" }],
+    price: 2123, ctnPacking: "10 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    tags: ["backpack", "rally", "sports", "outdoor", "economical"]
+  },
+
+  // PENS (6 products)
+  {
+    id: "PN-01", model: "PN 01", name: "Adroit Ballpoint Pen",
+    category: "Pens", subcategory: "Ballpoint Pens", collection: "economical",
+    description: "Premium adroit ballpoint pen with smooth writing experience.",
+    features: ["Smooth writing", "Metal body", "Laser engraving", "Gift box"],
+    specifications: { material: "Metal" },
+    variants: [{ color: "Silver" }, { color: "Black" }, { color: "Blue" }],
+    price: 329, ctnPacking: "50 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    tags: ["pen", "ballpoint", "adroit", "metal", "economical"]
+  },
+  {
+    id: "PN-02", model: "PN 02", name: "Gilt Roller Ball Pen",
+    category: "Pens", subcategory: "Roller Ball Pens", collection: "economical",
+    description: "Executive gilt roller ball pen for smooth and precise writing.",
+    features: ["Roller ball tip", "Gold accents", "Premium finish", "Executive gift"],
+    specifications: { material: "Metal Gold Plated" },
+    variants: [{ color: "Gold" }, { color: "Silver" }],
+    price: 415, ctnPacking: "40 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    tags: ["pen", "roller ball", "gilt", "executive", "economical"]
+  },
+  {
+    id: "PN-03", model: "PN 03", name: "Slim Stylus Ballpoint Pen",
+    category: "Pens", subcategory: "Stylus Pens", collection: "economical",
+    description: "Dual function slim stylus pen with ballpoint and touchscreen stylus.",
+    features: ["Dual function", "Stylus tip", "Slim design", "Touch compatible"],
+    specifications: { material: "Metal & Rubber" },
+    variants: [{ color: "Black" }, { color: "Silver" }, { color: "Blue" }],
+    price: 286, ctnPacking: "100 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    tags: ["pen", "stylus", "dual function", "slim", "economical"]
+  },
+  {
+    id: "PN-04", model: "PN 04", name: "Wooden Ballpoint Pen",
+    category: "Pens", subcategory: "Eco-Friendly Pens", collection: "economical",
+    description: "Eco-friendly wooden ballpoint pen. Sustainable corporate gift.",
+    features: ["Wooden body", "Eco-friendly", "Smooth writing", "Natural finish"],
+    specifications: { material: "Wood" },
+    variants: [{ color: "Wood" }],
+    price: 322, ctnPacking: "100 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    tags: ["pen", "wooden", "eco-friendly", "sustainable", "economical"]
+  },
+  {
+    id: "PN-05", model: "PN 05", name: "Radiant Ballpoint Pen",
+    category: "Pens", subcategory: "Premium Pens", collection: "economical",
+    description: "Premium radiant ballpoint pen with chrome finish.",
+    features: ["Chrome finish", "Premium quality", "Gift box", "Refillable"],
+    specifications: { material: "Brass Chrome Plated" },
+    variants: [{ color: "Chrome" }, { color: "Gold" }],
+    price: 701, ctnPacking: "30 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    tags: ["pen", "radiant", "chrome", "premium", "economical"]
+  },
+  {
+    id: "PN-06", model: "PN 06", name: "Spark Ballpoint Pen",
+    category: "Pens", subcategory: "Ballpoint Pens", collection: "economical",
+    description: "Colorful spark ballpoint pen for everyday writing needs.",
+    features: ["Colorful design", "Comfortable grip", "Value pricing", "Smooth ink"],
+    specifications: { material: "Metal & Plastic" },
+    variants: [{ color: "Black" }, { color: "Blue" }, { color: "Red" }, { color: "Green" }],
+    price: 322, ctnPacking: "100 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    tags: ["pen", "spark", "colorful", "value", "economical"]
+  },
+
+  // NOTEBOOKS (6 products)
+  {
+    id: "NB-01", model: "NB 01", name: "Wiro Notebook",
+    category: "Notebooks", subcategory: "Spiral Notebooks", collection: "economical",
+    description: "Wire-o bound notebook with custom cover printing. 80 pages.",
+    features: ["Wire-o binding", "Custom cover", "80 pages", "A5 size"],
+    specifications: { capacity: "80 pages", material: "Paper 70gsm" },
+    variants: [{ color: "White" }],
+    price: 182, ctnPacking: "50 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    tags: ["notebook", "wiro", "spiral", "custom", "economical"]
+  },
+  {
+    id: "NB-02", model: "NB 02", name: "Hard Cover Notebook",
+    category: "Notebooks", subcategory: "Hardbound Notebooks", collection: "economical",
+    description: "Premium hard cover notebook for executive use. 160 pages.",
+    features: ["Hard cover", "160 pages", "Ribbon bookmark", "Executive quality"],
+    specifications: { capacity: "160 pages", material: "Paper 80gsm" },
+    variants: [{ color: "Black" }, { color: "Brown" }, { color: "Navy" }],
+    price: 339, ctnPacking: "25 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    tags: ["notebook", "hardcover", "executive", "premium", "economical"]
+  },
+  {
+    id: "NB-03", model: "NB 03", name: "Perfect Bind Notebook",
+    category: "Notebooks", subcategory: "Perfect Bound", collection: "economical",
+    description: "Clean perfect bound notebook with custom cover. Professional look.",
+    features: ["Perfect binding", "Lay flat", "Custom cover", "Professional"],
+    specifications: { capacity: "100 pages", material: "Paper 70gsm" },
+    variants: [{ color: "White" }],
+    price: 163, ctnPacking: "50 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    tags: ["notebook", "perfect bound", "professional", "custom", "economical"]
+  },
+  {
+    id: "NB-04", model: "NB 04", name: "Kraft Cover Notebook",
+    category: "Notebooks", subcategory: "Eco Notebooks", collection: "economical",
+    description: "Eco-friendly kraft cover notebook. Recyclable materials.",
+    features: ["Kraft cover", "Eco-friendly", "Recyclable", "Natural look"],
+    specifications: { capacity: "80 pages", material: "Recycled Paper" },
+    variants: [{ color: "Brown" }],
+    price: 189, ctnPacking: "50 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    tags: ["notebook", "kraft", "eco-friendly", "recyclable", "economical"]
+  },
+  {
+    id: "NB-05", model: "NB 05", name: "Vivid Notebook",
+    category: "Notebooks", subcategory: "Premium Notebooks", collection: "economical",
+    description: "Premium vivid notebook with colorful design options.",
+    features: ["Colorful design", "Premium paper", "Elastic closure", "Pocket inside"],
+    specifications: { capacity: "120 pages", material: "Premium Paper 100gsm" },
+    variants: [{ color: "Blue" }, { color: "Red" }, { color: "Green" }, { color: "Purple" }],
+    price: 261, ctnPacking: "30 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    tags: ["notebook", "vivid", "colorful", "premium", "economical"]
+  },
+  {
+    id: "NB-06", model: "NB 06", name: "Executive Notebook",
+    category: "Notebooks", subcategory: "Executive Notebooks", collection: "economical",
+    description: "Top-tier executive notebook with leather-like cover. Gift box included.",
+    features: ["Leather-like cover", "160 pages", "Gift box", "Gold edges"],
+    specifications: { capacity: "160 pages", material: "PU Leather Cover" },
+    variants: [{ color: "Black" }, { color: "Brown" }, { color: "Tan" }],
+    price: 339, ctnPacking: "20 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    tags: ["notebook", "executive", "leather", "gift", "economical"]
+  },
+
+  // MOUSEPAD (1 product)
+  {
+    id: "MP-01", model: "MP 01", name: "Personalized Mousepad",
+    category: "Mousepads", subcategory: "Custom Mousepads", collection: "economical",
+    description: "Custom printed mousepad with sublimation printing. Smooth surface and rubber base.",
+    features: ["Sublimation printing", "Smooth surface", "Rubber base", "Rounded corners"],
+    specifications: { length: "9.25 inches", width: "7.5 inches", thickness: "3mm", material: "Rubber & Polyester" },
+    variants: [{ color: "Custom" }],
+    price: 250, ctnPacking: "100 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&q=80" },
+    tags: ["mousepad", "custom", "sublimation", "office", "economical"]
+  },
+
+  // TOTE BAG (1 product)
+  {
+    id: "TB-01", model: "TB 01", name: "Personalized Tote Bag",
+    category: "Tote Bags", subcategory: "Cotton Tote Bags", collection: "economical",
+    description: "Eco-friendly cotton tote bag with custom printing. Available in 140gsm and 320gsm canvas.",
+    features: ["Eco-friendly cotton", "Custom printing", "Digital or screen print", "Multiple sizes"],
+    specifications: { length: "15 inches", width: "16 inches", material: "Cotton 140gsm / Canvas 320gsm" },
+    variants: [{ color: "Natural" }, { color: "Black" }],
+    price: 350, ctnPacking: "100 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?w=400&q=80" },
+    tags: ["tote bag", "cotton", "eco-friendly", "custom", "economical"]
   }
 ];
 
@@ -869,7 +1283,15 @@ export const productCategories = [
   { id: "mugs", name: "Mugs & Cups", collection: "economical", slug: "mugs", description: "Travel mugs, coffee cups, ceramic mugs, and specialty drinkware", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80", count: 4 },
   { id: "tumblers", name: "Tumblers", collection: "economical", slug: "tumblers", description: "Stanley-style tumblers and insulated cups", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80", count: 3 },
   { id: "clocks", name: "Digital Clocks", collection: "economical", slug: "clocks", description: "Digital alarm clocks, mirror clocks, and color-changing clocks", image: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=400&q=80", count: 4 },
-  { id: "mobile-accessories-eco", name: "Mobile Accessories", collection: "economical", slug: "mobile-accessories-economical", description: "Budget mobile stands, pop sockets, and laptop stands", image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80", count: 5 }
+  { id: "mobile-accessories-eco", name: "Mobile Accessories", collection: "economical", slug: "mobile-accessories-economical", description: "Budget mobile stands, pop sockets, and laptop stands", image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80", count: 5 },
+  // New Printo Categories
+  { id: "keychains", name: "Keychains", collection: "economical", slug: "keychains", description: "Metal, acrylic and leather keychains with custom engraving and printing", image: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80", count: 6 },
+  { id: "awards", name: "Awards & Trophies", collection: "economical", slug: "awards", description: "Wooden, crystal and acrylic trophies for recognition and achievements", image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80", count: 7 },
+  { id: "backpacks", name: "Backpacks", collection: "economical", slug: "backpacks", description: "Laptop bags, backpacks and sleeves with custom branding", image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80", count: 6 },
+  { id: "pens", name: "Pens", collection: "economical", slug: "pens", description: "Personalized pens including ballpoint, roller ball, stylus and wooden pens", image: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80", count: 6 },
+  { id: "notebooks", name: "Notebooks", collection: "economical", slug: "notebooks", description: "Custom notebooks with spiral, hardcover, perfect bound options", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80", count: 6 },
+  { id: "mousepads", name: "Mousepads", collection: "economical", slug: "mousepads", description: "Custom printed mousepads with sublimation printing", image: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&q=80", count: 1 },
+  { id: "tote-bags", name: "Tote Bags", collection: "economical", slug: "tote-bags", description: "Eco-friendly cotton tote bags with custom printing", image: "https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?w=400&q=80", count: 1 }
 ];
 
 // ============================================
