@@ -168,6 +168,37 @@ function About() {
           </motion.div>
         </div>
 
+        {/* --- BLOCK 4: CERTIFICATION/PARTNER LOGOS --- */}
+        <motion.div
+          className="w-full flex-none mt-12 md:mt-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <div className="flex items-center justify-center flex-wrap gap-8 md:gap-16 px-4">
+            {[
+              { src: '/img/mii.png', alt: 'MII' },
+              { src: '/img/fieo.png', alt: 'FIEO' },
+              { src: '/img/vfl.png', alt: 'VFL' },
+              { src: '/img/phd.png', alt: 'PHD' }
+            ].map((logo, index) => (
+              <motion.div
+                key={index}
+                className="h-16 md:h-20 flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
+              >
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt}
+                  className="h-full w-auto max-w-[140px] md:max-w-[180px] object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
       </motion.section>
       
       <style>{`

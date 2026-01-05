@@ -13,6 +13,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "../animation/variants";
+import HeaderTwo from "@/components/HeaderTwo";
 
 
 
@@ -96,7 +97,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <HeaderTwo />
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-[#EF4343] grid-overlay-light">

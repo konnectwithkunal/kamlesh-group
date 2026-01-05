@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, ChevronDown, ExternalLink } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const Header = () => {
@@ -13,95 +13,69 @@ const Header = () => {
 
   const services = [
     {
-      title: "Sublimation Mugs",
-      slug: "sublimation-mugs",
-      description: "Our core specialty. We offer a diverse range of high-quality sublimation mugs, perfect for corporate branding, personalized gifts, and promotional campaigns. From classic white to magic color-changing options.",
+      title: "Mug Wale",
+      link: "https://mugwale.vercel.app/mugs",
+      isExternal: true,
       subServices: [
-        {
-          title: "White 11 oz Mugs",
-          description: "The industry standard classic white ceramic mug, perfect for vibrant, full-color sublimation prints."
-        },
-        {
-          title: "Color Handle Mugs",
-          description: "Dual-tone mugs featuring colored handles and rims to perfectly match your brand's color palette."
-        },
-        {
-          title: "Magic Mugs",
-          description: "Black 'Magic' mugs that reveal your custom design or photo only when hot liquid is poured inside."
-        },
-        {
-          title: "Patch Mugs",
-          description: "Stylish Black and White patch mugs offering a modern, contrasting aesthetic for your logos."
-        }
+        { title: "White 11 oz Mugs", tagline: "Classic ceramic", link: "https://mugwale.vercel.app/mugs" },
+        { title: "Color Handle Mugs", tagline: "Dual tone", link: "https://mugwale.vercel.app/mugs" },
+        { title: "Magic Mugs", tagline: "Heat reveal", link: "https://mugwale.vercel.app/mugs" },
+        { title: "Patch Mugs", tagline: "Modern style", link: "https://mugwale.vercel.app/mugs" }
       ]
     },
     {
-      title: "Sublimation Merchandise",
-      slug: "sublimation-merchandise",
-      description: "Beyond mugs, we provide a full suite of sublimation-ready merchandise. Whether for sports events, corporate giveaways, or fashion, our sublimation products ensure long-lasting, high-definition prints.",
+      title: "Kamlesh Enterprises",
+      link: "/products/t-shirts",
+      isExternal: false,
       subServices: [
-        {
-          title: "Sublimation T-Shirts",
-          description: "High-quality polyester blend t-shirts designed specifically for durable, full-color sublimation printing."
-        },
-        {
-          title: "Sublimation Bottles",
-          description: "Durable aluminum and steel sipper bottles, ideal for sports teams, gyms, and eco-friendly corporate gifts."
-        },
-        {
-          title: "Sublimation Cups",
-          description: "Versatile tumblers and cups available in various finishes, ready for your custom artwork."
-        },
-        {
-          title: "Coffee Mugs",
-          description: "Standard and custom-shaped coffee mugs for cafes, offices, and daily use."
-        }
+        { title: "Polyester T-Shirts", tagline: "180 GSM", link: "/products/t-shirts" },
+        { title: "Collar Matty T-Shirt", tagline: "Polo neck", link: "/products/t-shirts" },
+        { title: "Blank T-Shirt", tagline: "Multi-style", link: "/products/t-shirts" },
+        { title: "Cotton Feel T-Shirt", tagline: "160 GSM", link: "/products/t-shirts" }
+      ]
+    },
+    {
+      title: "Powerbook",
+      link: "/corporate-gifting",
+      isExternal: false,
+      subServices: [
+        { title: "Premium Trophies", tagline: "Corporate awards", link: "/corporate-gifting/awards" },
+        { title: "Branded Keychains", tagline: "Brand recall", link: "/corporate-gifting/keychains" },
+        { title: "Luxury Pens", tagline: "Executive style", link: "/corporate-gifting/pens" },
+        { title: "Professional Bags", tagline: "On the move", link: "/corporate-gifting/backpacks" }
       ]
     },
     {
       title: "Corporate Gifting",
-      slug: "corporate-gifting",
-      description: "Strengthen business relationships and recognize excellence with our premium corporate gifting solutions. We offer a wide array of customizable items suitable for clients, employees, and partners.",
+      link: "/corporate-gifting",
+      isExternal: false,
       subServices: [
-        {
-          title: "Trophies",
-          description: "Elegant trophies and awards to recognize achievement, milestones, and excellence within your organization."
-        },
-        {
-          title: "Keychains",
-          description: "Custom branded keychains in metal, leather, or plastic – a cost-effective and practical promotional item."
-        },
-        {
-          title: "Pens",
-          description: "Premium metal and plastic pens engraved or printed with your company logo for lasting brand recall."
-        },
-        {
-          title: "Bags",
-          description: "Functional corporate bags, laptop bags, and totes designed for professionals on the move."
-        }
+        { title: "Powerbooks", tagline: "Tech enabled", link: "/corporate-gifting/notebooks" },
+        { title: "Diaries", tagline: "Premium leather", link: "/corporate-gifting/notebooks" },
+        { title: "Corporate Notebooks", tagline: "Custom sizes", link: "/corporate-gifting/notebooks" },
+        { title: "Office Essentials", tagline: "Desk ready", link: "/corporate-gifting/desk-accessories" }
       ]
     },
     {
-      title: "Stationery & Powerbooks",
-      slug: "stationery-powerbooks",
-      description: "Equip your team with essential office stationery that combines utility with professional branding. Our Powerbooks and diaries are perfect for the modern professional workspace.",
+      title: "Allure Space",
+      link: "/allure-space",
+      isExternal: false,
       subServices: [
-        {
-          title: "Powerbooks",
-          description: "Innovative notebooks with built-in power banks and charging cables – the ultimate utility for professionals."
-        },
-        {
-          title: "Diaries",
-          description: "Premium leather and hardbound diaries for organizing schedules, notes, and daily tasks."
-        },
-        {
-          title: "Corporate Notebooks",
-          description: "Customized notebooks available in various sizes (A5, B5) and finishes for office use."
-        },
-        {
-          title: "Office Essentials",
-          description: "A complete range of branded desk accessories and stationery to unify your office look."
-        }
+        { title: "Architectural Design", tagline: "Visionary", link: "/allure-space" },
+        { title: "Interior Architecture", tagline: "Sophisticated", link: "/allure-space" },
+        { title: "Commercial Spaces", tagline: "Functional", link: "/allure-space" },
+        { title: "Turnkey Projects", tagline: "Seamless", link: "/allure-space" }
+      ]
+    },
+    {
+      title: "NARS Surgicals",
+      link: "/nars",
+      isExternal: false,
+      subServices: [
+        { title: "Surgical Gowns", tagline: "Max protection", link: "/nars" },
+        { title: "Laminated Fabrics", tagline: "Viral barrier", link: "/nars" },
+        { title: "Biodegradable PPE", tagline: "Eco-conscious", link: "/nars" },
+        { title: "Antimicrobial Tech", tagline: "Germ defense", link: "/nars" }
       ]
     }
   ];
@@ -115,13 +89,44 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (id) => {
-    setIsMobileMenuOpen(false); // Close mobile menu if open
+  // Close mega menu when route changes
+  useEffect(() => {
+    setIsMegaMenuOpen(false);
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  const handleNavClick = (id: string) => {
+    setIsMobileMenuOpen(false);
+    setIsMegaMenuOpen(false);
     if (location.pathname !== "/") {
       navigate("/", { state: { scrollToId: id } });
     } else {
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleServiceClick = (service: typeof services[0]) => {
+    setIsMegaMenuOpen(false);
+    setIsMobileMenuOpen(false);
+    setIsMobileServicesOpen(false);
+    
+    if (service.isExternal) {
+      window.open(service.link, "_blank");
+    } else {
+      navigate(service.link);
+    }
+  };
+
+  const handleSubServiceClick = (link: string) => {
+    setIsMegaMenuOpen(false);
+    setIsMobileMenuOpen(false);
+    setIsMobileServicesOpen(false);
+    
+    if (link.startsWith("http")) {
+      window.open(link, "_blank");
+    } else {
+      navigate(link);
     }
   };
 
@@ -132,11 +137,11 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/">
+        <Link to="/" onClick={() => setIsMegaMenuOpen(false)}>
           <img
             src={isScrolled ? "/img/colorblack.png" : "/img/colorwhite.png"}
-            alt="NewsMakerIndia Logo"
-            className="h-14  w-auto transition-all duration-300"
+            alt="Kamlesh Group Logo"
+            className="h-14 w-auto transition-all duration-300"
           />
         </Link>
 
@@ -145,80 +150,100 @@ const Header = () => {
           <a
             onClick={() => handleNavClick("about")}
             className={`cursor-pointer text-lg transition-colors duration-300 ${
-              isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"
+              isScrolled ? "text-black hover:text-primary" : "text-red-600 hover:text-orange-300"
             }`}
           >
             About us
           </a>
+          
+          {/* Services with Mega Menu */}
           <div
             className="relative"
             onMouseEnter={() => setIsMegaMenuOpen(true)}
             onMouseLeave={() => setIsMegaMenuOpen(false)}
           >
             <a
-              onClick={() => navigate("/services")}
-              className={`cursor-pointer text-lg transition-colors duration-300 ${
-                isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"
+              className={`cursor-pointer text-lg transition-colors duration-300 flex items-center gap-1 ${
+                isScrolled ? "text-black hover:text-primary" : "text-red-600 hover:text-orange-300"
               }`}
             >
               Services
+              <ChevronDown className={`w-4 h-4 transition-transform ${isMegaMenuOpen ? 'rotate-180' : ''}`} />
             </a>
 
-            {/* Mega Menu */}
+            {/* Compact Mega Menu */}
             {isMegaMenuOpen && (
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 w-screen max-w-6xl bg-white shadow-2xl border border-gray-200 rounded-lg z-50">
-                <div className="grid grid-cols-4 gap-6 p-8">
-                  {services.map((service, index) => (
-                    <div key={index} className="space-y-4">
-                      <h3 className="font-bold text-lg text-black border-b-2 border-primary pb-2">
-                        {service.title}
-                      </h3>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        {service.description}
-                      </p>
-                      <div className="space-y-3">
-                        {service.subServices.map((subService, subIndex) => (
-                          <div
-                            key={subIndex}
-                            className="group cursor-pointer"
-                            onClick={() => {
-                              setIsMegaMenuOpen(false);
-                              navigate(`/services/${service.slug}`);
-                            }}
-                          >
-                            <div className="flex items-start gap-2 p-2 rounded hover:bg-gray-50 transition-colors">
-                              <ChevronRight className="w-4 h-4 mt-1 text-primary flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-                              <div>
-                                <h4 className="font-semibold text-sm text-black group-hover:text-primary transition-colors">
-                                  {subService.title}
-                                </h4>
-                                <p className="text-xs text-gray-500 mt-1 line-clamp-2">
-                                  {subService.description}
-                                </p>
-                              </div>
+              <div 
+                className="absolute top-full left-1/2 transform -translate-x-1/2 pt-2"
+                style={{ width: '800px' }}
+              >
+                <div className="bg-white shadow-2xl border border-gray-200 rounded-lg overflow-hidden">
+                  {/* 3x2 Grid - Compact */}
+                  <div className="grid grid-cols-3">
+                    {services.map((service, index) => (
+                      <div 
+                        key={index} 
+                        className={`p-3 hover:bg-gray-50 transition-colors border-r border-gray-100 last:border-r-0 ${index >= 3 ? 'border-t border-gray-100' : ''}`}
+                      >
+                        {/* Service Title */}
+                        <div 
+                          className="flex items-center gap-1 cursor-pointer group mb-2"
+                          onClick={() => handleServiceClick(service)}
+                        >
+                          <h3 className="font-bold text-xs text-gray-900 group-hover:text-primary transition-colors border-b border-primary pb-1">
+                            {service.title}
+                          </h3>
+                          {service.isExternal && (
+                            <ExternalLink className="w-3 h-3 text-gray-400 group-hover:text-primary" />
+                          )}
+                        </div>
+                        
+                        {/* Sub Services - Compact List */}
+                        <div className="space-y-0.5">
+                          {service.subServices.map((sub, subIndex) => (
+                            <div
+                              key={subIndex}
+                              className="flex items-center gap-1 cursor-pointer group/item py-0.5"
+                              onClick={() => handleSubServiceClick(sub.link)}
+                            >
+                              <ChevronRight className="w-3 h-3 text-primary flex-shrink-0 group-hover/item:translate-x-0.5 transition-transform" />
+                              <span className="text-[11px] text-gray-600 group-hover/item:text-primary transition-colors">
+                                {sub.title}
+                              </span>
                             </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                  
+                  {/* Footer */}
+                  <div className="bg-gray-50 px-4 py-2 border-t border-gray-100 flex items-center justify-between">
+                    <a 
+                      onClick={() => { setIsMegaMenuOpen(false); navigate("/corporate-gifting"); }}
+                      className="text-xs font-medium text-primary hover:underline cursor-pointer"
+                    >
+                      View All Products →
+                    </a>
+                    <span className="text-[10px] text-gray-400">110+ Corporate Gift Products</span>
+                  </div>
                 </div>
               </div>
             )}
           </div>
 
           <a
-            onClick={() => navigate("/news")}
+            onClick={() => { setIsMegaMenuOpen(false); navigate("/news"); }}
             className={`cursor-pointer text-lg transition-colors duration-300 ${
-              isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"
+              isScrolled ? "text-black hover:text-primary" : "text-red-600 hover:text-orange-300"
             }`}
           >
             Client Showcase
           </a>
           <a
-            onClick={() => navigate("/blogs")}
+            onClick={() => { setIsMegaMenuOpen(false); navigate("/blogs"); }}
             className={`cursor-pointer text-lg transition-colors duration-300 ${
-              isScrolled ? "text-black hover:text-primary" : "text-white hover:text-black"
+              isScrolled ? "text-black hover:text-primary" : "text-red-600 hover:text-orange-300"
             }`}
           >
             Blog
@@ -229,7 +254,7 @@ const Header = () => {
           <Button
             variant="default"
             className="hidden sm:flex bg-primary hover:bg-primary/90 text-white font-medium px-6 rounded-full"
-            onClick={() => navigate("/contact")}
+            onClick={() => { setIsMegaMenuOpen(false); navigate("/contact"); }}
           >
             Contact us
           </Button>
@@ -248,49 +273,53 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background border-t border-border max-h-[80vh] overflow-y-auto">
-          <nav className="container mx-auto px-6 py-4 space-y-4">
+        <div className="md:hidden bg-white border-t border-gray-200 max-h-[80vh] overflow-y-auto shadow-lg">
+          <nav className="container mx-auto px-6 py-4 space-y-2">
             <a
               onClick={() => handleNavClick("about")}
-              className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+              className="block py-3 text-gray-800 hover:text-primary transition-colors cursor-pointer border-b border-gray-100"
             >
               About us
             </a>
 
-            {/* Services with Mega Menu for Mobile */}
-            <div className="space-y-2">
+            {/* Mobile Services Dropdown */}
+            <div className="border-b border-gray-100">
               <div
                 onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
-                className="flex items-center justify-between py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+                className="flex items-center justify-between py-3 text-gray-800 hover:text-primary transition-colors cursor-pointer"
               >
                 <span>Services</span>
-                <ChevronRight
+                <ChevronDown
                   className={`w-5 h-5 transition-transform ${
-                    isMobileServicesOpen ? "rotate-90" : ""
+                    isMobileServicesOpen ? "rotate-180" : ""
                   }`}
                 />
               </div>
 
               {isMobileServicesOpen && (
-                <div className="pl-4 space-y-4 border-l-2 border-primary">
+                <div className="pb-3 space-y-3">
                   {services.map((service, index) => (
-                    <div key={index} className="space-y-2">
-                      <h4 className="font-bold text-sm text-black">
-                        {service.title}
-                      </h4>
-                      <div className="space-y-2 pl-2">
-                        {service.subServices.map((subService, subIndex) => (
+                    <div key={index} className="pl-4">
+                      <div 
+                        className="flex items-center gap-2 cursor-pointer py-2"
+                        onClick={() => handleServiceClick(service)}
+                      >
+                        <h4 className="font-semibold text-sm text-gray-900 hover:text-primary transition-colors">
+                          {service.title}
+                        </h4>
+                        {service.isExternal && (
+                          <ExternalLink className="w-3 h-3 text-gray-400" />
+                        )}
+                      </div>
+                      <div className="pl-3 space-y-1">
+                        {service.subServices.slice(0, 3).map((sub, subIndex) => (
                           <div
                             key={subIndex}
-                            onClick={() => {
-                              setIsMobileMenuOpen(false);
-                              setIsMobileServicesOpen(false);
-                              navigate(`/services/${service.slug}`);
-                            }}
-                            className="flex items-start gap-2 py-1 cursor-pointer hover:text-primary transition-colors"
+                            onClick={() => handleSubServiceClick(sub.link)}
+                            className="flex items-center gap-2 py-1 cursor-pointer text-gray-600 hover:text-primary transition-colors"
                           >
-                            <ChevronRight className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                            <span className="text-sm">{subService.title}</span>
+                            <ChevronRight className="w-3 h-3 text-primary flex-shrink-0" />
+                            <span className="text-xs">{sub.title}</span>
                           </div>
                         ))}
                       </div>
@@ -301,30 +330,21 @@ const Header = () => {
             </div>
 
             <a
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                navigate("/news");
-              }}
-              className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+              onClick={() => { setIsMobileMenuOpen(false); navigate("/news"); }}
+              className="block py-3 text-gray-800 hover:text-primary transition-colors cursor-pointer border-b border-gray-100"
             >
               Client Showcase
             </a>
             <a
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                navigate("/blogs");
-              }}
-              className="block py-2 text-foreground hover:text-primary transition-colors cursor-pointer"
+              onClick={() => { setIsMobileMenuOpen(false); navigate("/blogs"); }}
+              className="block py-3 text-gray-800 hover:text-primary transition-colors cursor-pointer border-b border-gray-100"
             >
-              Blogs
+              Blog
             </a>
             <Button
               variant="default"
               className="w-full bg-primary hover:bg-primary/90 text-white font-medium rounded-full mt-4"
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                navigate("/contact");
-              }}
+              onClick={() => { setIsMobileMenuOpen(false); navigate("/contact"); }}
             >
               Contact us
             </Button>

@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import blogPosts from "@/data/blogPosts";
-import HeaderWhite from "@/components/HeaderWhite";
+import HeaderTwo from "@/components/HeaderTwo";
+
 const BlogPost = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const BlogPost = () => {
   if (!currentPost) {
     return (
       <div className="min-h-screen bg-white">
-        <HeaderWhite />
+        <HeaderTwo />
         <main className="pt-32 pb-20">
           <div className="container mx-auto px-6 text-center">
             <h1 className="text-4xl font-bold mb-4 text-foreground">Blog Post Not Found</h1>
@@ -35,7 +36,7 @@ const BlogPost = () => {
 
   return (
    <div className="min-h-screen bg-white">
-  <HeaderWhite />
+  <Header />
   <main>
    {/* Hero Section */}
 <section className="pt-32 pb-12 bg-white">

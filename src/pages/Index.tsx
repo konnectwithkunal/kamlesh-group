@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import HeaderHome from "@/components/HeaderHome";
+
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -15,6 +15,8 @@ import Work from "@/components/Work";
 import News from "@/components/News";
 import Footer from "@/components/Footer";
 import BrandsWeOffer from "@/components/Brandsweoffer";
+import HeaderHome from "./Mugs";
+import HeaderWhite from "@/components/HeaderWhite";
 
 const Index = () => {
   const location = useLocation();
@@ -32,8 +34,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <HeaderHome />
-      <Hero />
+     
+       <Hero />
+       <Header />
       <About />
       <Services />
       <Clients />

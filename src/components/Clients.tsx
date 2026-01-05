@@ -57,7 +57,7 @@ const Clients = () => {
     { name: "Pulp Strategy", logo: "/icons/55.png" },
     { name: "Percept", logo: "/icons/56.png" },
     { name: "Matrix", logo: "/icons/57.png" },
-    { name: "Metalnox", logo: "/icons/58.png" },
+  
     { name: "Unknown 60", logo: "/icons/60.png" },
     { name: "SAE India", logo: "/icons/61.png" },
     { name: "Autonom India 2021", logo: "/icons/62.png" },

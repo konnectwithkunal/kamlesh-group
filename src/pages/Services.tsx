@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { fadeInUp } from "../animation/variants";
 import { motion } from "framer-motion";
-
+import HeaderTwo from "@/components/HeaderTwo";
 const Services = () => {
   const [searchParams] = useSearchParams();
   const selectedServiceParam = searchParams.get('service') || 'sublimation-mugs';
@@ -126,7 +126,7 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <HeaderTwo />
       
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-[#EF4343] grid-overlay-light">

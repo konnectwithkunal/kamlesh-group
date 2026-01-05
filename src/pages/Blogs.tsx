@@ -1,11 +1,11 @@
-import HeaderHome from "./Mugs";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { fadeInUp } from "../animation/variants";
 import { motion } from "framer-motion";
 import blogPosts from "@/data/blogPosts";
-import HeaderWhite from "@/components/HeaderWhite";
+import HeaderTwo from "@/components/HeaderTwo";
 const Blogs = () => {
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const Blogs = () => {
 
   return (
     <div className="min-h-screen ">
-      <HeaderWhite/>
+      <HeaderTwo/>
       <main>
         {/* Hero Section */}
         <section className="pt-32 pb-20 bg-[#EF4343] grid-overlay-light">
