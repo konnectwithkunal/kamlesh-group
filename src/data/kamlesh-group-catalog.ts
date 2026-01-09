@@ -1264,6 +1264,68 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     customization: { logoPrinting: true, branding: true },
     images: { main: "https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?w=400&q=80" },
     tags: ["tote bag", "cotton", "eco-friendly", "custom", "economical"]
+  },
+
+  // SUBLIMATION PILLOWS (5 products)
+  {
+    id: "SP-01", model: "SP 01", name: "Square Sublimation Pillow",
+    category: "Sublimation Pillows", subcategory: "Basic Pillows", collection: "economical",
+    description: "Classic square sublimation cushion cover with filler. High-quality printable surface.",
+    features: ["Standard 16x16 size", "Includes filler", "High print clarity", "Soft fabric"],
+    specifications: { length: "16 inches", width: "16 inches", material: "Satin/Velvet", includes: "Cover + Filler" },
+    variants: [{ color: "White" }],
+    price: 180, ctnPacking: "50 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    tags: ["pillow", "cushion", "sublimation", "square", "economical"]
+  },
+  {
+    id: "SP-02", model: "SP 02", name: "Heart Shaped Pillow",
+    category: "Sublimation Pillows", subcategory: "Shape Pillows", collection: "economical",
+    description: "Romantic heart-shaped sublimation pillow. Perfect for gifting and special occasions.",
+    features: ["Heart shape", "Red frill border option", "Soft texture", "Vibrant printing"],
+    specifications: { length: "15 inches", width: "15 inches", material: "Satin", includes: "Cover + Filler" },
+    variants: [{ color: "White" }, { color: "Red Border" }],
+    price: 210, ctnPacking: "50 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    tags: ["pillow", "heart", "gift", "sublimation", "economical"]
+  },
+  {
+    id: "SP-03", model: "SP 03", name: "Magic Sequin Pillow (Square)",
+    category: "Sublimation Pillows", subcategory: "Magic Pillows", collection: "economical",
+    description: "Reversible sequin 'Magic' pillow. Image is revealed when sequins are brushed.",
+    features: ["Reversible sequins", "Interactive design", "Hidden image", "Premium zipper"],
+    specifications: { length: "16 inches", width: "16 inches", material: "Sequin & Satin" },
+    variants: [{ color: "Red" }, { color: "Gold" }, { color: "Silver" }, { color: "Black" }],
+    price: 350, ctnPacking: "40 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    tags: ["pillow", "magic", "sequin", "trendy", "economical"]
+  },
+  {
+    id: "SP-04", model: "SP 04", name: "Fur Cushion Pillow",
+    category: "Sublimation Pillows", subcategory: "Fur Pillows", collection: "economical",
+    description: "Luxurious fur cushion with a printable heart or square patch in the center.",
+    features: ["Soft fur texture", "Printable center patch", "Luxury look", "Warm feel"],
+    specifications: { length: "16 inches", width: "16 inches", material: "Faux Fur" },
+    variants: [{ color: "Red" }, { color: "Pink" }, { color: "White" }],
+    price: 320, ctnPacking: "30 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    tags: ["pillow", "fur", "luxury", "gift", "economical"]
+  },
+  {
+    id: "SP-05", model: "SP 05", name: "LED Sublimation Pillow",
+    category: "Sublimation Pillows", subcategory: "LED Pillows", collection: "economical",
+    description: "Glowing LED pillow with sublimation printing. Battery operated.",
+    features: ["Internal LED lights", "On/Off switch", "Glow effect", "Unique gift"],
+    specifications: { length: "16 inches", width: "16 inches", material: "Satin", includes: "Cover + Light Kit" },
+    variants: [{ color: "White" }],
+    price: 450, ctnPacking: "30 PCS CTN",
+    customization: { logoPrinting: true, branding: true },
+    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    tags: ["pillow", "led", "light up", "unique", "economical"]
   }
 ];
 
@@ -1274,14 +1336,23 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
 
 export const productCategories = [
   // Premium Categories
-  { id: "mobile-stands", name: "Mobile Stands", collection: "premium", slug: "mobile-stands", description: "Premium metal mobile stands with card holders, pen holders, and rotating bases", image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80", count: 18 },
-  { id: "desk-accessories", name: "Desk Accessories", collection: "premium", slug: "desk-accessories", description: "Premium desk accessories including pen holders, tea coasters, and paper weights", image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80", count: 5 },
-  { id: "card-holders", name: "Card Holders", collection: "premium", slug: "card-holders", description: "Premium ATM and visiting card holders in metal finish", image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80", count: 2 },
+  { id: "mobile-stands", name: "Mobile Stands", collection: "premium", slug: "mobile-stands", description: "Premium metal mobile stands with card holders, pen holders, and rotating bases", image: "/corporategallery/1.jpeg", count: 18 },
+  { 
+    id: "sublimation-pillows", 
+    name: "Sublimation Pillows", 
+    collection: "economical", 
+    slug: "sublimation-pillows", 
+    description: "Custom printable pillows including magic sequin, fur, heart-shaped, and LED options", 
+    image: "/corporategallery/pillow.jpg", 
+    count: 5 
+  },
+  { id: "desk-accessories", name: "Desk Accessories", collection: "premium", slug: "desk-accessories", description: "Premium desk accessories including pen holders, tea coasters, and paper weights", image: "/corporategallery/11.jpeg", count: 5 },
+  { id: "card-holders", name: "Card Holders", collection: "premium", slug: "card-holders", description: "Premium ATM and visiting card holders in metal finish", image: "/corporategallery/2.jpeg", count: 2 },
   { id: "desk-calendars", name: "Desk Calendars", collection: "premium", slug: "desk-calendars", description: "Premium desk calendars with clocks, photo frames, and elegant designs", image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80", count: 8 },
   // Economical Categories
   { id: "bottles", name: "Bottles", collection: "economical", slug: "bottles", description: "Wide range of bottles including temperature display, vacuum insulated, bamboo, and more", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80", count: 15 },
   { id: "mugs", name: "Mugs & Cups", collection: "economical", slug: "mugs", description: "Travel mugs, coffee cups, ceramic mugs, and specialty drinkware", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80", count: 4 },
-  { id: "tumblers", name: "Tumblers", collection: "economical", slug: "tumblers", description: "Stanley-style tumblers and insulated cups", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80", count: 3 },
+  { id: "tumblers", name: "Tumblers", collection: "economical", slug: "tumblers", description: "Stanley-style tumblers and insulated cups", image: "/corporategallery/10_h.jpg", count: 3 },
   { id: "clocks", name: "Digital Clocks", collection: "economical", slug: "clocks", description: "Digital alarm clocks, mirror clocks, and color-changing clocks", image: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=400&q=80", count: 4 },
   { id: "mobile-accessories-eco", name: "Mobile Accessories", collection: "economical", slug: "mobile-accessories-economical", description: "Budget mobile stands, pop sockets, and laptop stands", image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80", count: 5 },
   // New Printo Categories

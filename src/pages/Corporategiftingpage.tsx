@@ -4,11 +4,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
+import {
   ChevronRight,
-  Phone, 
-  Mail, 
-  Gift, 
+  Phone,
+  Mail,
+  Gift,
   Truck,
   Shield,
   Star,
@@ -20,7 +20,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 // Import from combined catalog
-import { 
+import {
   productCategories,
   getFeaturedProducts,
   getPremiumProducts,
@@ -28,6 +28,12 @@ import {
   getCatalogStats,
   UnifiedProduct
 } from '../data/kamlesh-group-catalog';
+
+// Corporate Gallery Images (public folder)
+const corporateGalleryImages = Array.from({ length: 41 }, (_, i) => ({
+  id: i + 1,
+  src: `/corporategallery/${i + 1}.jpeg`,
+}));
 
 // Hero Banner Data
 const heroBanners = [
@@ -69,7 +75,7 @@ const getColorHex = (color: string): string => {
 const ProductCard: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
   const [imageError, setImageError] = useState(false);
   const categorySlug = productCategories.find(c => c.name === product.category)?.slug || 'products';
-  
+
   return (
     <Link to={`/corporate-gifting/${categorySlug}/${product.model.toLowerCase().replace(/\s+/g, '-')}`}>
       <motion.div
@@ -104,7 +110,7 @@ const ProductCard: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
           </h3>
           <div className="flex gap-1 mt-2">
             {product.variants.slice(0, 4).map((v, i) => (
-              <span 
+              <span
                 key={i}
                 className="w-4 h-4 rounded-full border border-gray-300"
                 style={{ backgroundColor: getColorHex(v.color) }}
@@ -122,12 +128,12 @@ const ProductCard: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
 };
 
 // Category Card Component
-const CategoryCard: React.FC<{ 
+const CategoryCard: React.FC<{
   category: typeof productCategories[0];
   index: number;
 }> = ({ category, index }) => {
   const [imageError, setImageError] = useState(false);
-  
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -145,13 +151,12 @@ const CategoryCard: React.FC<{
               onError={() => setImageError(true)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-            
+
             {/* Badge */}
-            <span className={`absolute top-3 right-3 px-3 py-1 text-xs font-bold rounded-full ${
-              category.collection === 'premium' 
-                ? 'bg-amber-500 text-white' 
+            <span className={`absolute top-3 right-3 px-3 py-1 text-xs font-bold rounded-full ${category.collection === 'premium'
+                ? 'bg-amber-500 text-white'
                 : 'bg-green-500 text-white'
-            }`}>
+              }`}>
               {category.collection === 'premium' ? 'PREMIUM' : 'VALUE'}
             </span>
 
@@ -160,7 +165,7 @@ const CategoryCard: React.FC<{
               {category.count} Products
             </span>
           </div>
-          
+
           <div className="p-5">
             <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#EE4343] transition-colors mb-2">
               {category.name}
@@ -180,11 +185,43 @@ const CategoryCard: React.FC<{
 
 const Corporategiftingpage: React.FC = () => {
   const featuredProducts = getFeaturedProducts(8);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const openLightbox = (index: number) => {
+    setActiveIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const showPrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? corporateGalleryImages.length - 1 : prev - 1));
+  };
+
+  const showNext = () => {
+    setActiveIndex((prev) => (prev === corporateGalleryImages.length - 1 ? 0 : prev + 1));
+  };
+
+  React.useEffect(() => {
+    if (!lightboxOpen) return;
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'Escape') closeLightbox();
+    };
+
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [lightboxOpen, activeIndex]);
 
   return (
     <div className="min-h-screen bg-gray-50">
       <HeaderWhite />
-      
+
       {/* Hero Section */}
       <section className="relative pt-20">
         {heroBanners.map((banner) => (
@@ -299,8 +336,47 @@ const Corporategiftingpage: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Products Section */}
+      {/* Corporate Gifting Gallery */}
       <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Corporate Gifting Gallery
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Explore our wide range of premium and economical corporate gifting products
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {corporateGalleryImages.map((img, index) => (
+              <motion.div
+                key={img.id}
+                whileHover={{ scale: 1.05 }}
+                className="relative overflow-hidden rounded-xl border border-gray-200 bg-white cursor-pointer shadow-sm hover:shadow-md transition-all"
+                onClick={() => openLightbox(index)}
+              >
+                <img
+                  src={img.src}
+                  alt={`Corporate Gift ${img.id}`}
+                  className="w-full h-48 object-contain p-3 transition-transform duration-300"
+                  loading="lazy"
+                />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/0 hover:bg-black/30 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                  <span className="text-white font-semibold text-sm">
+                    View Full Image
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Section */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Products</h2>
@@ -314,21 +390,11 @@ const Corporategiftingpage: React.FC = () => {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-
-          <div className="text-center mt-10">
-            <Link
-              to="/corporate-gifting/bottles"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-colors"
-            >
-              View All Products
-              <ChevronRight className="w-5 h-5" />
-            </Link>
-          </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Kamlesh Group?</h2>
@@ -392,6 +458,75 @@ const Corporategiftingpage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          {/* Close Button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 text-white hover:text-gray-300 z-50 p-2 rounded-full hover:bg-white/10 transition-all"
+            aria-label="Close lightbox"
+          >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Previous Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              showPrev();
+            }}
+            className="absolute left-4 text-white hover:text-gray-300 z-50 p-3 rounded-full hover:bg-white/10 transition-all"
+            aria-label="Previous image"
+          >
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Image Container */}
+          <div
+            className="relative max-w-6xl max-h-[90vh] mx-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={corporateGalleryImages[activeIndex].src}
+              alt={`Corporate Gift ${corporateGalleryImages[activeIndex].id}`}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            />
+            
+            {/* Image Counter */}
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium">
+              {activeIndex + 1} / {corporateGalleryImages.length}
+            </div>
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              showNext();
+            }}
+            className="absolute right-4 text-white hover:text-gray-300 z-50 p-3 rounded-full hover:bg-white/10 transition-all"
+            aria-label="Next image"
+          >
+            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Instructions Hint */}
+          <div className="absolute bottom-4 left-4 text-white/60 text-sm">
+            Use arrow keys to navigate • ESC to close
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

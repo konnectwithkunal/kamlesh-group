@@ -20,7 +20,7 @@ import MugDetail from "./pages/MugDetail";
 import PrintoClone from "./pages/PrintoClone";
 import TShirtsPage from "./pages/products/TShirtsPage";
 
-// Corporate Gifting Imports - YOUR EXACT FILE NAMES
+// Corporate Gifting Imports
 import Corporategiftingpage from "./pages/Corporategiftingpage";   // Main Landing Page
 import Giftingcategorypage from "./pages/Giftingcategorypage";     // Category List Page
 import Giftingproductpage from "./pages/Giftingproductpage";       // Product Details Page
@@ -45,15 +45,15 @@ const App = () => (
             <Route path="/ke" element={<PrintoClone />} />
             
             {/* --- Corporate Gifting Routes --- */}
-            {/* IMPORTANT: Order matters! More specific routes first, then dynamic routes */}
+            {/* CRITICAL: Routes MUST be in this exact order! */}
             
-            {/* 1. Main Landing Page - EXACT path, no params */}
+            {/* 1. Main Landing Page - MUST be first (exact match) */}
             <Route path="/corporate-gifting" element={<Corporategiftingpage />} />
             
-            {/* 2. Product Details Page - Most specific (has 2 params) */}
+            {/* 2. Product Details - MUST be second (2 dynamic params) */}
             <Route path="/corporate-gifting/:categorySlug/:productSlug" element={<Giftingproductpage />} />
             
-            {/* 3. Category Page - Less specific (has 1 param) */}
+            {/* 3. Category Page - MUST be last (1 dynamic param) */}
             <Route path="/corporate-gifting/:categorySlug" element={<Giftingcategorypage />} />
 
             {/* --- Product Routes --- */}

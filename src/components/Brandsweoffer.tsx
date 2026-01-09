@@ -3,17 +3,34 @@
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 
-// Brand data organized by category
+// DEFINING THE DATA
+// I have mapped these based on the filenames in your screenshots.
+// Note: I handled the specific extensions you showed (safari.avif, rare-rabbit.jpeg, prestige.jpeg)
 const brandCategories = [
   {
     id: 'apparel',
     title: "Apparel & Fashion",
     color: "#16a34a",
     brands: [
-      "Raymond", "Allen Solly", "Van Heusen", "U.S. Polo Assn.", 
-      "Nike", "Adidas", "Puma", "Reebok", "United Colors of Benetton", 
-      "Pepe Jeans", "Indian Terrain", "Flying Machine", "ColorPlus", 
-      "Global Desi", "BIBA", "Label Ritu Kumar", "Rare Rabbit", "ASICS", "Jack & Jones"
+      { name: "Raymond", logo: "/brands/raymond.png" }, // Assuming png
+      { name: "Allen Solly", logo: "/brands/allen-solly.png" },
+      { name: "Van Heusen", logo: "/brands/van-heusen.png" },
+      { name: "U.S. Polo Assn.", logo: "/brands/us-polo.png" },
+      { name: "Nike", logo: "/brands/nike.png" },
+      { name: "Adidas", logo: "/brands/adidas.png" },
+      { name: "Puma", logo: "/brands/puma.png" },
+      { name: "Reebok", logo: "/brands/reebok.png" },
+      { name: "United Colors of Benetton", logo: "/brands/bennition.png" }, // Filename from screenshot
+      { name: "Pepe Jeans", logo: "/brands/pepe-jeans.png" },
+      { name: "Indian Terrain", logo: "/brands/indian-terrain.png" },
+      { name: "Flying Machine", logo: "/brands/flying.png" },
+      { name: "ColorPlus", logo: "/brands/color-plus.png" },
+      { name: "Global Desi", logo: "/brands/globaldesi.png" },
+      { name: "BIBA", logo: "/brands/biba.png" },
+      { name: "Label Ritu Kumar", logo: "/brands/rk.png" }, // Filename from screenshot
+      { name: "Rare Rabbit", logo: "/brands/rare-rabbit.jpeg" }, // Note: .jpeg extension
+      { name: "ASICS", logo: "/brands/asics.png" },
+      { name: "Jack & Jones", logo: "/brands/jacknjones.png" }
     ]
   },
   {
@@ -21,8 +38,15 @@ const brandCategories = [
     title: "Bags & Luggage",
     color: "#0ea5e9",
     brands: [
-      "American Tourister", "Samsonite", "Delsey", "Skybags", 
-      "Swiss Military", "TUMI", "Baggallini", "Ducati", "Wildcraft", "Safari"
+      { name: "American Tourister", logo: "/brands/american-tourister.png" },
+      { name: "Samsonite", logo: "/brands/samsonite.png" },
+      { name: "Delsey", logo: "/brands/delsey.png" },
+      { name: "Skybags", logo: "/brands/skybags.png" },
+      { name: "Swiss Military", logo: "/brands/swiss-military.png" },
+      { name: "TUMI", logo: "/brands/tumi.png" },
+      { name: "Ducati", logo: "/brands/ducati.png" },
+      { name: "Wildcraft", logo: "/brands/wildcraft.png" },
+      { name: "Safari", logo: "/brands/safari.avif" } // Note: .avif extension
     ]
   },
   {
@@ -30,8 +54,14 @@ const brandCategories = [
     title: "Premium Pens & Writing",
     color: "#8b5cf6",
     brands: [
-      "Mont Blanc", "Parker", "Cross", "Sheaffer", 
-      "Waterman", "Lamy", "Faber-Castell", "Cerruti 1881"
+      { name: "Mont Blanc", logo: "/brands/idsXqKXPat_1767788576075.png" }, // Assuming the unique ID file is Mont Blanc or similar
+      { name: "Parker", logo: "/brands/parker.png" },
+      { name: "Cross", logo: "/brands/cross.png" },
+      { name: "Sheaffer", logo: "/brands/sheffer.png" }, // Filename from screenshot
+      { name: "Waterman", logo: "/brands/waterman.png" },
+      { name: "Lamy", logo: "/brands/lamy.png" },
+      { name: "Faber-Castell", logo: "/brands/faber-castell.png" },
+      { name: "Cerruti 1881", logo: "/brands/cerruti.png" }
     ]
   },
   {
@@ -39,8 +69,14 @@ const brandCategories = [
     title: "Electronics & Appliances",
     color: "#f59e0b",
     brands: [
-      "Philips", "Dyson", "Sharp", "Amazon", 
-      "Honeywell", "Milton", "Borosil", "Prestige"
+      { name: "Philips", logo: "/brands/philips.png" },
+      { name: "Dyson", logo: "/brands/dyson.png" },
+      { name: "Sharp", logo: "/brands/sharp.png" },
+      { name: "Amazon", logo: "/brands/amazon.png" },
+      { name: "Honeywell", logo: "/brands/honeywell.png" },
+      { name: "Prestige", logo: "/brands/prestige.jpeg" }, // Note: .jpeg extension
+      { name: "Milton", logo: "/brands/milton.png" },
+      { name: "Borosil", logo: "/brands/borosil.png" }
     ]
   },
   {
@@ -48,18 +84,22 @@ const brandCategories = [
     title: "Drinkware & Bottles",
     color: "#06b6d4",
     brands: [
-      "Milton", "Borosil", "Tupperware", "Cello", 
-      "Nayasa", "Wonderchef", "Signoraware"
+      { name: "Tupperware", logo: "/brands/tupperware.png" },
+      { name: "Cello", logo: "/brands/cello.png" },
+      { name: "Nayasa", logo: "/brands/nayasa.png" },
+      { name: "Wonderchef", logo: "/brands/wonderchef.png" },
+      { name: "Signoraware", logo: "/brands/singoraware.png" } // Filename from screenshot
     ]
   }
 ];
 
-// Get all brands flattened
+// Get all brands flattened for the marquee
 const allBrands = brandCategories.flatMap(cat => 
-  cat.brands.map(brand => ({ name: brand, category: cat.id, color: cat.color }))
+  cat.brands.map(brand => ({ ...brand, category: cat.id, color: cat.color }))
 );
 
-// Marquee row component
+// --- COMPONENTS ---
+
 const MarqueeRow = ({ 
   brands, 
   direction = 'left', 
@@ -72,13 +112,13 @@ const MarqueeRow = ({
   const duplicatedBrands = [...brands, ...brands, ...brands];
   
   return (
-    <div className="overflow-hidden py-3 relative">
-      {/* Gradient masks */}
+    <div className="overflow-hidden py-4 relative">
+      {/* Gradient masks for smooth fade in/out */}
       <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
       
       <motion.div
-        className="flex gap-4 md:gap-6"
+        className="flex gap-8 md:gap-12"
         animate={{
           x: direction === 'left' ? ['0%', '-33.33%'] : ['-33.33%', '0%']
         }}
@@ -94,11 +134,14 @@ const MarqueeRow = ({
         {duplicatedBrands.map((brand, index) => (
           <div
             key={`${brand.name}-${index}`}
-            className="flex-shrink-0 px-5 py-3 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:border-gray-300 transition-all duration-300 cursor-pointer group"
+            className="flex-shrink-0 flex items-center justify-center min-w-[100px] h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 cursor-pointer"
           >
-            <span className="text-sm md:text-base font-semibold text-gray-700 group-hover:text-gray-900 whitespace-nowrap transition-colors">
-              {brand.name}
-            </span>
+            <img 
+              src={brand.logo} 
+              alt={brand.name} 
+              className="h-full w-auto object-contain max-h-12"
+              loading="lazy"
+            />
           </div>
         ))}
       </motion.div>
@@ -106,30 +149,31 @@ const MarqueeRow = ({
   );
 };
 
-// Brand card component
 const BrandCard = ({ 
-  name, 
+  brand, 
   index, 
   isInView 
 }: { 
-  name: string; 
+  brand: { name: string; logo: string }; 
   index: number; 
   isInView: boolean;
 }) => (
   <motion.div
-    className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 flex items-center justify-center min-h-[70px] hover:shadow-lg hover:border-[#EE4343]/30 transition-all duration-300 group cursor-pointer"
+    className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 flex items-center justify-center h-[100px] hover:shadow-lg hover:border-[#EE4343]/30 transition-all duration-300 group cursor-pointer relative overflow-hidden"
     initial={{ opacity: 0, y: 20 }}
     animate={isInView ? { opacity: 1, y: 0 } : {}}
     transition={{ duration: 0.3, delay: index * 0.02 }}
     whileHover={{ y: -4, scale: 1.02 }}
   >
-    <span className="text-sm md:text-base font-semibold text-gray-600 group-hover:text-gray-900 text-center transition-colors">
-      {name}
-    </span>
+    <img 
+      src={brand.logo} 
+      alt={brand.name} 
+      className="max-h-[60px] max-w-[90%] w-auto h-auto object-contain filter grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-300"
+      loading="lazy"
+    />
   </motion.div>
 );
 
-// Category section component
 const CategorySection = ({ 
   category, 
   index 
@@ -143,31 +187,31 @@ const CategorySection = ({
   return (
     <motion.div
       ref={ref}
-      className="mb-10"
+      className="mb-12"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       {/* Category Header */}
-      <div className="flex items-center gap-3 mb-5">
+      <div className="flex items-center gap-3 mb-6">
         <span 
-          className="w-3 h-3 rounded-full"
+          className="w-1.5 h-8 rounded-full"
           style={{ backgroundColor: category.color }}
         />
-        <h3 className="text-lg md:text-xl font-semibold text-gray-800">
+        <h3 className="text-xl md:text-2xl font-bold text-gray-800">
           {category.title}
         </h3>
-        <span className="text-sm text-gray-400">
-          ({category.brands.length} brands)
+        <span className="text-sm font-medium px-2 py-1 bg-gray-100 rounded-full text-gray-500">
+          {category.brands.length}
         </span>
       </div>
 
       {/* Brands Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {category.brands.map((brand, brandIndex) => (
           <BrandCard 
-            key={brand} 
-            name={brand} 
+            key={brand.name} 
+            brand={brand} 
             index={brandIndex}
             isInView={isInView}
           />
@@ -218,7 +262,7 @@ function BrandsWeOffer() {
       </div>
 
       {/* Infinite Marquee - Full Width */}
-      <div className="mb-12 md:mb-16">
+      <div className="mb-16 md:mb-24 bg-white border-y border-gray-100 py-4">
         <MarqueeRow brands={row1} direction="left" speed={45} />
         <MarqueeRow brands={row2} direction="right" speed={40} />
       </div>
@@ -264,19 +308,19 @@ function BrandsWeOffer() {
 
         {/* CTA Section */}
         <motion.div
-          className="mt-12 text-center"
+          className="mt-16 text-center"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-6 p-8 bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-3xl shadow-2xl shadow-gray-200">
             <div className="text-white text-center sm:text-left">
-              <p className="font-semibold text-lg">Looking for a specific brand?</p>
-              <p className="text-gray-400 text-sm">We can source any brand for your corporate needs</p>
+              <p className="font-bold text-xl mb-1">Looking for a specific brand?</p>
+              <p className="text-gray-400 text-sm">We can source almost any brand for your corporate needs</p>
             </div>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#EE4343] text-white font-medium rounded-full hover:bg-[#d63a3a] transition-colors duration-300 whitespace-nowrap"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#EE4343] text-white font-medium rounded-full hover:bg-[#d63a3a] transition-all duration-300 whitespace-nowrap shadow-lg shadow-red-900/20"
             >
               Request Brand
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
