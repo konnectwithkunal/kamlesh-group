@@ -4,13 +4,13 @@
 import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  ChevronRight, 
+import {
+  ChevronRight,
   ChevronDown,
   ChevronUp,
-  Star, 
-  Truck, 
-  Shield, 
+  Star,
+  Truck,
+  Shield,
   Phone,
   Grid3X3,
   List,
@@ -21,7 +21,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 // Import from COMBINED catalog
-import { 
+import {
   kamleshGroupProducts,
   productCategories,
   getCategoryBySlug,
@@ -59,7 +59,7 @@ const getColorHex = (color: string): string => {
 const getProductsForCategory = (slug: string): UnifiedProduct[] => {
   const category = getCategoryBySlug(slug);
   if (!category) return [];
-  
+
   // Handle special cases for overlapping category names
   if (slug === 'mobile-stands') {
     return kamleshGroupProducts.filter(p => p.collection === 'premium' && p.category === 'Mobile Stands');
@@ -67,13 +67,13 @@ const getProductsForCategory = (slug: string): UnifiedProduct[] => {
   if (slug === 'mobile-accessories-economical') {
     return kamleshGroupProducts.filter(p => p.collection === 'economical' && p.category === 'Mobile Accessories');
   }
-  
+
   return kamleshGroupProducts.filter(p => p.category === category.name);
 };
 
 // Product Card Component
-const ProductCard: React.FC<{ 
-  product: UnifiedProduct; 
+const ProductCard: React.FC<{
+  product: UnifiedProduct;
   viewMode: 'grid' | 'list';
   categorySlug: string;
 }> = ({ product, viewMode, categorySlug }) => {
@@ -135,7 +135,7 @@ const ProductCard: React.FC<{
               <span className="text-sm text-gray-500">Colors:</span>
               <div className="flex gap-1">
                 {product.variants.map((variant, idx) => (
-                  <span 
+                  <span
                     key={idx}
                     className="w-5 h-5 rounded-full border border-gray-300"
                     style={{ backgroundColor: getColorHex(variant.color) }}
@@ -163,7 +163,7 @@ const ProductCard: React.FC<{
           <span className="absolute top-3 left-3 z-10 px-2 py-1 bg-gray-900 text-white text-xs font-mono rounded">
             {product.model}
           </span>
-          
+
           {product.collection === 'premium' ? (
             <span className="absolute top-3 right-3 z-10 px-2 py-1 bg-amber-500 text-white text-xs font-bold rounded">
               PREMIUM
@@ -201,7 +201,7 @@ const ProductCard: React.FC<{
           <h3 className="font-semibold text-gray-800 mb-2 group-hover:text-[#EE4343] transition-colors line-clamp-2">
             {product.name}
           </h3>
-          
+
           {product.specifications?.material && (
             <div className="text-xs text-gray-500 mb-3">
               <span>Material: {product.specifications.material}</span>
@@ -216,7 +216,7 @@ const ProductCard: React.FC<{
           <div className="flex items-center justify-between">
             <div className="flex gap-1">
               {product.variants.slice(0, 4).map((variant, idx) => (
-                <span 
+                <span
                   key={idx}
                   className="w-4 h-4 rounded-full border border-gray-300"
                   style={{ backgroundColor: getColorHex(variant.color) }}
@@ -243,114 +243,110 @@ const FilterSidebar: React.FC<{
   priceRanges?: { min: number; max: number; label: string }[];
   selectedPriceRange: string | null;
   onSelectPriceRange: (range: string | null) => void;
-}> = ({ 
-  subcategories, 
-  selectedSubcategory, 
+}> = ({
+  subcategories,
+  selectedSubcategory,
   onSelectSubcategory,
   priceRanges,
   selectedPriceRange,
   onSelectPriceRange
 }) => {
-  const [showSubcategories, setShowSubcategories] = useState(true);
-  const [showPriceRanges, setShowPriceRanges] = useState(true);
+    const [showSubcategories, setShowSubcategories] = useState(true);
+    const [showPriceRanges, setShowPriceRanges] = useState(true);
 
-  return (
-    <div className="bg-white rounded-xl border border-gray-200 p-4 sticky top-24">
-      <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-        <Filter className="w-4 h-4" />
-        Filters
-      </h3>
+    return (
+      <div className="bg-white rounded-xl border border-gray-200 p-4 sticky top-24">
+        <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <Filter className="w-4 h-4" />
+          Filters
+        </h3>
 
-      <div className="mb-6">
-        <button 
-          onClick={() => setShowSubcategories(!showSubcategories)}
-          className="w-full flex items-center justify-between text-sm font-semibold text-gray-700 mb-3"
-        >
-          Subcategory
-          {showSubcategories ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-        </button>
-        {showSubcategories && (
-          <div className="space-y-2 max-h-64 overflow-y-auto">
-            <button
-              onClick={() => onSelectSubcategory(null)}
-              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                selectedSubcategory === null 
-                  ? 'bg-[#EE4343] text-white' 
-                  : 'hover:bg-gray-100 text-gray-600'
-              }`}
-            >
-              All Subcategories
-            </button>
-            {subcategories.map((sub) => (
-              <button
-                key={sub}
-                onClick={() => onSelectSubcategory(sub)}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                  selectedSubcategory === sub 
-                    ? 'bg-[#EE4343] text-white' 
-                    : 'hover:bg-gray-100 text-gray-600'
-                }`}
-              >
-                {sub}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {priceRanges && priceRanges.length > 0 && (
         <div className="mb-6">
-          <button 
-            onClick={() => setShowPriceRanges(!showPriceRanges)}
+          <button
+            onClick={() => setShowSubcategories(!showSubcategories)}
             className="w-full flex items-center justify-between text-sm font-semibold text-gray-700 mb-3"
           >
-            Price Range
-            {showPriceRanges ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            Subcategory
+            {showSubcategories ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
-          {showPriceRanges && (
-            <div className="space-y-2">
+          {showSubcategories && (
+            <div className="space-y-2 max-h-64 overflow-y-auto">
               <button
-                onClick={() => onSelectPriceRange(null)}
-                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                  selectedPriceRange === null 
-                    ? 'bg-[#EE4343] text-white' 
+                onClick={() => onSelectSubcategory(null)}
+                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${selectedSubcategory === null
+                    ? 'bg-[#EE4343] text-white'
                     : 'hover:bg-gray-100 text-gray-600'
-                }`}
-              >
-                All Prices
-              </button>
-              {priceRanges.map((range) => (
-                <button
-                  key={range.label}
-                  onClick={() => onSelectPriceRange(range.label)}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                    selectedPriceRange === range.label 
-                      ? 'bg-[#EE4343] text-white' 
-                      : 'hover:bg-gray-100 text-gray-600'
                   }`}
+              >
+                All Subcategories
+              </button>
+              {subcategories.map((sub) => (
+                <button
+                  key={sub}
+                  onClick={() => onSelectSubcategory(sub)}
+                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${selectedSubcategory === sub
+                      ? 'bg-[#EE4343] text-white'
+                      : 'hover:bg-gray-100 text-gray-600'
+                    }`}
                 >
-                  {range.label}
+                  {sub}
                 </button>
               ))}
             </div>
           )}
         </div>
-      )}
 
-      {(selectedSubcategory || selectedPriceRange) && (
-        <button
-          onClick={() => {
-            onSelectSubcategory(null);
-            onSelectPriceRange(null);
-          }}
-          className="w-full py-2 text-sm text-[#EE4343] font-medium hover:bg-red-50 rounded-lg transition-colors"
-        >
-          Clear All Filters
-        </button>
-      )}
-    </div>
-  );
-};
+        {priceRanges && priceRanges.length > 0 && (
+          <div className="mb-6">
+            <button
+              onClick={() => setShowPriceRanges(!showPriceRanges)}
+              className="w-full flex items-center justify-between text-sm font-semibold text-gray-700 mb-3"
+            >
+              Price Range
+              {showPriceRanges ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+            {showPriceRanges && (
+              <div className="space-y-2">
+                <button
+                  onClick={() => onSelectPriceRange(null)}
+                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${selectedPriceRange === null
+                      ? 'bg-[#EE4343] text-white'
+                      : 'hover:bg-gray-100 text-gray-600'
+                    }`}
+                >
+                  All Prices
+                </button>
+                {priceRanges.map((range) => (
+                  <button
+                    key={range.label}
+                    onClick={() => onSelectPriceRange(range.label)}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${selectedPriceRange === range.label
+                        ? 'bg-[#EE4343] text-white'
+                        : 'hover:bg-gray-100 text-gray-600'
+                      }`}
+                  >
+                    {range.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {(selectedSubcategory || selectedPriceRange) && (
+          <button
+            onClick={() => {
+              onSelectSubcategory(null);
+              onSelectPriceRange(null);
+            }}
+            className="w-full py-2 text-sm text-[#EE4343] font-medium hover:bg-red-50 rounded-lg transition-colors"
+          >
+            Clear All Filters
+          </button>
+        )}
+      </div>
+    );
+  };
 
 // Main Page Component
 const Giftingcategorypage: React.FC = () => {
@@ -431,7 +427,7 @@ const Giftingcategorypage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
+
       {/* Hero Section */}
       <section className={`pt-24 pb-8 ${isEconomical ? 'bg-gradient-to-r from-green-900 to-green-700' : 'bg-gradient-to-r from-gray-900 to-gray-800'}`}>
         <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -482,7 +478,7 @@ const Giftingcategorypage: React.FC = () => {
       <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="flex flex-col lg:flex-row gap-8">
-            
+
             <aside className="hidden lg:block w-64 flex-shrink-0">
               <FilterSidebar
                 subcategories={subcategories}
@@ -500,7 +496,7 @@ const Giftingcategorypage: React.FC = () => {
                   <span className="text-sm text-gray-600">
                     Showing <strong>{filteredProducts.length}</strong> products
                   </span>
-                  
+
                   <div className="flex flex-wrap gap-2">
                     {selectedSubcategory && (
                       <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-sm rounded-full">
@@ -550,14 +546,14 @@ const Giftingcategorypage: React.FC = () => {
               </div>
 
               <div className={
-                viewMode === 'grid' 
-                  ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' 
+                viewMode === 'grid'
+                  ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'
                   : 'space-y-4'
               }>
                 {filteredProducts.map((product) => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={product} 
+                  <ProductCard
+                    key={product.id}
+                    product={product}
                     viewMode={viewMode}
                     categorySlug={categorySlug || 'products'}
                   />

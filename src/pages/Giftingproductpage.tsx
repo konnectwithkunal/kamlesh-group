@@ -4,12 +4,12 @@
 import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChevronRight, 
+import {
+  ChevronRight,
   ChevronLeft,
-  Star, 
-  Truck, 
-  Shield, 
+  Star,
+  Truck,
+  Shield,
   Phone,
   Mail,
   Check,
@@ -26,7 +26,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 // Import from UNIFIED catalog
-import { 
+import {
   kamleshGroupProducts,
   getProductByModel,
   getRelatedProducts,
@@ -65,20 +65,30 @@ const getColorHex = (color: string): string => {
   return colorMap[color.toLowerCase()] || '#888888';
 };
 
-// Image Gallery Component
+// Image Gallery Component - Updated to handle optional gallery array
 const ImageGallery: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [imageError, setImageError] = useState(false);
-  
+
   const images = useMemo(() => {
     const imgs = [product.images.main];
+
+    // Add gallery images if they exist
+    if (product.images.gallery && Array.isArray(product.images.gallery)) {
+      imgs.push(...product.images.gallery);
+    }
+
+    // Add other image types if they exist
     if (product.images.lifestyle) imgs.push(product.images.lifestyle);
     if (product.images.packaging) imgs.push(product.images.packaging);
-    if (product.images.variants) imgs.push(...product.images.variants);
+    if (product.images.variants && Array.isArray(product.images.variants)) {
+      imgs.push(...product.images.variants);
+    }
+
     return imgs;
   }, [product]);
 
-  const fallbackImage = product.collection === 'premium' 
+  const fallbackImage = product.collection === 'premium'
     ? 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80'
     : 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80';
 
@@ -90,7 +100,7 @@ const ImageGallery: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
         <span className="absolute top-4 left-4 z-10 px-3 py-1.5 bg-gray-900 text-white text-sm font-mono rounded-lg">
           {product.model}
         </span>
-        
+
         {/* Collection Badge */}
         {product.collection === 'premium' ? (
           <span className="absolute top-4 right-4 z-10 px-3 py-1.5 bg-amber-500 text-white text-sm font-bold rounded-lg">
@@ -101,19 +111,19 @@ const ImageGallery: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
             VALUE
           </span>
         )}
-        
+
         {/* Price Badge */}
         {product.price && (
           <span className="absolute bottom-4 right-4 z-10 px-3 py-1.5 bg-green-600 text-white text-sm font-bold rounded-lg">
             ₹{typeof product.price === 'number' ? product.price : product.price}
           </span>
         )}
-        
+
         <AnimatePresence mode="wait">
           <motion.img
             key={activeImage}
             src={imageError ? fallbackImage : images[activeImage]}
-            alt={product.name}
+            alt={`${product.name} - View ${activeImage + 1}`}
             className="w-full h-full object-contain p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -122,42 +132,55 @@ const ImageGallery: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
             onError={() => setImageError(true)}
           />
         </AnimatePresence>
-        
-        {/* Navigation Arrows */}
+
+        {/* Navigation Arrows - Only show if multiple images */}
         {images.length > 1 && (
           <>
             <button
               onClick={() => setActiveImage(prev => prev === 0 ? images.length - 1 : prev - 1)}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors"
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors z-10"
+              aria-label="Previous image"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => setActiveImage(prev => prev === images.length - 1 ? 0 : prev + 1)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors z-10"
+              aria-label="Next image"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </>
         )}
+
+        {/* Image Counter - Only show if multiple images */}
+        {images.length > 1 && (
+          <div className="absolute bottom-4 left-4 z-10 px-3 py-1.5 bg-black/70 text-white text-sm font-medium rounded-lg">
+            {activeImage + 1} / {images.length}
+          </div>
+        )}
       </div>
-      
-      {/* Thumbnail Strip */}
+
+      {/* Thumbnail Strip - Only show if multiple images */}
       {images.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-2">
+        <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
           {images.map((img, idx) => (
             <button
               key={idx}
               onClick={() => setActiveImage(idx)}
-              className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
-                activeImage === idx ? 'border-[#EE4343]' : 'border-transparent'
-              }`}
+              className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${activeImage === idx
+                  ? 'border-[#EE4343] ring-2 ring-[#EE4343]/20'
+                  : 'border-gray-200 hover:border-gray-300'
+                }`}
+              aria-label={`View image ${idx + 1}`}
             >
               <img
                 src={img}
-                alt={`${product.name} view ${idx + 1}`}
+                alt={`${product.name} thumbnail ${idx + 1}`}
                 className="w-full h-full object-contain bg-gray-100 p-2"
-                onError={(e) => { (e.target as HTMLImageElement).src = fallbackImage; }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = fallbackImage;
+                }}
               />
             </button>
           ))}
@@ -168,7 +191,7 @@ const ImageGallery: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
 };
 
 // Color Selector Component
-const ColorSelector: React.FC<{ 
+const ColorSelector: React.FC<{
   variants: UnifiedProduct['variants'];
   selected: number;
   onSelect: (index: number) => void;
@@ -184,13 +207,12 @@ const ColorSelector: React.FC<{
           <button
             key={idx}
             onClick={() => onSelect(idx)}
-            className={`group relative flex items-center gap-2 px-4 py-2 rounded-lg border-2 transition-all ${
-              selected === idx 
-                ? 'border-[#EE4343] bg-red-50' 
+            className={`group relative flex items-center gap-2 px-4 py-2 rounded-lg border-2 transition-all ${selected === idx
+                ? 'border-[#EE4343] bg-red-50'
                 : 'border-gray-200 hover:border-gray-300'
-            }`}
+              }`}
           >
-            <span 
+            <span
               className="w-5 h-5 rounded-full border border-gray-300 shadow-sm"
               style={{ backgroundColor: getColorHex(variant.color) }}
             />
@@ -211,7 +233,7 @@ const ColorSelector: React.FC<{
 const SpecificationsTable: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
   const specs = product.specifications;
   if (!specs) return null;
-  
+
   const specItems = [
     { icon: Ruler, label: 'Dimensions', value: specs.height && specs.length ? `${specs.height} × ${specs.length} × ${specs.width || 'N/A'}` : null },
     { icon: Scale, label: 'Weight', value: specs.weight },
@@ -245,7 +267,7 @@ const SpecificationsTable: React.FC<{ product: UnifiedProduct }> = ({ product })
 // Related Products Component
 const RelatedProducts: React.FC<{ product: UnifiedProduct; categorySlug: string }> = ({ product, categorySlug }) => {
   const relatedProducts = useMemo(() => getRelatedProducts(product, 4), [product]);
-  
+
   if (relatedProducts.length === 0) return null;
 
   return (
@@ -254,7 +276,7 @@ const RelatedProducts: React.FC<{ product: UnifiedProduct; categorySlug: string 
         <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Products</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {relatedProducts.map((relatedProduct) => (
-            <Link 
+            <Link
               key={relatedProduct.id}
               to={`/corporate-gifting/${categorySlug}/${relatedProduct.model.toLowerCase().replace(/\s+/g, '-')}`}
             >
@@ -275,8 +297,8 @@ const RelatedProducts: React.FC<{ product: UnifiedProduct; categorySlug: string 
                     src={relatedProduct.images.main}
                     alt={relatedProduct.name}
                     className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform"
-                    onError={(e) => { 
-                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80'; 
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80';
                     }}
                   />
                 </div>
@@ -286,7 +308,7 @@ const RelatedProducts: React.FC<{ product: UnifiedProduct; categorySlug: string 
                   </h3>
                   <div className="flex gap-1 mt-2">
                     {relatedProduct.variants.slice(0, 3).map((v, i) => (
-                      <span 
+                      <span
                         key={i}
                         className="w-3 h-3 rounded-full border border-gray-300"
                         style={{ backgroundColor: getColorHex(v.color) }}
@@ -336,7 +358,7 @@ const Giftingproductpage: React.FC = () => {
             <p className="text-sm text-gray-500 mb-4">
               Looking for: {productSlug}
             </p>
-            <Link 
+            <Link
               to="/corporate-gifting"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#EE4343] text-white font-semibold rounded-xl hover:bg-[#d63a3a] transition-colors"
             >
@@ -354,7 +376,7 @@ const Giftingproductpage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       {/* Breadcrumb - Added pt-20 md:pt-24 for header spacing */}
       <div className="bg-gray-50 border-b border-gray-100 pt-20 md:pt-24">
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
@@ -365,7 +387,7 @@ const Giftingproductpage: React.FC = () => {
               Corporate Gifting
             </Link>
             <ChevronRight className="w-4 h-4 text-gray-400" />
-            <Link 
+            <Link
               to={`/corporate-gifting/${categorySlug}`}
               className="text-gray-500 hover:text-gray-900 transition-colors"
             >
@@ -422,7 +444,7 @@ const Giftingproductpage: React.FC = () => {
               )}
 
               {/* Color Selector */}
-              <ColorSelector 
+              <ColorSelector
                 variants={product.variants}
                 selected={selectedColor}
                 onSelect={setSelectedColor}
@@ -475,7 +497,7 @@ const Giftingproductpage: React.FC = () => {
                 <h3 className="text-sm font-medium text-gray-700">Quantity (Minimum 100 pieces)</h3>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center border border-gray-200 rounded-lg">
-                    <button 
+                    <button
                       onClick={() => setQuantity(prev => Math.max(100, prev - 50))}
                       className="px-4 py-2 text-gray-600 hover:bg-gray-50 transition-colors"
                     >
@@ -487,7 +509,7 @@ const Giftingproductpage: React.FC = () => {
                       onChange={(e) => setQuantity(Math.max(100, parseInt(e.target.value) || 100))}
                       className="w-20 text-center border-x border-gray-200 py-2 focus:outline-none"
                     />
-                    <button 
+                    <button
                       onClick={() => setQuantity(prev => prev + 50)}
                       className="px-4 py-2 text-gray-600 hover:bg-gray-50 transition-colors"
                     >

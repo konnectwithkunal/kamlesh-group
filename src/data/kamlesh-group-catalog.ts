@@ -32,6 +32,7 @@ export interface UnifiedProduct {
   };
   images: {
     main: string;
+    gallery?: string[];
     lifestyle?: string;
     variants?: string[];
     packaging?: string;
@@ -47,7 +48,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
   // ============================================
   // PREMIUM PRODUCTS (R-Series) - 37 products
   // ============================================
-  
+
   // MOBILE STANDS
   {
     id: "R-1101", model: "R-1101", name: "Metal Mobile Stand",
@@ -58,7 +59,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "85 mm", length: "95 mm", width: "70 mm", weight: "120 gm", material: "CRC & SS" },
     variants: [{ color: "Black" }, { color: "Silver" }, { color: "Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/1.png",
+
+    },
     tags: ["mobile stand", "phone holder", "desk accessory", "premium"]
   },
   {
@@ -70,7 +74,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "85 mm", length: "100 mm", width: "70 mm", weight: "135 gm", material: "CRC" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/stand/3.png" },
     tags: ["mobile stand", "card holder", "premium"]
   },
   {
@@ -82,7 +86,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "90 mm", length: "100 mm", width: "75 mm", weight: "145 gm", material: "CRC & SS" },
     variants: [{ color: "Black" }, { color: "Silver" }, { color: "Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/stand/7.png" },
     tags: ["mobile stand", "pen holder", "multi-function", "premium"]
   },
   {
@@ -94,7 +98,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "85 mm", length: "95 mm", width: "70 mm", weight: "125 gm", material: "CRC" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/10.png",
+      gallery: ["/corporategallery/stand/12.png",]
+    },
     tags: ["mobile stand", "double side", "premium"]
   },
   {
@@ -106,7 +113,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "90 mm", length: "110 mm", width: "80 mm", weight: "160 gm", material: "CRC & SS" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/13.png",
+      gallery: ["/corporategallery/stand/14.png"]
+    },
     tags: ["mobile stand", "writing pad", "premium"]
   },
   {
@@ -118,7 +128,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "75 mm", length: "85 mm", width: "65 mm", weight: "95 gm", material: "CRC" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/stand/foldable.png" },
     tags: ["mobile stand", "foldable", "portable", "premium"]
   },
   {
@@ -130,7 +140,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "70 mm", length: "80 mm", width: "60 mm", weight: "85 gm", material: "CRC" },
     variants: [{ color: "Black" }, { color: "Silver" }, { color: "Rose Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/29.png",
+      gallery: ["/corporategallery/stand/30.png", "/corporategallery/stand/31.png"]
+    },
     tags: ["mobile stand", "slim", "minimalist", "premium"]
   },
   {
@@ -142,7 +155,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "120 mm", length: "150 mm", width: "100 mm", weight: "280 gm", material: "CRC & SS" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/15.png",
+      gallery: ["/corporategallery/stand/18.png"]
+    },
     tags: ["ipad stand", "tablet stand", "premium"]
   },
   {
@@ -154,21 +170,13 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "80-120 mm", length: "95 mm", width: "75 mm", weight: "150 gm", material: "CRC & SS" },
     variants: [{ color: "Black" }, { color: "Silver" }, { color: "Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/21.png",
+      gallery: ["/corporategallery/stand/22.png"]
+    },
     tags: ["mobile stand", "adjustable", "premium"]
   },
-  {
-    id: "R-1114", model: "R-1114", name: "Executive Mobile Stand",
-    category: "Mobile Stands", subcategory: "Multi-Function", collection: "premium",
-    description: "Executive-grade mobile stand with pen holder and card slot.",
-    features: ["Executive design", "Pen holder", "Card slot"],
-    useCases: ["Executive Office", "Corporate"],
-    specifications: { height: "95 mm", length: "110 mm", width: "85 mm", weight: "180 gm", material: "CRC & SS" },
-    variants: [{ color: "Black" }, { color: "Silver" }, { color: "Gold" }],
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
-    tags: ["mobile stand", "executive", "premium"]
-  },
+
   {
     id: "R-1115", model: "R-1115", name: "Height Adjustable Mobile Stand",
     category: "Mobile Stands", subcategory: "Adjustable Stands", collection: "premium",
@@ -178,7 +186,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "100-180 mm", length: "100 mm", width: "80 mm", weight: "200 gm", material: "CRC & Aluminum" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/23.png",
+      gallery: ["/corporategallery/stand/24.png"]
+    },
     tags: ["mobile stand", "height adjustable", "ergonomic", "premium"]
   },
   {
@@ -190,7 +201,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "85 mm", length: "105 mm", width: "75 mm", weight: "140 gm", material: "CRC" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/3.png",
+      gallery: ["/corporategallery/stand/5.png", "/corporategallery/stand/6.png"]
+    },
     tags: ["mobile stand", "business card", "premium"]
   },
   {
@@ -202,22 +216,14 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "90 mm", length: "100 mm", width: "70 mm", weight: "130 gm", material: "CRC & Zinc" },
     variants: [{ color: "Black" }, { color: "Silver" }, { color: "Rose Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/7.png",
+      gallery: ["/corporategallery/stand/8.png", "/corporategallery/stand/9.png"]
+    },
     tags: ["mobile stand", "rose gold", "premium"]
   },
-  {
-    id: "R-2507", model: "R-2507", name: "Compact Mobile Stand",
-    category: "Mobile Stands", subcategory: "Basic Stands", collection: "premium",
-    description: "Compact and lightweight mobile stand. Perfect for travel.",
-    features: ["Compact size", "Lightweight", "Portable"],
-    useCases: ["Travel", "Daily Use"],
-    specifications: { height: "65 mm", length: "70 mm", width: "55 mm", weight: "55 gm", material: "CRC" },
-    variants: [{ color: "Black" }, { color: "Silver" }],
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
-    tags: ["mobile stand", "compact", "travel", "premium"]
-  },
-  
+
+
   // ROTATING STANDS
   {
     id: "R-2101", model: "R-2101", name: "360° Rotating Mobile Stand",
@@ -228,59 +234,16 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "95 mm", length: "100 mm", width: "100 mm", weight: "220 gm", material: "CRC & SS" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/stand/27.png",
+      gallery: ["/corporategallery/stand/28.png",]
+    },
     tags: ["mobile stand", "rotating", "360", "premium"]
   },
-  {
-    id: "R-2102", model: "R-2102", name: "360° Rotating Stand with Card Holder",
-    category: "Mobile Stands", subcategory: "Rotating Stands", collection: "premium",
-    description: "360-degree rotating stand with integrated card holder.",
-    features: ["360° rotation", "Card holder", "Executive design"],
-    useCases: ["Executive Office", "Banks"],
-    specifications: { height: "100 mm", length: "110 mm", width: "110 mm", weight: "280 gm", material: "CRC & SS" },
-    variants: [{ color: "Black" }, { color: "Silver" }, { color: "Gold" }],
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
-    tags: ["mobile stand", "rotating", "card holder", "premium"]
-  },
-  {
-    id: "R-2103", model: "R-2103", name: "Premium Rotating Mobile Stand",
-    category: "Mobile Stands", subcategory: "Rotating Stands", collection: "premium",
-    description: "Premium quality rotating mobile stand with heavy base.",
-    features: ["360° rotation", "Heavy stable base"],
-    useCases: ["Office", "Conference Rooms"],
-    specifications: { height: "90 mm", length: "105 mm", width: "105 mm", weight: "300 gm", material: "CRC & SS" },
-    variants: [{ color: "Black" }, { color: "Silver" }],
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
-    tags: ["mobile stand", "rotating", "premium"]
-  },
-  {
-    id: "R-2104", model: "R-2104", name: "Luxury Rotating Mobile Stand",
-    category: "Mobile Stands", subcategory: "Rotating Stands", collection: "premium",
-    description: "Luxury grade rotating mobile stand with gold finish. Gift box included.",
-    features: ["360° rotation", "Luxury finish", "Gift box included"],
-    useCases: ["Executive Gifts", "Premium Gifting"],
-    specifications: { height: "100 mm", length: "115 mm", width: "115 mm", weight: "340 gm", material: "CRC & Zinc" },
-    variants: [{ color: "Black" }, { color: "Silver" }, { color: "Gold" }, { color: "Rose Gold" }],
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
-    tags: ["mobile stand", "rotating", "luxury", "premium"]
-  },
-  
+
+
   // DESK ACCESSORIES
-  {
-    id: "R-7101", model: "R-7101", name: "Stationery Products Holder",
-    category: "Desk Accessories", subcategory: "Pen Holders", collection: "premium",
-    description: "Premium metal stationery holder with multiple compartments.",
-    features: ["Multiple compartments", "Pen holder", "Clip holder"],
-    useCases: ["Office", "Reception"],
-    specifications: { height: "110 mm", length: "120 mm", width: "90 mm", weight: "250 gm", material: "CRC & SS" },
-    variants: [{ color: "Black" }, { color: "Silver" }],
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
-    tags: ["stationery holder", "pen holder", "premium"]
-  },
+
   {
     id: "R-5101", model: "R-5101", name: "Tea Coaster Set of 6",
     category: "Desk Accessories", subcategory: "Tea Coasters", collection: "premium",
@@ -290,7 +253,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { diameter: "90 mm", weight: "300 gm", material: "SS" },
     variants: [{ color: "Silver" }, { color: "Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/desk/33.png" },
     tags: ["tea coaster", "coaster set", "premium"]
   },
   {
@@ -302,7 +265,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { diameter: "85 mm", weight: "220 gm", material: "SS" },
     variants: [{ color: "Silver" }, { color: "Black" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/desk/34.png" },
     tags: ["tea coaster", "coaster set", "premium"]
   },
   {
@@ -314,7 +277,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { diameter: "95 mm", weight: "400 gm", material: "SS & Zinc" },
     variants: [{ color: "Silver" }, { color: "Gold" }, { color: "Rose Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/desk/35.png" },
     tags: ["tea coaster", "premium set", "gift box", "premium"]
   },
   {
@@ -326,10 +289,13 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "40 mm", diameter: "70 mm", weight: "350 gm", material: "Zinc Alloy" },
     variants: [{ color: "Silver" }, { color: "Gold" }, { color: "Bronze" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/desk/36.png",
+      gallery: ["/corporategallery/desk/37.png"]
+    },
     tags: ["paper weight", "executive", "premium"]
   },
-  
+
   // CARD HOLDERS
   {
     id: "R-1001", model: "R-1001", name: "Premium ATM & Visiting Card Holder",
@@ -340,7 +306,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "65 mm", length: "95 mm", width: "12 mm", weight: "55 gm", material: "SS" },
     variants: [{ color: "Silver" }, { color: "Black" }, { color: "Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/card/38.png" },
     tags: ["card holder", "atm card", "premium"]
   },
   {
@@ -352,10 +318,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "50 mm", length: "100 mm", width: "35 mm", weight: "120 gm", material: "SS" },
     variants: [{ color: "Silver" }, { color: "Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/card/39.png" },
     tags: ["card holder", "table display", "premium"]
   },
-  
+
   // DESK CALENDARS
   {
     id: "R-124", model: "R-124", name: "Desk Calendar with Clock",
@@ -366,7 +332,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "140 mm", length: "150 mm", width: "60 mm", weight: "280 gm", material: "CRC & Acrylic" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: {
+      main: "/corporategallery/calendar/40.png",
+      gallery: ["/corporategallery/calendar/42.png"]
+    },
     tags: ["desk calendar", "clock", "premium"]
   },
   {
@@ -378,21 +347,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "100 mm", length: "120 mm", width: "50 mm", weight: "180 gm", material: "CRC" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/calendar/43.png" },
     tags: ["desk calendar", "classic", "premium"]
   },
-  {
-    id: "R-129", model: "R-129", name: "Perpetual Desk Calendar",
-    category: "Desk Calendars", subcategory: "Basic", collection: "premium",
-    description: "Perpetual desk calendar with rotating cubes.",
-    features: ["Rotating cube date", "Perpetual use", "Classic design"],
-    useCases: ["Office", "Corporate"],
-    specifications: { height: "90 mm", length: "110 mm", width: "55 mm", weight: "200 gm", material: "CRC" },
-    variants: [{ color: "Black" }, { color: "Silver" }, { color: "Gold" }],
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
-    tags: ["desk calendar", "perpetual", "premium"]
-  },
+
   {
     id: "R-130", model: "R-130", name: "Executive Desk Calendar with Clock",
     category: "Desk Calendars", subcategory: "With Clock", collection: "premium",
@@ -402,7 +360,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "160 mm", length: "180 mm", width: "80 mm", weight: "380 gm", material: "CRC & SS" },
     variants: [{ color: "Black" }, { color: "Silver" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/calendar/41.png" },
     tags: ["desk calendar", "executive", "clock", "premium"]
   },
   {
@@ -414,33 +372,11 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "130 mm", length: "150 mm", width: "65 mm", weight: "300 gm", material: "CRC & Zinc" },
     variants: [{ color: "Black" }, { color: "Silver" }, { color: "Rose Gold" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/calendar/45.png" },
     tags: ["desk calendar", "premium", "gift box"]
   },
-  {
-    id: "R-1302", model: "R-1302", name: "Premium Desk Calendar with Photo Frame",
-    category: "Desk Calendars", subcategory: "Premium Collection", collection: "premium",
-    description: "Premium desk calendar with integrated photo frame.",
-    features: ["Photo frame included", "Calendar display", "Personalized gifting"],
-    useCases: ["Personal Gifts", "Photo Display"],
-    specifications: { height: "150 mm", length: "160 mm", width: "70 mm", weight: "320 gm", material: "CRC & Acrylic" },
-    variants: [{ color: "Black" }, { color: "Silver" }],
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
-    tags: ["desk calendar", "photo frame", "premium"]
-  },
-  {
-    id: "R-1304", model: "R-1304", name: "Glass Desk Calendar",
-    category: "Desk Calendars", subcategory: "Glass Collection", collection: "premium",
-    description: "Elegant glass desk calendar with metal accents.",
-    features: ["Glass construction", "Metal accents", "Modern design"],
-    useCases: ["Modern Office", "Executive"],
-    specifications: { height: "120 mm", length: "140 mm", width: "60 mm", weight: "280 gm", material: "Glass & SS" },
-    variants: [{ color: "Clear" }, { color: "Black" }],
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
-    tags: ["desk calendar", "glass", "modern", "premium"]
-  },
+
+
   {
     id: "R-3101", model: "R-3101", name: "Jula Calendar",
     category: "Desk Calendars", subcategory: "Jula Calendar", collection: "premium",
@@ -450,15 +386,15 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     specifications: { height: "130 mm", length: "100 mm", width: "80 mm", weight: "220 gm", material: "CRC & Brass" },
     variants: [{ color: "Gold" }, { color: "Silver" }, { color: "Bronze" }],
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" },
+    images: { main: "/corporategallery/calendar/46.png" },
     tags: ["desk calendar", "jula", "decorative", "premium"]
   },
 
-  
+
   // ============================================
   // ECONOMICAL PRODUCTS (NE-Series) - 116 products
   // ============================================
-  
+
   // BOTTLES - Temperature Display
   {
     id: "NE-01", model: "NE 01", name: "Temperature Display Bottle",
@@ -469,7 +405,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "White" }, { color: "Red" }, { color: "Pink" }, { color: "Blue" }],
     price: 170, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/47.png" },
     tags: ["temperature bottle", "display bottle", "economical"]
   },
   {
@@ -481,7 +417,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "White" }, { color: "Red" }],
     price: 165,
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/48.png" },
     tags: ["temperature bottle", "economical"]
   },
   {
@@ -493,10 +429,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Gradient Multi" }],
     price: 190, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/56.png" },
     tags: ["gradient bottle", "temperature display", "economical"]
   },
-  
+
   // BOTTLES - Stainless Steel
   {
     id: "NE-03", model: "NE 03", name: "Stainless Steel Water Bottle",
@@ -507,7 +443,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }],
     price: 160, ctnPacking: "60 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/49.png" },
     tags: ["stainless steel", "water bottle", "economical"]
   },
   {
@@ -519,7 +455,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Blue" }, { color: "Red" }],
     price: 160,
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/50.png" },
     tags: ["sipper bottle", "stainless steel", "economical"]
   },
   {
@@ -531,7 +467,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Silver" }],
     price: 150, ctnPacking: "60 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/51.png" },
     tags: ["stainless steel", "1 liter", "economical"]
   },
   {
@@ -543,7 +479,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "White" }, { color: "Blue" }, { color: "Silver" }],
     price: 205,
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/52.png" },
     tags: ["double wall", "sports bottle", "economical"]
   },
   {
@@ -555,10 +491,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Silver" }],
     price: "150 to 310", ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/54.png" },
     tags: ["cola bottle", "vacuum insulated", "economical"]
   },
-  
+
   // BOTTLES - Vacuum Flask
   {
     id: "NE-08", model: "NE 08", name: "Cup Vacuum Thermos With Cup",
@@ -569,7 +505,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "White" }],
     price: 240, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/53.png" },
     tags: ["vacuum thermos", "cup lid", "economical"]
   },
   {
@@ -581,7 +517,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "White" }],
     price: 190,
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/55.png" },
     tags: ["vacuum bottle", "economical"]
   },
   {
@@ -593,10 +529,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "White" }],
     price: 310, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/62.png" },
     tags: ["double wall", "premium white", "economical"]
   },
-  
+
   // BOTTLES - Bamboo
   {
     id: "NE-17", model: "NE 17", name: "Bamboo Vacuum Insulated Bottle",
@@ -607,7 +543,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Natural Bamboo" }],
     price: 290, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/57.png" },
     tags: ["bamboo", "eco-friendly", "economical"]
   },
   {
@@ -619,7 +555,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Natural Bamboo" }],
     price: 340, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/58.png" },
     tags: ["bamboo", "premium", "eco-friendly", "economical"]
   },
   {
@@ -631,10 +567,13 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }],
     price: 350, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: {
+      main: "/corporategallery/bottle/60.png",
+      gallery: ["/corporategallery/bottle/59.png",]
+    },
     tags: ["bamboo accent", "stainless steel", "economical"]
   },
-  
+
   // BOTTLES - Motivational
   {
     id: "NE-21", model: "NE 21", name: "Motivational Quotes Sports Water Bottle",
@@ -645,7 +584,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Blue" }, { color: "Green" }, { color: "Pink" }],
     price: 155,
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/61.png" },
     tags: ["motivational", "sports bottle", "900ml", "economical"]
   },
   {
@@ -657,10 +596,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Multicolour" }],
     price: 220, ctnPacking: "40 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80" },
+    images: { main: "/corporategallery/bottle/3.png" },
     tags: ["bottle set", "motivational", "gift set", "economical"]
   },
-  
+
   // MUGS & CUPS
   {
     id: "NE-24", model: "NE 24", name: "Travel Tumbler",
@@ -671,7 +610,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }],
     price: 240, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80" },
+    images: { main: "/corporategallery/mug1.png" },
     tags: ["travel tumbler", "leak proof", "economical"]
   },
   {
@@ -683,7 +622,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "White" }],
     price: 190, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80" },
+    images: { main: "/corporategallery/mug4.png" },
     tags: ["coffee cup", "button lid", "economical"]
   },
   {
@@ -695,7 +634,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "White" }],
     price: 240, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80" },
+    images: { main: "/corporategallery/mug3.png" },
     tags: ["temperature mug", "travel mug", "economical"]
   },
   {
@@ -707,10 +646,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Golden" }, { color: "Green" }, { color: "Red" }],
     price: 320, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80" },
+    images: { main: "/corporategallery/mug2.png" },
     tags: ["vacuum flask", "grip", "premium colors", "economical"]
   },
-  
+
   // TUMBLERS - Stanley Style
   {
     id: "NE-83", model: "NE 83", name: "Stanley Cup 710ml",
@@ -721,7 +660,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }],
     price: 385,
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80" },
+    images: { main: "/corporategallery/stan1.png" },
     tags: ["stanley cup", "tumbler", "economical"]
   },
   {
@@ -733,7 +672,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "White" }, { color: "Mix" }],
     price: 370, ctnPacking: "25 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80" },
+    images: { main: "/corporategallery/stan2.png" },
     tags: ["stanley cup", "large", "1200ml", "economical"]
   },
   {
@@ -745,10 +684,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }],
     price: 350, ctnPacking: "30 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80" },
+    images: { main: "/corporategallery/stan3.png" },
     tags: ["stanley mug", "large capacity", "economical"]
   },
-  
+
   // DIGITAL CLOCKS
   {
     id: "NE-49", model: "NE 49", name: "Colour Changing Clock (Digital Alarm)",
@@ -794,7 +733,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     images: { main: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=400&q=80" },
     tags: ["digital clock", "multifunctional", "budget", "economical"]
   },
-  
+
   // MOBILE ACCESSORIES
   {
     id: "NE-60", model: "NE 60", name: "Mobile Stand",
@@ -857,30 +796,8 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
   // ============================================
 
   // KEYCHAINS (6 products)
-  {
-    id: "KC-01", model: "KC 01", name: "Hut Keychain",
-    category: "Keychains", subcategory: "Metal Keychains", collection: "economical",
-    description: "Premium metal keychain with hut design. Perfect for corporate gifting and promotions.",
-    features: ["Metal construction", "Laser engraving available", "Premium finish", "Compact design"],
-    specifications: { material: "Metal Alloy" },
-    variants: [{ color: "Silver" }, { color: "Gold" }],
-    price: 261, ctnPacking: "100 PCS CTN",
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
-    tags: ["keychain", "metal", "corporate gift", "economical"]
-  },
-  {
-    id: "KC-02", model: "KC 02", name: "Ace Keychain",
-    category: "Keychains", subcategory: "Metal Keychains", collection: "economical",
-    description: "Stylish ace-shaped metal keychain. Great for promotional events.",
-    features: ["Unique ace design", "Metal construction", "Laser engraving", "Durable"],
-    specifications: { material: "Metal Alloy" },
-    variants: [{ color: "Silver" }, { color: "Black" }],
-    price: 261, ctnPacking: "100 PCS CTN",
-    customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
-    tags: ["keychain", "ace", "metal", "economical"]
-  },
+
+
   {
     id: "KC-03", model: "KC 03", name: "Pulse Metal Keychain",
     category: "Keychains", subcategory: "Metal Keychains", collection: "economical",
@@ -890,7 +807,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Grey" }, { color: "Silver" }],
     price: 273, ctnPacking: "100 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    images: { main: "/corporategallery/keychain.jpg" },
     tags: ["keychain", "pulse", "metal", "economical"]
   },
   {
@@ -902,7 +819,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Clear" }],
     price: 189, ctnPacking: "200 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    images: { main: "/corporategallery/key2.png" },
     tags: ["keychain", "acrylic", "custom print", "economical"]
   },
   {
@@ -914,7 +831,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Clear" }],
     price: 189, ctnPacking: "200 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    images: { main: "/corporategallery/key_heart.png" },
     tags: ["keychain", "heart", "acrylic", "gift", "economical"]
   },
   {
@@ -926,7 +843,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Brown" }, { color: "Black" }],
     price: 453, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80" },
+    images: { main: "/corporategallery/leather.jpg" },
     tags: ["keychain", "leather", "vintage", "premium", "economical"]
   },
 
@@ -940,7 +857,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Wood" }, { color: "Gold" }],
     price: 1637, ctnPacking: "10 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    images: { main: "/corporategallery/trophies/1.webp" },
     tags: ["trophy", "award", "wooden", "recognition", "economical"]
   },
   {
@@ -952,7 +869,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Wood" }],
     price: 944, ctnPacking: "15 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    images: { main: "/corporategallery/trophies/9.webp" },
     tags: ["trophy", "crest", "wooden", "corporate", "economical"]
   },
   {
@@ -964,7 +881,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Clear" }],
     price: 2342, ctnPacking: "8 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    images: { main: "/corporategallery/trophies/5.webp" },
     tags: ["trophy", "crystal", "premium", "3d engraving", "economical"]
   },
   {
@@ -976,7 +893,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Gold" }, { color: "Silver" }, { color: "Bronze" }],
     price: 2517, ctnPacking: "5 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    images: { main: "/corporategallery/trophies/8.webp" },
     tags: ["trophy", "titan", "gold", "achievement", "economical"]
   },
   {
@@ -988,19 +905,19 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Wood" }],
     price: 528, ctnPacking: "20 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    images: { main: "/corporategallery/trophies/6.webp" },
     tags: ["trophy", "budget", "wooden", "event", "economical"]
   },
   {
-    id: "AW-06", model: "AW 06", name: "Grace Acrylic Trophy",
+    id: "AW-06", model: "AW 06", name: "Grace  Trophy",
     category: "Awards & Trophies", subcategory: "Acrylic Trophies", collection: "economical",
-    description: "Elegant grace acrylic trophy for recognition programs.",
-    features: ["Clear acrylic", "UV printing", "Modern design", "Lightweight"],
-    specifications: { height: "7 inches", material: "Acrylic" },
+    description: "Showcase your achievements with this elegant metal trophy..",
+    features: ["UV printing", "Modern design", "Lightweight"],
+    specifications: { height: "7 inches", material: "Fiber" },
     variants: [{ color: "Clear" }],
     price: 429, ctnPacking: "25 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    images: { main: "/corporategallery/trophies/7.webp" },
     tags: ["trophy", "acrylic", "grace", "recognition", "economical"]
   },
   {
@@ -1012,7 +929,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Clear" }],
     price: 1108, ctnPacking: "12 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80" },
+    images: { main: "/corporategallery/trophies/3.webp" },
     tags: ["award", "crystal", "oblisk", "corporate", "economical"]
   },
 
@@ -1026,7 +943,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Grey" }],
     price: 3057, ctnPacking: "10 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    images: { main: "/corporategallery/bag/1.webp" },
     tags: ["backpack", "laptop bag", "premium", "corporate", "economical"]
   },
   {
@@ -1038,7 +955,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Navy" }],
     price: 2472, ctnPacking: "12 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    images: { main: "/corporategallery/bag/2.webp" },
     tags: ["backpack", "laptop bag", "supreme", "professional", "economical"]
   },
   {
@@ -1050,7 +967,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Grey" }, { color: "Blue" }],
     price: 885, ctnPacking: "20 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    images: { main: "/corporategallery/bag/3.webp" },
     tags: ["backpack", "laptop bag", "core", "value", "economical"]
   },
   {
@@ -1062,7 +979,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }],
     price: 3893, ctnPacking: "5 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    images: { main: "/corporategallery/bag/4.webp" },
     tags: ["backpack", "supasac", "emperor", "premium", "economical"]
   },
   {
@@ -1074,7 +991,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Grey" }],
     price: 1197, ctnPacking: "30 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    images: { main: "/corporategallery/bag/5.webp" },
     tags: ["laptop sleeve", "thin", "minimal", "portable", "economical"]
   },
   {
@@ -1086,7 +1003,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Red" }, { color: "Blue" }],
     price: 2123, ctnPacking: "10 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" },
+    images: { main: "/corporategallery/bag/6.webp" },
     tags: ["backpack", "rally", "sports", "outdoor", "economical"]
   },
 
@@ -1100,7 +1017,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Silver" }, { color: "Black" }, { color: "Blue" }],
     price: 329, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    images: { main: "/corporategallery/pen/1.webp" },
     tags: ["pen", "ballpoint", "adroit", "metal", "economical"]
   },
   {
@@ -1112,7 +1029,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Gold" }, { color: "Silver" }],
     price: 415, ctnPacking: "40 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    images: { main: "/corporategallery/pen/2.webp" },
     tags: ["pen", "roller ball", "gilt", "executive", "economical"]
   },
   {
@@ -1124,7 +1041,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Silver" }, { color: "Blue" }],
     price: 286, ctnPacking: "100 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    images: { main: "/corporategallery/pen/3.webp" },
     tags: ["pen", "stylus", "dual function", "slim", "economical"]
   },
   {
@@ -1136,7 +1053,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Wood" }],
     price: 322, ctnPacking: "100 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    images: { main: "/corporategallery/pen/4.webp" },
     tags: ["pen", "wooden", "eco-friendly", "sustainable", "economical"]
   },
   {
@@ -1148,7 +1065,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Chrome" }, { color: "Gold" }],
     price: 701, ctnPacking: "30 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    images: { main: "/corporategallery/pen/5.webp" },
     tags: ["pen", "radiant", "chrome", "premium", "economical"]
   },
   {
@@ -1160,7 +1077,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Blue" }, { color: "Red" }, { color: "Green" }],
     price: 322, ctnPacking: "100 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80" },
+    images: { main: "/corporategallery/pen/6.webp" },
     tags: ["pen", "spark", "colorful", "value", "economical"]
   },
 
@@ -1174,7 +1091,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "White" }],
     price: 182, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    images: { main: "/corporategallery/notebook/1.webp" },
     tags: ["notebook", "wiro", "spiral", "custom", "economical"]
   },
   {
@@ -1186,7 +1103,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Brown" }, { color: "Navy" }],
     price: 339, ctnPacking: "25 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    images: { main: "/corporategallery/notebook/2.webp" },
     tags: ["notebook", "hardcover", "executive", "premium", "economical"]
   },
   {
@@ -1198,7 +1115,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "White" }],
     price: 163, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    images: { main: "/corporategallery/notebook/3.webp" },
     tags: ["notebook", "perfect bound", "professional", "custom", "economical"]
   },
   {
@@ -1210,7 +1127,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Brown" }],
     price: 189, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    images: { main: "/corporategallery/notebook/4.webp" },
     tags: ["notebook", "kraft", "eco-friendly", "recyclable", "economical"]
   },
   {
@@ -1222,7 +1139,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Blue" }, { color: "Red" }, { color: "Green" }, { color: "Purple" }],
     price: 261, ctnPacking: "30 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    images: { main: "/corporategallery/notebook/5.webp" },
     tags: ["notebook", "vivid", "colorful", "premium", "economical"]
   },
   {
@@ -1234,7 +1151,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Black" }, { color: "Brown" }, { color: "Tan" }],
     price: 339, ctnPacking: "20 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80" },
+    images: { main: "/corporategallery/notebook/6.webp" },
     tags: ["notebook", "executive", "leather", "gift", "economical"]
   },
 
@@ -1248,7 +1165,10 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Custom" }],
     price: 250, ctnPacking: "100 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&q=80" },
+    images: {
+      main: "/corporategallery/mouse.webp",
+      gallery: ["/corporategallery/mouse1.webp", "/corporategallery/mouse2.webp", "/corporategallery/mouse3.webp", "/corporategallery/mouse4.webp"]
+    },
     tags: ["mousepad", "custom", "sublimation", "office", "economical"]
   },
 
@@ -1262,7 +1182,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Natural" }, { color: "Black" }],
     price: 350, ctnPacking: "100 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?w=400&q=80" },
+    images: { main: "/corporategallery/tote.webp" },
     tags: ["tote bag", "cotton", "eco-friendly", "custom", "economical"]
   },
 
@@ -1276,7 +1196,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "White" }],
     price: 180, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    images: { main: "/corporategallery/pillow-sq.avif" },
     tags: ["pillow", "cushion", "sublimation", "square", "economical"]
   },
   {
@@ -1288,7 +1208,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "White" }, { color: "Red Border" }],
     price: 210, ctnPacking: "50 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    images: { main: "/corporategallery/pillow.jpg" },
     tags: ["pillow", "heart", "gift", "sublimation", "economical"]
   },
   {
@@ -1300,7 +1220,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Red" }, { color: "Gold" }, { color: "Silver" }, { color: "Black" }],
     price: 350, ctnPacking: "40 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    images: { main: "/corporategallery/magic.webp" },
     tags: ["pillow", "magic", "sequin", "trendy", "economical"]
   },
   {
@@ -1312,7 +1232,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "Red" }, { color: "Pink" }, { color: "White" }],
     price: 320, ctnPacking: "30 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    images: { main: "/corporategallery/fur.webp" },
     tags: ["pillow", "fur", "luxury", "gift", "economical"]
   },
   {
@@ -1324,7 +1244,7 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
     variants: [{ color: "White" }],
     price: 450, ctnPacking: "30 PCS CTN",
     customization: { logoPrinting: true, branding: true },
-    images: { main: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?w=400&q=80" },
+    images: { main: "/corporategallery/led_pillow.webp" },
     tags: ["pillow", "led", "light up", "unique", "economical"]
   }
 ];
@@ -1337,27 +1257,27 @@ export const kamleshGroupProducts: UnifiedProduct[] = [
 export const productCategories = [
   // Premium Categories
   { id: "mobile-stands", name: "Mobile Stands", collection: "premium", slug: "mobile-stands", description: "Premium metal mobile stands with card holders, pen holders, and rotating bases", image: "/corporategallery/1.jpeg", count: 18 },
-  { 
-    id: "sublimation-pillows", 
-    name: "Sublimation Pillows", 
-    collection: "economical", 
-    slug: "sublimation-pillows", 
-    description: "Custom printable pillows including magic sequin, fur, heart-shaped, and LED options", 
-    image: "/corporategallery/pillow.jpg", 
-    count: 5 
+  {
+    id: "sublimation-pillows",
+    name: "Sublimation Pillows",
+    collection: "economical",
+    slug: "sublimation-pillows",
+    description: "Custom printable pillows including magic sequin, fur, heart-shaped, and LED options",
+    image: "/corporategallery/pillow.jpg",
+    count: 5
   },
   { id: "desk-accessories", name: "Desk Accessories", collection: "premium", slug: "desk-accessories", description: "Premium desk accessories including pen holders, tea coasters, and paper weights", image: "/corporategallery/11.jpeg", count: 5 },
   { id: "card-holders", name: "Card Holders", collection: "premium", slug: "card-holders", description: "Premium ATM and visiting card holders in metal finish", image: "/corporategallery/2.jpeg", count: 2 },
   { id: "desk-calendars", name: "Desk Calendars", collection: "premium", slug: "desk-calendars", description: "Premium desk calendars with clocks, photo frames, and elegant designs", image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80", count: 8 },
   // Economical Categories
   { id: "bottles", name: "Bottles", collection: "economical", slug: "bottles", description: "Wide range of bottles including temperature display, vacuum insulated, bamboo, and more", image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&q=80", count: 15 },
-  { id: "mugs", name: "Mugs & Cups", collection: "economical", slug: "mugs", description: "Travel mugs, coffee cups, ceramic mugs, and specialty drinkware", image: "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&q=80", count: 4 },
-  { id: "tumblers", name: "Tumblers", collection: "economical", slug: "tumblers", description: "Stanley-style tumblers and insulated cups", image: "/corporategallery/10_h.jpg", count: 3 },
+  { id: "mugs", name: "Mugs & Cups", collection: "economical", slug: "mugs", description: "Travel mugs, coffee cups, ceramic mugs, and specialty drinkware", image: "/corporategallery/mug3.png", count: 4 },
+  { id: "tumblers", name: "Tumblers", collection: "economical", slug: "tumblers", description: "Stanley-style tumblers and insulated cups", image: "/corporategallery/stan1.png", count: 3 },
   { id: "clocks", name: "Digital Clocks", collection: "economical", slug: "clocks", description: "Digital alarm clocks, mirror clocks, and color-changing clocks", image: "https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?w=400&q=80", count: 4 },
-  { id: "mobile-accessories-eco", name: "Mobile Accessories", collection: "economical", slug: "mobile-accessories-economical", description: "Budget mobile stands, pop sockets, and laptop stands", image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80", count: 5 },
+
   // New Printo Categories
-  { id: "keychains", name: "Keychains", collection: "economical", slug: "keychains", description: "Metal, acrylic and leather keychains with custom engraving and printing", image: "https://images.unsplash.com/photo-1602750819841-db44a76a5958?w=400&q=80", count: 6 },
-  { id: "awards", name: "Awards & Trophies", collection: "economical", slug: "awards", description: "Wooden, crystal and acrylic trophies for recognition and achievements", image: "https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?w=400&q=80", count: 7 },
+  { id: "keychains", name: "Keychains", collection: "economical", slug: "keychains", description: "Metal, acrylic and leather keychains with custom engraving and printing", image: "/corporategallery/keychain.jpg", count: 6 },
+  { id: "awards", name: "Awards & Trophies", collection: "economical", slug: "awards", description: "Wooden, crystal and acrylic trophies for recognition and achievements", image: "/corporategallery/trophies/1.webp", count: 7 },
   { id: "backpacks", name: "Backpacks", collection: "economical", slug: "backpacks", description: "Laptop bags, backpacks and sleeves with custom branding", image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80", count: 6 },
   { id: "pens", name: "Pens", collection: "economical", slug: "pens", description: "Personalized pens including ballpoint, roller ball, stylus and wooden pens", image: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400&q=80", count: 6 },
   { id: "notebooks", name: "Notebooks", collection: "economical", slug: "notebooks", description: "Custom notebooks with spiral, hardcover, perfect bound options", image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80", count: 6 },
@@ -1389,7 +1309,7 @@ export const getProductsBySubcategory = (subcategory: string) => {
 
 export const searchProducts = (query: string) => {
   const lowerQuery = query.toLowerCase();
-  return kamleshGroupProducts.filter(p => 
+  return kamleshGroupProducts.filter(p =>
     p.name.toLowerCase().includes(lowerQuery) ||
     p.model.toLowerCase().includes(lowerQuery) ||
     p.description.toLowerCase().includes(lowerQuery) ||
@@ -1400,7 +1320,7 @@ export const searchProducts = (query: string) => {
 
 export const getProductByModel = (model: string) => {
   const normalizedModel = model.toLowerCase().replace(/\s+/g, '-');
-  return kamleshGroupProducts.find(p => 
+  return kamleshGroupProducts.find(p =>
     p.model.toLowerCase().replace(/\s+/g, '-') === normalizedModel ||
     p.model.toLowerCase() === model.toLowerCase() ||
     p.id.toLowerCase() === model.toLowerCase()
@@ -1433,7 +1353,7 @@ export const getProductsForCategoryPage = (slug: string) => {
     console.log('Category not found for slug:', slug);
     return [];
   }
-  
+
   // Handle special cases for overlapping category names
   if (slug === 'mobile-stands') {
     return getPremiumProducts().filter(p => p.category === 'Mobile Stands');
@@ -1441,7 +1361,7 @@ export const getProductsForCategoryPage = (slug: string) => {
   if (slug === 'mobile-accessories-economical') {
     return getEconomicalProducts().filter(p => p.category === 'Mobile Accessories');
   }
-  
+
   return getProductsByCategory(category.name);
 };
 

@@ -154,8 +154,8 @@ const CategoryCard: React.FC<{
 
             {/* Badge */}
             <span className={`absolute top-3 right-3 px-3 py-1 text-xs font-bold rounded-full ${category.collection === 'premium'
-                ? 'bg-amber-500 text-white'
-                : 'bg-green-500 text-white'
+              ? 'bg-amber-500 text-white'
+              : 'bg-green-500 text-white'
               }`}>
               {category.collection === 'premium' ? 'PREMIUM' : 'VALUE'}
             </span>
@@ -220,10 +220,10 @@ const Corporategiftingpage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <HeaderWhite />
+      <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-20">
+      <section className="relative">
         {heroBanners.map((banner) => (
           <div key={banner.id} className="relative h-[500px] md:h-[600px]">
             <img
@@ -500,7 +500,7 @@ const Corporategiftingpage: React.FC = () => {
               alt={`Corporate Gift ${corporateGalleryImages[activeIndex].id}`}
               className="max-w-full max-h-[90vh] object-contain rounded-lg"
             />
-            
+
             {/* Image Counter */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium">
               {activeIndex + 1} / {corporateGalleryImages.length}

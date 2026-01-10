@@ -1,14 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChevronDown, 
-  ChevronRight, 
+import {
+  ChevronDown,
+  ChevronRight,
   ChevronLeft,
-  Filter, 
-  Grid3X3, 
-  List, 
-  Phone, 
-  Mail, 
+  Filter,
+  Grid3X3,
+  List,
+  Phone,
+  Mail,
   Check,
   X,
   Star,
@@ -84,10 +85,9 @@ const SidebarContent: React.FC<{
             >
               <span className="flex items-center gap-2">
                 {category.id !== 'all' ? (
-                  <ChevronDown 
-                    className={`w-4 h-4 transition-transform ${
-                      expandedCategory === category.id ? 'rotate-0' : '-rotate-90'
-                    }`} 
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${expandedCategory === category.id ? 'rotate-0' : '-rotate-90'
+                      }`}
                   />
                 ) : (
                   <ChevronRight className="w-4 h-4" />
@@ -228,7 +228,7 @@ const Sidebar: React.FC<{
             <X className="w-5 h-5" />
           </button>
         </div>
-        <SidebarContent 
+        <SidebarContent
           categories={categories}
           subCategories={subCategories}
           selectedCategory={selectedCategory}
@@ -245,7 +245,7 @@ const Sidebar: React.FC<{
 
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-[300px] flex-shrink-0 bg-white border border-[#E8E4DC] rounded-xl h-fit sticky top-6">
-        <SidebarContent 
+        <SidebarContent
           categories={categories}
           subCategories={subCategories}
           selectedCategory={selectedCategory}
@@ -305,7 +305,7 @@ const ProductCard: React.FC<{
                 className="w-full h-full object-contain"
                 onError={() => handleImageError(selectedImage)}
               />
-              
+
               {/* Image Navigation */}
               {product.images.length > 1 && (
                 <>
@@ -335,11 +335,10 @@ const ProductCard: React.FC<{
                   <button
                     key={i}
                     onClick={() => setSelectedImage(i)}
-                    className={`w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
-                      selectedImage === i 
-                        ? 'border-[#C17F59] shadow-md' 
-                        : 'border-transparent hover:border-[#E8E4DC]'
-                    }`}
+                    className={`w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${selectedImage === i
+                      ? 'border-[#C17F59] shadow-md'
+                      : 'border-transparent hover:border-[#E8E4DC]'
+                      }`}
                   >
                     <img
                       src={getImageSrc(i)}
@@ -432,7 +431,7 @@ const ProductCard: React.FC<{
             Out of Stock
           </span>
         )}
-        
+
         <div className="aspect-[4/3] bg-[#F5F3EF] overflow-hidden relative">
           <img
             src={getImageSrc(selectedImage)}
@@ -465,11 +464,10 @@ const ProductCard: React.FC<{
               <button
                 key={i}
                 onClick={() => setSelectedImage(i)}
-                className={`w-14 h-14 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
-                  selectedImage === i 
-                    ? 'border-[#C17F59] shadow-sm' 
-                    : 'border-[#E8E4DC] hover:border-[#C17F59]/50'
-                }`}
+                className={`w-14 h-14 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${selectedImage === i
+                  ? 'border-[#C17F59] shadow-sm'
+                  : 'border-[#E8E4DC] hover:border-[#C17F59]/50'
+                  }`}
               >
                 <img
                   src={getImageSrc(i)}
@@ -492,7 +490,7 @@ const ProductCard: React.FC<{
         <h3 className="font-bold text-[#2D2A26] text-lg mb-1 group-hover:text-[#C17F59] transition-colors">
           {product.name}
         </h3>
-        
+
         <div className="flex items-baseline gap-2 mb-4">
           <span className="text-2xl font-bold text-[#C17F59]">₹{product.price}</span>
           <span className="text-sm text-[#6B6560]">/ {product.priceUnit}</span>
@@ -537,11 +535,25 @@ const ProductCard: React.FC<{
 
 // Main Page Component
 const TShirtsPage: React.FC = () => {
+  const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sortBy, setSortBy] = useState('featured');
+
+  // Read subcategory from URL query parameter on mount
+  useEffect(() => {
+    const subParam = searchParams.get('sub');
+    if (subParam) {
+      // Verify it's a valid subcategory
+      const validSubCat = subCategories.find(sc => sc.id === subParam);
+      if (validSubCat) {
+        setSelectedSubCategory(subParam);
+        setSelectedCategory('sublimation-t-shirts'); // Set parent category when subcategory is selected
+      }
+    }
+  }, [searchParams]);
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
@@ -550,7 +562,7 @@ const TShirtsPage: React.FC = () => {
     // Filter by sub-category first if selected
     if (selectedSubCategory) {
       result = result.filter(p => p.subCategory === selectedSubCategory);
-    } 
+    }
     // Otherwise filter by main category
     else if (selectedCategory !== 'all') {
       result = result.filter(p => p.category === selectedCategory);
@@ -592,164 +604,162 @@ const TShirtsPage: React.FC = () => {
       <div className="bg-white">
         <Header />
       </div>
-      
+
       <div className="min-h-screen bg-[#FAF9F7]">
 
-      {/* Page Title Section - Added mt-20 for spacing below fixed header */}
-      <div className="bg-gradient-to-r from-[#C17F59]/10 to-[#E8E4DC]/30 border-b border-[#E8E4DC] mt-20">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#2D2A26] mb-2">
-            Kamlesh Enterprises 
-          </h1>
-          <p className="text-[#6B6560] max-w-2xl">
-            Offering you a complete choice of products including sublimation polyester t-shirts, 
-            plain sublimation nylon t-shirts, sublimation blank t-shirts, and more. 
-            Premium quality for custom printing.
-          </p>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex gap-6">
-          {/* Sidebar */}
-          <Sidebar
-            categories={categories}
-            subCategories={subCategories}
-            selectedCategory={selectedCategory}
-            selectedSubCategory={selectedSubCategory}
-            onCategorySelect={setSelectedCategory}
-            onSubCategorySelect={setSelectedSubCategory}
-            isOpen={sidebarOpen}
-            onClose={() => setSidebarOpen(false)}
-          />
-
-          {/* Products Grid */}
-          <main className="flex-1 min-w-0">
-            {/* Toolbar */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 bg-white p-4 rounded-xl border border-[#E8E4DC]">
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={() => setSidebarOpen(true)}
-                  className="lg:hidden flex items-center gap-2 px-4 py-2 bg-[#F5F3EF] rounded-lg text-sm font-medium text-[#2D2A26]"
-                >
-                  <Filter className="w-4 h-4" />
-                  Filters
-                </button>
-
-                <p className="text-sm text-[#6B6560]">
-                  Showing <span className="font-semibold text-[#2D2A26]">{filteredProducts.length}</span> products
-                  {(selectedCategory !== 'all' || selectedSubCategory) && (
-                    <span> in <span className="font-semibold text-[#C17F59]">{getCurrentFilterName()}</span></span>
-                  )}
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="px-3 py-2 bg-[#F5F3EF] border border-[#E8E4DC] rounded-lg text-sm text-[#2D2A26] focus:outline-none focus:ring-2 focus:ring-[#C17F59]"
-                >
-                  <option value="featured">Featured</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="name">Name</option>
-                </select>
-
-                <div className="flex items-center bg-[#F5F3EF] rounded-lg p-1">
-                  <button
-                    onClick={() => setViewMode('grid')}
-                    className={`p-2 rounded-md transition-colors ${
-                      viewMode === 'grid' ? 'bg-white shadow-sm text-[#C17F59]' : 'text-[#6B6560] hover:text-[#2D2A26]'
-                    }`}
-                  >
-                    <Grid3X3 className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode('list')}
-                    className={`p-2 rounded-md transition-colors ${
-                      viewMode === 'list' ? 'bg-white shadow-sm text-[#C17F59]' : 'text-[#6B6560] hover:text-[#2D2A26]'
-                    }`}
-                  >
-                    <List className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Products */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${selectedCategory}-${selectedSubCategory}-${viewMode}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className={
-                  viewMode === 'grid'
-                    ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6'
-                    : 'flex flex-col gap-6'
-                }
-              >
-                {filteredProducts.map((product, index) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    index={index}
-                    viewMode={viewMode}
-                  />
-                ))}
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Empty State */}
-            {filteredProducts.length === 0 && (
-              <div className="text-center py-16">
-                <Package className="w-16 h-16 text-[#E8E4DC] mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-[#2D2A26] mb-2">No products found</h3>
-                <p className="text-[#6B6560] mb-4">Try selecting a different category</p>
-                <button
-                  onClick={() => {
-                    setSelectedCategory('all');
-                    setSelectedSubCategory(null);
-                  }}
-                  className="px-6 py-2 bg-[#C17F59] text-white rounded-lg hover:bg-[#A66B48] transition-colors"
-                >
-                  View All Products
-                </button>
-              </div>
-            )}
-          </main>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <section className="bg-[#2D2A26] py-12 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Need Bulk Orders or Custom Printing?
-          </h2>
-          <p className="text-[#A9A5A0] mb-6 max-w-2xl mx-auto">
-            Special pricing available for orders of 50+ units. Contact us for a custom quote!
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="tel:+919819416689"
-              className="flex items-center gap-2 px-6 py-3 bg-[#C17F59] text-white rounded-lg font-medium hover:bg-[#A66B48] transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              Call Now: +91 9819416689
-            </a>
-            <a
-              href="mailto:contact@kamleshgroup.in"
-              className="flex items-center gap-2 px-6 py-3 border border-white/30 text-white rounded-lg font-medium hover:bg-white/10 transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-              Send Inquiry
-            </a>
+        {/* Page Title Section - Added mt-20 for spacing below fixed header */}
+        <div className="bg-gradient-to-r from-[#C17F59]/10 to-[#E8E4DC]/30 border-b border-[#E8E4DC] mt-20">
+          <div className="max-w-7xl mx-auto px-4 py-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#2D2A26] mb-2">
+              Kamlesh Enterprises
+            </h1>
+            <p className="text-[#6B6560] max-w-2xl">
+              Offering you a complete choice of products including sublimation polyester t-shirts,
+              plain sublimation nylon t-shirts, sublimation blank t-shirts, and more.
+              Premium quality for custom printing.
+            </p>
           </div>
         </div>
-      </section>
+
+        {/* Main Content */}
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex gap-6">
+            {/* Sidebar */}
+            <Sidebar
+              categories={categories}
+              subCategories={subCategories}
+              selectedCategory={selectedCategory}
+              selectedSubCategory={selectedSubCategory}
+              onCategorySelect={setSelectedCategory}
+              onSubCategorySelect={setSelectedSubCategory}
+              isOpen={sidebarOpen}
+              onClose={() => setSidebarOpen(false)}
+            />
+
+            {/* Products Grid */}
+            <main className="flex-1 min-w-0">
+              {/* Toolbar */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 bg-white p-4 rounded-xl border border-[#E8E4DC]">
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => setSidebarOpen(true)}
+                    className="lg:hidden flex items-center gap-2 px-4 py-2 bg-[#F5F3EF] rounded-lg text-sm font-medium text-[#2D2A26]"
+                  >
+                    <Filter className="w-4 h-4" />
+                    Filters
+                  </button>
+
+                  <p className="text-sm text-[#6B6560]">
+                    Showing <span className="font-semibold text-[#2D2A26]">{filteredProducts.length}</span> products
+                    {(selectedCategory !== 'all' || selectedSubCategory) && (
+                      <span> in <span className="font-semibold text-[#C17F59]">{getCurrentFilterName()}</span></span>
+                    )}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    className="px-3 py-2 bg-[#F5F3EF] border border-[#E8E4DC] rounded-lg text-sm text-[#2D2A26] focus:outline-none focus:ring-2 focus:ring-[#C17F59]"
+                  >
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name</option>
+                  </select>
+
+                  <div className="flex items-center bg-[#F5F3EF] rounded-lg p-1">
+                    <button
+                      onClick={() => setViewMode('grid')}
+                      className={`p-2 rounded-md transition-colors ${viewMode === 'grid' ? 'bg-white shadow-sm text-[#C17F59]' : 'text-[#6B6560] hover:text-[#2D2A26]'
+                        }`}
+                    >
+                      <Grid3X3 className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => setViewMode('list')}
+                      className={`p-2 rounded-md transition-colors ${viewMode === 'list' ? 'bg-white shadow-sm text-[#C17F59]' : 'text-[#6B6560] hover:text-[#2D2A26]'
+                        }`}
+                    >
+                      <List className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Products */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`${selectedCategory}-${selectedSubCategory}-${viewMode}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className={
+                    viewMode === 'grid'
+                      ? 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6'
+                      : 'flex flex-col gap-6'
+                  }
+                >
+                  {filteredProducts.map((product, index) => (
+                    <ProductCard
+                      key={product.id}
+                      product={product}
+                      index={index}
+                      viewMode={viewMode}
+                    />
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Empty State */}
+              {filteredProducts.length === 0 && (
+                <div className="text-center py-16">
+                  <Package className="w-16 h-16 text-[#E8E4DC] mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-[#2D2A26] mb-2">No products found</h3>
+                  <p className="text-[#6B6560] mb-4">Try selecting a different category</p>
+                  <button
+                    onClick={() => {
+                      setSelectedCategory('all');
+                      setSelectedSubCategory(null);
+                    }}
+                    className="px-6 py-2 bg-[#C17F59] text-white rounded-lg hover:bg-[#A66B48] transition-colors"
+                  >
+                    View All Products
+                  </button>
+                </div>
+              )}
+            </main>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <section className="bg-[#2D2A26] py-12 mt-12">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              Need Bulk Orders or Custom Printing?
+            </h2>
+            <p className="text-[#A9A5A0] mb-6 max-w-2xl mx-auto">
+              Special pricing available for orders of 50+ units. Contact us for a custom quote!
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="tel:+919819416689"
+                className="flex items-center gap-2 px-6 py-3 bg-[#C17F59] text-white rounded-lg font-medium hover:bg-[#A66B48] transition-colors"
+              >
+                <Phone className="w-5 h-5" />
+                Call Now: +91 9819416689
+              </a>
+              <a
+                href="mailto:contact@kamleshgroup.in"
+                className="flex items-center gap-2 px-6 py-3 border border-white/30 text-white rounded-lg font-medium hover:bg-white/10 transition-colors"
+              >
+                <Mail className="w-5 h-5" />
+                Send Inquiry
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
 
       {/* Site Footer */}
