@@ -32,7 +32,7 @@ const Header = () => {
         { title: "Collar Matty T-Shirt", tagline: "Polo neck", link: "/products/t-shirts?sub=collar-matty" },
         { title: "Blank T-Shirt", tagline: "Multi-style", link: "/products/t-shirts?sub=sublimation-blank" },
         { title: "Cotton Feel T-Shirt", tagline: "160 GSM", link: "/products/t-shirts?sub=cotton-feel" },
-        { title: "Brands We Offer", tagline: "Our partners", link: "/#brands" }
+
       ]
     },
     {
@@ -55,7 +55,7 @@ const Header = () => {
         { title: "Mobile Stands", tagline: "Premium leather", link: "/corporate-gifting/mobile-stands" },
         { title: "Corporate Notebooks", tagline: "Custom sizes", link: "/corporate-gifting/notebooks" },
         { title: "Office Essentials", tagline: "Desk ready", link: "/corporate-gifting/desk-accessories" },
-        { title: "Brands We Offer", tagline: "Trusted names", link: "/#brands" }
+
       ]
     },
     {
@@ -79,7 +79,16 @@ const Header = () => {
         { title: "Biodegradable PPE", tagline: "Eco-conscious", link: "/nars#biodegradable-ppe" },
         { title: "Antimicrobial Tech", tagline: "Germ defense", link: "/nars#antimicrobial-tech" }
       ]
-    }
+    },
+    {
+      title: "Brands we offer",
+      link: "/nars",
+      isExternal: false,
+      subServices: [
+        { title: "Brands We Offer", tagline: "Trusted names", link: "/#brands" }
+
+      ]
+    },
   ];
 
   useEffect(() => {

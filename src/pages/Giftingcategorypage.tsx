@@ -274,8 +274,8 @@ const FilterSidebar: React.FC<{
               <button
                 onClick={() => onSelectSubcategory(null)}
                 className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${selectedSubcategory === null
-                    ? 'bg-[#EE4343] text-white'
-                    : 'hover:bg-gray-100 text-gray-600'
+                  ? 'bg-[#EE4343] text-white'
+                  : 'hover:bg-gray-100 text-gray-600'
                   }`}
               >
                 All Subcategories
@@ -285,8 +285,8 @@ const FilterSidebar: React.FC<{
                   key={sub}
                   onClick={() => onSelectSubcategory(sub)}
                   className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${selectedSubcategory === sub
-                      ? 'bg-[#EE4343] text-white'
-                      : 'hover:bg-gray-100 text-gray-600'
+                    ? 'bg-[#EE4343] text-white'
+                    : 'hover:bg-gray-100 text-gray-600'
                     }`}
                 >
                   {sub}
@@ -310,8 +310,8 @@ const FilterSidebar: React.FC<{
                 <button
                   onClick={() => onSelectPriceRange(null)}
                   className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${selectedPriceRange === null
-                      ? 'bg-[#EE4343] text-white'
-                      : 'hover:bg-gray-100 text-gray-600'
+                    ? 'bg-[#EE4343] text-white'
+                    : 'hover:bg-gray-100 text-gray-600'
                     }`}
                 >
                   All Prices
@@ -321,8 +321,8 @@ const FilterSidebar: React.FC<{
                     key={range.label}
                     onClick={() => onSelectPriceRange(range.label)}
                     className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${selectedPriceRange === range.label
-                        ? 'bg-[#EE4343] text-white'
-                        : 'hover:bg-gray-100 text-gray-600'
+                      ? 'bg-[#EE4343] text-white'
+                      : 'hover:bg-gray-100 text-gray-600'
                       }`}
                   >
                     {range.label}
@@ -429,7 +429,7 @@ const Giftingcategorypage: React.FC = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className={`pt-24 pb-8 ${isEconomical ? 'bg-gradient-to-r from-green-900 to-green-700' : 'bg-gradient-to-r from-gray-900 to-gray-800'}`}>
+      <section className={`pt-24 pb-8 ${isEconomical ? 'bg-gradient-to-r from-red-900 to-red-700' : 'bg-gradient-to-r from-gray-900 to-gray-800'}`}>
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <nav className="flex items-center gap-2 text-sm text-gray-400 mb-6">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
@@ -444,7 +444,7 @@ const Giftingcategorypage: React.FC = () => {
               {categoryName}
             </h1>
             {isEconomical ? (
-              <span className="px-3 py-1 bg-green-500 text-white text-sm font-bold rounded-full">
+              <span className="px-3 py-1 bg-red-500 text-white text-sm font-bold rounded-full">
                 VALUE RANGE
               </span>
             ) : (

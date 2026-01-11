@@ -2,8 +2,49 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+// Brand data with logos
+const serviceBrands = [
+  {
+    id: "mug-wale",
+    name: "Mug Wale",
+    logo: "/img/MUGWALE.png",
+    link: "/services?service=mug-wale"
+  },
+  {
+    id: "kamlesh-enterprises",
+    name: "Kamlesh Enterprises",
+    logo: "/img/KAMLESH.png",
+    link: "/services?service=kamlesh-enterprises"
+  },
+  {
+    id: "powerbook",
+    name: "Powerbook",
+    logo: "/img/POWER.png",
+    link: "/services?service=powerbook"
+  },
+  {
+    id: "corporate-gifting",
+    name: "Corporate Gifting",
+    logo: "/img/CORPORATE.png",
+    link: "/services?service=corporate-gifting"
+  },
+  {
+    id: "allure-space",
+    name: "Allure Space",
+    logo: "/img/ALLURE.png",
+    link: "/services?service=allure-space"
+  },
+  {
+    id: "nars-surgicals",
+    name: "NARS Surgicals",
+    logo: "/img/NARS.png",
+    link: "/services?service=nars-surgicals"
+  },
+];
+
 const Footer = () => {
   const [showCookieBanner, setShowCookieBanner] = useState(false);
+  const [hoveredBrand, setHoveredBrand] = useState<string | null>(null);
   const email = "contact@kamleshgroup.in";
   const phone = "+91 9819416689";
 
@@ -67,13 +108,13 @@ const Footer = () => {
           >
             {email}
           </a>
-          
+
           <div className="mx-auto mt-6 h-1 w-40 bg-white" />
-          
+
           <p className="mt-6 text-lg md:text-xl text-white/90">
             Or call us at
-            <a 
-              href={`tel:${phone.replace(/[^+\d]/g, "")}`} 
+            <a
+              href={`tel:${phone.replace(/[^+\d]/g, "")}`}
               className="ml-2 text-white font-bold hover:underline"
             >
               {phone}
@@ -89,7 +130,16 @@ const Footer = () => {
             <div className="md:col-span-2">
               <img src="/img/colorblack.png" alt="Kamlesh Group Logo" className="h-14 mb-6" />
               <p className="text-gray-700 mb-8 max-w-md text-xl leading-relaxed">
-                Kamlesh Group is a diversified conglomerate committed to excellence in manufacturing, sublimation printing, and corporate gifting. We deliver high-quality, customized solutions that help businesses build a lasting brand identity through premium merchandise.
+                Kamlesh Group is a distinguished and trusted industry leader with over 18 years of excellence in imports, exports, and manufacturing in India. We specialize in delivering premium-quality corporate solutions tailored to meet the evolving needs of modern businesses.
+                <br />
+                <br />
+                Founded by Mr. Hitesh Dhawan, Kamlesh Group was built on a singular vision — uncompromising quality and exceptional service in every order we undertake. This philosophy continues to guide our operations and long-term partnerships.
+                <br /> <br />
+                We proudly serve an elite clientele that includes Government Offices across India, Multinational Corporations (MNCs), Public Sector Undertakings (PSUs), and reputed NGOs. Our robust distribution ecosystem of 3,500+ authorized distributors in India and overseas ensures seamless reach, reliability, and timely execution at scale.
+                <br />
+                Renowned as masters in sublimation products, Kamlesh Group is a preferred partner for large-scale and bulk corporate orders, delivering precision-crafted products that reflect brand value, consistency, and sophistication. From concept to execution, we uphold the highest standards of manufacturing excellence, quality control, and customer satisfaction.
+
+                With a strong focus on innovation, reliability, and long-term value, Kamlesh Group continues to set benchmarks in the corporate gifting, sublimation printing, and bulk manufacturing industry—both in India and internationally."
               </p>
               <div className="flex space-x-6">
                 <a href="#" className="text-gray-700 hover:text-primary transition-colors text-xl" aria-label="LinkedIn">LinkedIn</a>
@@ -98,16 +148,40 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Services - Updated */}
-            <nav aria-label="Services">
+            {/* Services - Updated with hover logos */}
+            <nav aria-label="Services" className="relative">
               <h4 className="font-semibold mb-6 text-black text-2xl">Services</h4>
+
+              {/* Logo preview container */}
+              <div className="mb-6 h-16 flex items-center justify-start">
+                {hoveredBrand && (
+                  <img
+                    src={serviceBrands.find(b => b.id === hoveredBrand)?.logo}
+                    alt={`${serviceBrands.find(b => b.id === hoveredBrand)?.name} logo`}
+                    className="h-14 w-auto object-contain animate-fade-in transition-all duration-300"
+                    style={{
+                      animation: 'fadeIn 0.3s ease-in-out'
+                    }}
+                  />
+                )}
+                {!hoveredBrand && (
+                  <span className="text-gray-400 text-sm italic">Hover to preview logo</span>
+                )}
+              </div>
+
               <ul className="space-y-3">
-                <li><Link to="/services?service=mug-wale" className="text-gray-700 text-xl hover:text-primary">Mug Wale</Link></li>
-                <li><Link to="/services?service=kamlesh-enterprises" className="text-gray-700 text-xl hover:text-primary">Kamlesh Enterprises</Link></li>
-                <li><Link to="/services?service=powerbook" className="text-gray-700 text-xl hover:text-primary">Powerbook</Link></li>
-                <li><Link to="/services?service=corporate-gifting" className="text-gray-700 text-xl hover:text-primary">Corporate Gifting</Link></li>
-                <li><Link to="/services?service=allure-space" className="text-gray-700 text-xl hover:text-primary">Allure Space</Link></li>
-                <li><Link to="/services?service=nars-surgicals" className="text-gray-700 text-xl hover:text-primary">NARS Surgicals</Link></li>
+                {serviceBrands.map((brand) => (
+                  <li key={brand.id}>
+                    <Link
+                      to={brand.link}
+                      className="text-gray-700 text-xl hover:text-primary transition-colors duration-200 inline-flex items-center gap-2"
+                      onMouseEnter={() => setHoveredBrand(brand.id)}
+                      onMouseLeave={() => setHoveredBrand(null)}
+                    >
+                      {brand.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
 

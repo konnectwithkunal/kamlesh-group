@@ -6,38 +6,38 @@ import { Link } from 'react-router-dom';
 
 // Data for the brands section with logos - Updated with correct paths and links
 const brands = [
-  { 
-    name: "Kamlesh Enterprises", 
+  {
+    name: "Kamlesh Enterprises",
     link: "/products/t-shirts",
     logo: "/img/KAMLESH.png",
     isExternal: false
   },
-  { 
-    name: "Mug Wale", 
+  {
+    name: "Mug Wale",
     link: "https://mugwale.vercel.app/mugs",
     logo: "/img/MUGWALE.png",
     isExternal: true
   },
-  { 
-    name: "Powerbook", 
+  {
+    name: "Powerbook",
     link: "/corporate-gifting",
     logo: "/img/POWER.png",
     isExternal: false
   },
-  { 
-    name: "Corporate Gifts", 
+  {
+    name: "Corporate Gifts",
     link: "/corporate-gifting",
     logo: "/img/CORPORATE.png",
     isExternal: false
   },
-  { 
-    name: "Allure Space", 
+  {
+    name: "Allure Space",
     link: "/allure-space",
     logo: "/img/ALLURE.png",
     isExternal: false
   },
-  { 
-    name: "Nars", 
+  {
+    name: "Nars",
     link: "/nars",
     logo: "/img/NARS.png",
     isExternal: false
@@ -57,7 +57,7 @@ function About() {
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, ease: 'easeOut' }}
       >
-        
+
         {/* --- BLOCK 1: HEADING --- */}
         <motion.div
           className="w-full flex-none mb-4 md:mb-8"
@@ -89,8 +89,8 @@ function About() {
                 >
                   {/* Logo Container */}
                   <div className="h-12 md:h-16 flex items-center justify-center">
-                    <img 
-                      src={brand.logo} 
+                    <img
+                      src={brand.logo}
                       alt={brand.name}
                       className="h-full w-auto max-w-[120px] md:max-w-[150px] object-contain transition-all duration-300 hover:opacity-100 opacity-90"
                     />
@@ -108,8 +108,8 @@ function About() {
                 >
                   {/* Logo Container */}
                   <div className="h-12 md:h-16 flex items-center justify-center">
-                    <img 
-                      src={brand.logo} 
+                    <img
+                      src={brand.logo}
                       alt={brand.name}
                       className="h-full w-auto max-w-[120px] md:max-w-[150px] object-contain transition-all duration-300 hover:opacity-100 opacity-90"
                     />
@@ -126,10 +126,10 @@ function About() {
 
         {/* --- BLOCK 3: ARROW (LEFT) & TEXT (RIGHT) --- */}
         <div className="flex-1 flex flex-col md:flex-row items-start gap-8 md:gap-4">
-          
+
           {/* LEFT: Moving Arrow */}
           <motion.div
-            className="w-24 md:w-32 flex-none mt-2" 
+            className="w-24 md:w-32 flex-none mt-2"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ delay: 0.5 }}
@@ -189,8 +189,8 @@ function About() {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
               >
-                <img 
-                  src={logo.src} 
+                <img
+                  src={logo.src}
                   alt={logo.alt}
                   className="h-full w-auto max-w-[140px] md:max-w-[180px] object-contain opacity-70 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 />
@@ -200,7 +200,7 @@ function About() {
         </motion.div>
 
       </motion.section>
-      
+
       <style>{`
         .grid-mob-light {
           background-image: linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px),
