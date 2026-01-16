@@ -18,6 +18,7 @@ import {
 import HeaderWhite from '@/components/HeaderWhite';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import News from "@/components/News";
 
 // Import from combined catalog
 import {
@@ -29,11 +30,20 @@ import {
   UnifiedProduct
 } from '../data/kamlesh-group-catalog';
 
-// Corporate Gallery Images (public folder)
-const corporateGalleryImages = Array.from({ length: 41 }, (_, i) => ({
-  id: i + 1,
-  src: `/corporategallery/${i + 1}.jpeg`,
-}));
+// Corporate Gallery Items (public folder) - includes images and videos
+const corporateGalleryItems = [
+  ...Array.from({ length: 90 }, (_, i) => ({
+    id: i + 1,
+    src: `/corporategallery/${i + 1}.jpeg`,
+    type: 'image' as const,
+  })),
+  // 91st item is a video
+  {
+    id: 91,
+    src: `/corporategallery/91.mp4`,
+    type: 'video' as const,
+  },
+];
 
 // Hero Banner Data
 const heroBanners = [
@@ -198,11 +208,11 @@ const Corporategiftingpage: React.FC = () => {
   };
 
   const showPrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? corporateGalleryImages.length - 1 : prev - 1));
+    setActiveIndex((prev) => (prev === 0 ? corporateGalleryItems.length - 1 : prev - 1));
   };
 
   const showNext = () => {
-    setActiveIndex((prev) => (prev === corporateGalleryImages.length - 1 ? 0 : prev + 1));
+    setActiveIndex((prev) => (prev === corporateGalleryItems.length - 1 ? 0 : prev + 1));
   };
 
   React.useEffect(() => {
@@ -349,24 +359,35 @@ const Corporategiftingpage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-            {corporateGalleryImages.map((img, index) => (
+            {corporateGalleryItems.map((item, index) => (
               <motion.div
-                key={img.id}
+                key={item.id}
                 whileHover={{ scale: 1.05 }}
                 className="relative overflow-hidden rounded-xl border border-gray-200 bg-white cursor-pointer shadow-sm hover:shadow-md transition-all"
                 onClick={() => openLightbox(index)}
               >
-                <img
-                  src={img.src}
-                  alt={`Corporate Gift ${img.id}`}
-                  className="w-full h-48 object-contain p-3 transition-transform duration-300"
-                  loading="lazy"
-                />
+                {item.type === 'video' ? (
+                  <video
+                    src={item.src}
+                    className="w-full h-48 object-contain p-3 transition-transform duration-300"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={`Corporate Gift ${item.id}`}
+                    className="w-full h-48 object-contain p-3 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                )}
 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-black/0 hover:bg-black/30 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
                   <span className="text-white font-semibold text-sm">
-                    View Full Image
+                    {item.type === 'video' ? 'View Video' : 'View Full Image'}
                   </span>
                 </div>
               </motion.div>
@@ -490,20 +511,32 @@ const Corporategiftingpage: React.FC = () => {
             </svg>
           </button>
 
-          {/* Image Container */}
+          {/* Image/Video Container */}
           <div
             className="relative max-w-6xl max-h-[90vh] mx-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={corporateGalleryImages[activeIndex].src}
-              alt={`Corporate Gift ${corporateGalleryImages[activeIndex].id}`}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
-            />
+            {corporateGalleryItems[activeIndex].type === 'video' ? (
+              <video
+                src={corporateGalleryItems[activeIndex].src}
+                className="max-w-full max-h-[90vh] object-contain rounded-lg"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+              />
+            ) : (
+              <img
+                src={corporateGalleryItems[activeIndex].src}
+                alt={`Corporate Gift ${corporateGalleryItems[activeIndex].id}`}
+                className="max-w-full max-h-[90vh] object-contain rounded-lg"
+              />
+            )}
 
-            {/* Image Counter */}
+            {/* Image/Video Counter */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm font-medium">
-              {activeIndex + 1} / {corporateGalleryImages.length}
+              {activeIndex + 1} / {corporateGalleryItems.length}
             </div>
           </div>
 
@@ -527,6 +560,9 @@ const Corporategiftingpage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Our Showcase Section */}
+      <News />
 
       <Footer />
     </div>

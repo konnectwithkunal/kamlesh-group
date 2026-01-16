@@ -129,7 +129,7 @@ const Footer = () => {
           <div className="grid md:grid-cols-4 gap-12">
             <div className="md:col-span-2">
               <img src="/img/colorblack.png" alt="Kamlesh Group Logo" className="h-14 mb-6" />
-              <p className="text-gray-700 mb-8 max-w-md text-xl leading-relaxed">
+              <p className="text-gray-700 mb-8 max-w-md text-xl leading-relaxed text-justify">
                 Kamlesh Group is a distinguished and trusted industry leader with over 18 years of excellence in imports, exports, and manufacturing in India. We specialize in delivering premium-quality corporate solutions tailored to meet the evolving needs of modern businesses.
                 <br />
                 <br />

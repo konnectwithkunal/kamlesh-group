@@ -23,6 +23,7 @@ import {
 // ==========================================
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import News from "@/components/News";
 
 // ==========================================
 // IMPORT THE SCRAPED DATA
@@ -761,6 +762,9 @@ const TShirtsPage: React.FC = () => {
           </div>
         </section>
       </div>
+
+      {/* Our Showcase Section */}
+      <News />
 
       {/* Site Footer */}
       <Footer />

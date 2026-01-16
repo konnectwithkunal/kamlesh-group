@@ -15,6 +15,7 @@ import Work from "@/components/Work";
 import News from "@/components/News";
 import Footer from "@/components/Footer";
 import BrandsWeOffer from "@/components/Brandsweoffer";
+import Exhibition from "@/components/Exhibition";
 import HeaderHome from "./Mugs";
 import HeaderWhite from "@/components/HeaderWhite";
 
@@ -34,19 +35,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-     
-       <Hero />
-       <Header />
+
+      <Hero />
+      <Header />
       <About />
       <Services />
       <Clients />
-     {/*<EventsLaunches />*/} 
+      {/*<EventsLaunches />*/}
       {/*<WhyChoose />*/}
       {/* <Process /> */}
       <HowWeHelp />
       <BrandsWeOffer />
+      <Exhibition />
       <Testimonials />
-        {/* <Work /> */}
+      {/* <Work /> */}
       <News />
       <Footer />
     </div>

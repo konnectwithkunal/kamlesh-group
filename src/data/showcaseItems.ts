@@ -49,6 +49,38 @@ const showcaseItems = [
     media: "/showcase/event4.jpeg",
     tags: ["Awards", "Excellence", "Celebration"],
   },
+  {
+    id: 7,
+    type: "image",
+    title: "G20 Summit 2023 - Thailand",
+    description: "Representing innovation and excellence at the prestigious G20 Anti-Corruption Working Group meeting in Thailand.",
+    media: "/showcase/g20_1.jpeg",
+    tags: ["G20", "Summit", "Thailand", "International"],
+  },
+  {
+    id: 8,
+    type: "image",
+    title: "G20 Trade & Investment Working Group",
+    description: "Participating in the 1st Anti-Corruption Working Group discussions at the G20 Summit 2023.",
+    media: "/showcase/g20_2.jpeg",
+    tags: ["G20", "Trade", "Investment", "Global"],
+  },
+  {
+    id: 9,
+    type: "image",
+    title: "G20 International Diplomatic Session",
+    description: "Engaging with global leaders and diplomats representing multiple nations at the G20 forum.",
+    media: "/showcase/g20_3.jpeg",
+    tags: ["G20", "Diplomacy", "International", "Leadership"],
+  },
+  {
+    id: 10,
+    type: "image",
+    title: "G20 Global Business Forum",
+    description: "Fostering international business relationships and showcasing Indian enterprise at the G20 Business Forum.",
+    media: "/showcase/g20_4.jpeg",
+    tags: ["G20", "Business", "Forum", "Global"],
+  },
 ];
 
 export default showcaseItems;
