@@ -104,7 +104,7 @@ const generateMediaItems = (): MediaItem[] => {
     productPngImages.forEach(num => {
         items.push({
             id: id++,
-            src: `/powerbook/${num}.png`,
+            src: `/powerbook/${num}.jpg`,
             type: 'image',
             title: `Product ${num}`,
             category: 'product',

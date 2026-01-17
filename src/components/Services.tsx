@@ -98,7 +98,7 @@ const Services = () => {
           description: "Browse our curated exhibition gallery featuring premium products and brand showcases.",
           tagline: "Exhibition photos",
           subtitle: "visual showcase",
-          image: "/powerbook/46.png",
+          image: "/powerbook/46.jpg",
           link: "/powerbook"
         },
         {
@@ -106,7 +106,7 @@ const Services = () => {
           description: "Discover our complete premium collection through stunning visual presentations.",
           tagline: "Premium collection",
           subtitle: "product gallery",
-          image: "/powerbook/47.png",
+          image: "/powerbook/47.jpg",
           link: "/powerbook"
         }
       ]
