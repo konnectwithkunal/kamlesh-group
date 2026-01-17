@@ -5,22 +5,68 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
-// Generate exhibition items from powerbook folder
+// Exhibition items from powerbook folder - using actual file names
 const exhibitionItems = [
-    // Images (1-27)
-    ...Array.from({ length: 27 }, (_, i) => ({
-        id: i + 1,
-        src: `/powerbook/${i + 1}.jpeg`,
-        type: 'image' as const,
-        title: `Exhibition ${i + 1}`,
-    })),
-    // Videos (28-42)
-    ...Array.from({ length: 15 }, (_, i) => ({
-        id: 28 + i,
-        src: `/powerbook/${28 + i}.mp4`,
-        type: 'video' as const,
-        title: `Video Showcase ${i + 1}`,
-    })),
+    // Images
+    { id: 1, src: '/powerbook/4.jpeg', type: 'image' as const, title: 'Exhibition 1' },
+    { id: 2, src: '/powerbook/21.jpeg', type: 'image' as const, title: 'Exhibition 2' },
+    { id: 3, src: '/powerbook/exhibtion_2.jpeg', type: 'image' as const, title: 'Exhibition 3' },
+    { id: 4, src: '/powerbook/exhibition_3.jpeg', type: 'image' as const, title: 'Exhibition 4' },
+    { id: 5, src: '/powerbook/exhibition_6.jpeg', type: 'image' as const, title: 'Exhibition 5' },
+    { id: 6, src: '/powerbook/exhibition_7.jpeg', type: 'image' as const, title: 'Exhibition 6' },
+    { id: 7, src: '/powerbook/exhibition_8.jpeg', type: 'image' as const, title: 'Exhibition 7' },
+    { id: 8, src: '/powerbook/exhibition_9.jpeg', type: 'image' as const, title: 'Exhibition 8' },
+    { id: 9, src: '/powerbook/exhibition_10.jpeg', type: 'image' as const, title: 'Exhibition 9' },
+    { id: 10, src: '/powerbook/exhibition_11.jpeg', type: 'image' as const, title: 'Exhibition 10' },
+    { id: 11, src: '/powerbook/exhibition_12.jpeg', type: 'image' as const, title: 'Exhibition 11' },
+    { id: 12, src: '/powerbook/exhibition_13.jpeg', type: 'image' as const, title: 'Exhibition 12' },
+    { id: 13, src: '/powerbook/exhibition_14.jpeg', type: 'image' as const, title: 'Exhibition 13' },
+    { id: 14, src: '/powerbook/exhibition_15.jpeg', type: 'image' as const, title: 'Exhibition 14' },
+    { id: 15, src: '/powerbook/exhibition_16.jpeg', type: 'image' as const, title: 'Exhibition 15' },
+    { id: 16, src: '/powerbook/exhibition_17.jpeg', type: 'image' as const, title: 'Exhibition 16' },
+    { id: 17, src: '/powerbook/exhibition_18.jpeg', type: 'image' as const, title: 'Exhibition 17' },
+    { id: 18, src: '/powerbook/exhibition_19.jpeg', type: 'image' as const, title: 'Exhibition 18' },
+    { id: 19, src: '/powerbook/exhibition_20.jpeg', type: 'image' as const, title: 'Exhibition 19' },
+    { id: 20, src: '/powerbook/exhibition_22.jpeg', type: 'image' as const, title: 'Exhibition 20' },
+    { id: 21, src: '/powerbook/exhibition_23.jpeg', type: 'image' as const, title: 'Exhibition 21' },
+    { id: 22, src: '/powerbook/exhibition_24.jpeg', type: 'image' as const, title: 'Exhibition 22' },
+    { id: 23, src: '/powerbook/exhibition_25.jpeg', type: 'image' as const, title: 'Exhibition 23' },
+    { id: 24, src: '/powerbook/exhibition_26.jpeg', type: 'image' as const, title: 'Exhibition 24' },
+    { id: 25, src: '/powerbook/exhibition_27.jpeg', type: 'image' as const, title: 'Exhibition 25' },
+    { id: 26, src: '/powerbook/exhibition_43.JPG', type: 'image' as const, title: 'Exhibition 26' },
+    { id: 27, src: '/powerbook/44.png', type: 'image' as const, title: 'Exhibition 27' },
+    { id: 28, src: '/powerbook/45.png', type: 'image' as const, title: 'Exhibition 28' },
+    { id: 29, src: '/powerbook/46.png', type: 'image' as const, title: 'Exhibition 29' },
+    { id: 30, src: '/powerbook/47.png', type: 'image' as const, title: 'Exhibition 30' },
+    // Videos - horizontal
+    { id: 31, src: '/powerbook/39.mp4', type: 'video' as const, title: 'Video Showcase 1' },
+    { id: 32, src: '/powerbook/53.mp4', type: 'video' as const, title: 'Video Showcase 2' },
+    { id: 33, src: '/powerbook/54.mp4', type: 'video' as const, title: 'Video Showcase 3' },
+    { id: 34, src: '/powerbook/55.mp4', type: 'video' as const, title: 'Video Showcase 4' },
+    { id: 35, src: '/powerbook/exhibition_31.mp4', type: 'video' as const, title: 'Video Showcase 5' },
+    { id: 36, src: '/powerbook/exhibition_33.mp4', type: 'video' as const, title: 'Video Showcase 6' },
+    { id: 37, src: '/powerbook/exhibition_34.mp4', type: 'video' as const, title: 'Video Showcase 7' },
+    { id: 38, src: '/powerbook/exhibition_37.mp4', type: 'video' as const, title: 'Video Showcase 8' },
+    { id: 39, src: '/powerbook/exhibition_58.mp4', type: 'video' as const, title: 'Video Showcase 9' },
+    // Videos - vertical exhibition
+    { id: 40, src: '/powerbook/vertical_exhibition_28.mp4', type: 'video' as const, title: 'Video Showcase 10' },
+    { id: 41, src: '/powerbook/vertical_exhibition_29.mp4', type: 'video' as const, title: 'Video Showcase 11' },
+    { id: 42, src: '/powerbook/vertical_exhibition_30.mp4', type: 'video' as const, title: 'Video Showcase 12' },
+    { id: 43, src: '/powerbook/vertical_exhibition_32.mp4', type: 'video' as const, title: 'Video Showcase 13' },
+    { id: 44, src: '/powerbook/vertical_exhibition_35.mp4', type: 'video' as const, title: 'Video Showcase 14' },
+    { id: 45, src: '/powerbook/vertical_36.mp4', type: 'video' as const, title: 'Video Showcase 15' },
+    { id: 46, src: '/powerbook/vertical_exhibition_38.mp4', type: 'video' as const, title: 'Video Showcase 16' },
+    { id: 47, src: '/powerbook/vertical_exhibition_40.mp4', type: 'video' as const, title: 'Video Showcase 17' },
+    { id: 48, src: '/powerbook/vertical_exhibition_41.mp4', type: 'video' as const, title: 'Video Showcase 18' },
+    { id: 49, src: '/powerbook/vertical_exhibition_42.mp4', type: 'video' as const, title: 'Video Showcase 19' },
+    { id: 50, src: '/powerbook/vertical_48.mp4', type: 'video' as const, title: 'Video Showcase 20' },
+    { id: 51, src: '/powerbook/vertical_49.mp4', type: 'video' as const, title: 'Video Showcase 21' },
+    { id: 52, src: '/powerbook/vertical_50.mp4', type: 'video' as const, title: 'Video Showcase 22' },
+    { id: 53, src: '/powerbook/vertical_51.mp4', type: 'video' as const, title: 'Video Showcase 23' },
+    { id: 54, src: '/powerbook/vertical_52.mp4', type: 'video' as const, title: 'Video Showcase 24' },
+    { id: 55, src: '/powerbook/vertical_56.mp4', type: 'video' as const, title: 'Video Showcase 25' },
+    { id: 56, src: '/powerbook/vertical_exhibition_57.mp4', type: 'video' as const, title: 'Video Showcase 26' },
+    { id: 57, src: '/powerbook/vertical_60.mp4', type: 'video' as const, title: 'Video Showcase 27' },
 ];
 
 // Shuffle items for visual variety (but only once)
