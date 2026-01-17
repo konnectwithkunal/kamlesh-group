@@ -37,13 +37,11 @@ const Header = () => {
     },
     {
       title: "Powerbook",
-      link: "/corporate-gifting/notebooks",
+      link: "/powerbook",
       isExternal: false,
       subServices: [
-        { title: "Wiro Notebooks", tagline: "Spiral bound", link: "/corporate-gifting/notebooks" },
-        { title: "Hardcover Notebooks", tagline: "Executive quality", link: "/corporate-gifting/notebooks" },
-        { title: "Kraft Notebooks", tagline: "Eco-friendly", link: "/corporate-gifting/notebooks" },
-        { title: "Executive Notebooks", tagline: "Premium leather", link: "/corporate-gifting/notebooks" }
+        { title: "View Gallery", tagline: "Exhibition photos", link: "/powerbook" },
+        { title: "Product Showcase", tagline: "Premium collection", link: "/powerbook" }
       ]
     },
     {

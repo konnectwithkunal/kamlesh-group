@@ -87,7 +87,7 @@ const generateMediaItems = (): MediaItem[] => {
     });
 
     // Product images (numbered only)
-    const productImages = [1, 4, 5, 21];
+    const productImages = [4, 21];
     productImages.forEach(num => {
         items.push({
             id: id++,

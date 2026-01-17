@@ -20,7 +20,7 @@ const brands = [
   },
   {
     name: "Powerbook",
-    link: "/corporate-gifting",
+    link: "/powerbook",
     logo: "/img/POWER.png",
     isExternal: false
   },

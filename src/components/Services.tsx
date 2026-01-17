@@ -89,41 +89,25 @@ const Services = () => {
     },
     {
       title: "Powerbook",
-      description: "Strengthen business relationships with our premium corporate gifting solutions for clients, employees, and partners.",
-      link: "/corporate-gifting/notebooks",
+      description: "Explore our premium exhibition gallery and product showcase featuring the best of Kamlesh Group.",
+      link: "/powerbook",
       isExternal: false,
       subServices: [
         {
-          title: "Wiro Notebooks",
-          description: "Wire-o bound notebooks with custom cover printing. 80 pages A5 size, perfect for corporate branding.",
-          tagline: "Spiral bound",
-          subtitle: "custom printing",
-          image: "/img/powerbook_1.jpeg",
-          link: "/corporate-gifting/notebooks"
+          title: "View Gallery",
+          description: "Browse our curated exhibition gallery featuring premium products and brand showcases.",
+          tagline: "Exhibition photos",
+          subtitle: "visual showcase",
+          image: "/powerbook/46.png",
+          link: "/powerbook"
         },
         {
-          title: "Hardcover Notebooks",
-          description: "Premium hard cover notebooks for executive use. 160 pages with ribbon bookmark.",
-          tagline: "Executive quality",
-          subtitle: "premium finish",
-          image: "/img/powerbook_2.jpeg",
-          link: "/corporate-gifting/notebooks"
-        },
-        {
-          title: "Kraft Notebooks",
-          description: "Eco-friendly kraft cover notebooks. Recyclable materials with natural look.",
-          tagline: "Eco-friendly",
-          subtitle: "sustainable",
-          image: "/img/powerbook_3.jpeg",
-          link: "/corporate-gifting/notebooks"
-        },
-        {
-          title: "Executive Notebooks",
-          description: "Top-tier executive notebooks with leather-like cover and gift box included.",
-          tagline: "Premium leather",
-          subtitle: "gift ready",
-          image: "/img/powerbook_4.jpeg",
-          link: "/corporate-gifting/notebooks"
+          title: "Product Showcase",
+          description: "Discover our complete premium collection through stunning visual presentations.",
+          tagline: "Premium collection",
+          subtitle: "product gallery",
+          image: "/powerbook/47.png",
+          link: "/powerbook"
         }
       ]
     },
