@@ -18,6 +18,7 @@ import BrandsWeOffer from "@/components/Brandsweoffer";
 import Exhibition from "@/components/Exhibition";
 import HeaderHome from "./Mugs";
 import HeaderWhite from "@/components/HeaderWhite";
+import FounderMessage from "@/components/FounderMessage";
 
 const Index = () => {
   const location = useLocation();
@@ -50,9 +51,11 @@ const Index = () => {
       <Testimonials />
       {/* <Work /> */}
       <News />
+      <FounderMessage />
       <Footer />
     </div>
   );
 };
 
 export default Index;
+

@@ -65,7 +65,7 @@ function About() {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-normal leading-none text-gray-800 text-left bg-transparent">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-normal leading-tight text-gray-800 text-left bg-transparent">
             Kamlesh Group of Companies
           </h1>
         </motion.div>
@@ -77,7 +77,45 @@ function About() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="flex items-center justify-between overflow-x-auto px-4 no-scrollbar gap-8 md:gap-12">
+          {/* Mobile: 3-column grid (2 rows) | Desktop: horizontal flex */}
+          <div className="grid grid-cols-3 gap-4 md:hidden px-4">
+            {brands.map((brand, index) => (
+              brand.isExternal ? (
+                <a
+                  key={index}
+                  href={brand.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col items-center gap-2 transition-all duration-300 ease-in-out hover:scale-105 cursor-pointer"
+                >
+                  <div className="h-10 flex items-center justify-center">
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="h-full w-auto max-w-[90px] object-contain"
+                    />
+                  </div>
+                </a>
+              ) : (
+                <Link
+                  key={index}
+                  to={brand.link}
+                  className="group flex flex-col items-center gap-2 transition-all duration-300 ease-in-out hover:scale-105 cursor-pointer"
+                >
+                  <div className="h-10 flex items-center justify-center">
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="h-full w-auto max-w-[90px] object-contain"
+                    />
+                  </div>
+                </Link>
+              )
+            ))}
+          </div>
+
+          {/* Desktop: horizontal flex layout */}
+          <div className="hidden md:flex items-center justify-between px-4 gap-12">
             {brands.map((brand, index) => (
               brand.isExternal ? (
                 <a
@@ -87,16 +125,14 @@ function About() {
                   rel="noopener noreferrer"
                   className="group flex flex-col items-center gap-3 transition-all duration-300 ease-in-out hover:scale-110 cursor-pointer flex-shrink-0"
                 >
-                  {/* Logo Container */}
-                  <div className="h-12 md:h-16 flex items-center justify-center">
+                  <div className="h-16 flex items-center justify-center">
                     <img
                       src={brand.logo}
                       alt={brand.name}
-                      className="h-full w-auto max-w-[120px] md:max-w-[150px] object-contain transition-all duration-300 hover:opacity-100 opacity-90"
+                      className="h-full w-auto max-w-[150px] object-contain transition-all duration-300 hover:opacity-100 opacity-90"
                     />
                   </div>
-                  {/* Brand Name */}
-                  <span className="text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-sm font-medium text-gray-500 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {brand.name}
                   </span>
                 </a>
@@ -106,16 +142,14 @@ function About() {
                   to={brand.link}
                   className="group flex flex-col items-center gap-3 transition-all duration-300 ease-in-out hover:scale-110 cursor-pointer flex-shrink-0"
                 >
-                  {/* Logo Container */}
-                  <div className="h-12 md:h-16 flex items-center justify-center">
+                  <div className="h-16 flex items-center justify-center">
                     <img
                       src={brand.logo}
                       alt={brand.name}
-                      className="h-full w-auto max-w-[120px] md:max-w-[150px] object-contain transition-all duration-300 hover:opacity-100 opacity-90"
+                      className="h-full w-auto max-w-[150px] object-contain transition-all duration-300 hover:opacity-100 opacity-90"
                     />
                   </div>
-                  {/* Brand Name */}
-                  <span className="text-xs md:text-sm font-medium text-gray-500 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-sm font-medium text-gray-500 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {brand.name}
                   </span>
                 </Link>

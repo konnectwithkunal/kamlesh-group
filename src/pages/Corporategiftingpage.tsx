@@ -13,7 +13,9 @@ import {
   Shield,
   Star,
   Package,
-  Sparkles
+  Sparkles,
+  Download,
+  FileText
 } from 'lucide-react';
 import HeaderWhite from '@/components/HeaderWhite';
 import Header from "@/components/Header";
@@ -31,18 +33,26 @@ import {
 } from '../data/kamlesh-group-catalog';
 
 // Corporate Gallery Items (public folder) - includes images and videos
+// Items 1-90 are images, 91 is video, 92-99 are images
 const corporateGalleryItems = [
+  // Images 1-90
   ...Array.from({ length: 90 }, (_, i) => ({
     id: i + 1,
     src: `/corporategallery/${i + 1}.jpeg`,
     type: 'image' as const,
   })),
-  // 91st item is a video
+  // 91 is a video
   {
     id: 91,
     src: `/corporategallery/91.mp4`,
     type: 'video' as const,
   },
+  // Images 92-99
+  ...Array.from({ length: 8 }, (_, i) => ({
+    id: 92 + i,
+    src: `/corporategallery/${92 + i}.jpeg`,
+    type: 'image' as const,
+  })),
 ];
 
 // Hero Banner Data
@@ -446,6 +456,71 @@ const Corporategiftingpage: React.FC = () => {
                 <p className="text-gray-600">{item.desc}</p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Download Catalogs Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <FileText className="w-6 h-6 text-[#EE4343]" />
+              <span className="text-[#EE4343] font-semibold text-sm uppercase tracking-wide">Product Catalogs</span>
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Download Our Catalogs</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Browse our complete collection of corporate gifting products in PDF format
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {/* Gift Sets Catalog */}
+            <motion.a
+              href="/corporategallery/giftsets.pdf"
+              download="Kamlesh-Group-GiftSets-Catalog.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02 }}
+              className="group flex items-center gap-6 p-6 bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl hover:border-[#EE4343] hover:shadow-lg transition-all cursor-pointer"
+            >
+              <div className="w-16 h-16 bg-[#EE4343]/10 rounded-xl flex items-center justify-center group-hover:bg-[#EE4343] transition-colors">
+                <Download className="w-8 h-8 text-[#EE4343] group-hover:text-white transition-colors" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#EE4343] transition-colors">Gift Sets Catalog</h3>
+                <p className="text-gray-600 text-sm">Premium corporate gift sets & combos</p>
+                <span className="text-xs text-gray-400 mt-1 inline-block">PDF Download</span>
+              </div>
+              <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-[#EE4343] group-hover:translate-x-1 transition-all" />
+            </motion.a>
+
+            {/* Bottle Sets Catalog */}
+            <motion.a
+              href="/corporategallery/bottlesets.pdf"
+              download="Kamlesh-Group-BottleSets-Catalog.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              className="group flex items-center gap-6 p-6 bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl hover:border-[#EE4343] hover:shadow-lg transition-all cursor-pointer"
+            >
+              <div className="w-16 h-16 bg-[#EE4343]/10 rounded-xl flex items-center justify-center group-hover:bg-[#EE4343] transition-colors">
+                <Download className="w-8 h-8 text-[#EE4343] group-hover:text-white transition-colors" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#EE4343] transition-colors">Bottle Sets Catalog</h3>
+                <p className="text-gray-600 text-sm">Premium bottle & drinkware collections</p>
+                <span className="text-xs text-gray-400 mt-1 inline-block">PDF Download</span>
+              </div>
+              <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-[#EE4343] group-hover:translate-x-1 transition-all" />
+            </motion.a>
           </div>
         </div>
       </section>

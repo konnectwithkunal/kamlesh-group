@@ -19,6 +19,7 @@ import Mugs from "./pages/Mugs";
 import MugDetail from "./pages/MugDetail";
 import PrintoClone from "./pages/PrintoClone";
 import TShirtsPage from "./pages/products/TShirtsPage";
+import PowerbookPage from "./pages/PowerbookPage";
 
 // Corporate Gifting Imports
 import Corporategiftingpage from "./pages/Corporategiftingpage";   // Main Landing Page
@@ -30,7 +31,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <ToastProvider> 
+      <ToastProvider>
         <Toaster />
         <BrowserRouter>
           <ScrollToTop />
@@ -43,29 +44,32 @@ const App = () => (
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/nars" element={<NarsPage />} />
             <Route path="/ke" element={<PrintoClone />} />
-            
+
+            {/* --- Powerbook Route --- */}
+            <Route path="/powerbook" element={<PowerbookPage />} />
+
             {/* --- Corporate Gifting Routes --- */}
             {/* CRITICAL: Routes MUST be in this exact order! */}
-            
+
             {/* 1. Main Landing Page - MUST be first (exact match) */}
             <Route path="/corporate-gifting" element={<Corporategiftingpage />} />
-            
+
             {/* 2. Product Details - MUST be second (2 dynamic params) */}
             <Route path="/corporate-gifting/:categorySlug/:productSlug" element={<Giftingproductpage />} />
-            
+
             {/* 3. Category Page - MUST be last (1 dynamic param) */}
             <Route path="/corporate-gifting/:categorySlug" element={<Giftingcategorypage />} />
 
             {/* --- Product Routes --- */}
             <Route path="/products/t-shirts" element={<TShirtsPage />} />
-            
+
             {/* --- Blog Routes --- */}
             <Route path="/blog/:id" element={<BlogPost />} />
-            
+
             {/* --- Mug Routes --- */}
             <Route path="/mugs" element={<Mugs />} />
             <Route path="/mugs/:id" element={<MugDetail />} />
-            
+
             {/* --- 404 --- */}
             <Route path="*" element={<NotFound />} />
           </Routes>

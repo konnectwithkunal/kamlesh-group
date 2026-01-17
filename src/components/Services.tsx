@@ -333,8 +333,8 @@ const Services = () => {
 
           {/* Right - Description (60% = 3/5) */}
           <div className="md:col-span-3">
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed pl-20 pr-10 text-center">
-              <span className="text-5xl md:text-6xl lg:text-3xl font-bold float-left mt-[-8px] leading-none">W</span>
+            <p className="text-lg md:text-xl text-white/90 leading-relaxed md:pl-10 lg:pl-20 md:pr-10 text-center md:text-left">
+              <span className="text-4xl md:text-5xl lg:text-6xl font-bold float-left mr-2 md:mr-3 mt-1 leading-none">W</span>
               e deliver specialized Sublimation Printing, Corporate Gifting, and Branding solutions, driven by a commitment to quality and a deep understanding of your business needs.
             </p>
           </div>
@@ -412,35 +412,8 @@ const Services = () => {
             </div>
           </div>
 
-          {/* Mobile Sub Services */}
-          <div className="lg:col-span-3 md:hidden space-y-4">
-            {services[selectedService].subServices.map((subService, index) => (
-              <SubServiceLink
-                key={index}
-                href={subService.link}
-                isExternal={services[selectedService].isExternal}
-                className="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-lg p-3 block"
-              >
-                {/* Image with Overlay - Mobile */}
-                <div className="relative h-32 rounded-xl overflow-hidden">
-                  <img
-                    src={subService.image}
-                    alt={subService.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="pt-3 pb-1 px-1">
-                  <h4 className="font-bold text-gray-900 mb-1 text-sm uppercase tracking-wide group-hover:text-[#EE4343] transition-colors">
-                    {subService.title}
-                  </h4>
-                  <p className="text-gray-600 text-xs leading-relaxed">
-                    {subService.description}
-                  </p>
-                </div>
-              </SubServiceLink>
-            ))}
-          </div>
+          {/* Mobile Sub Services - HIDDEN per user request */}
+          {/* Sub-services are only shown on desktop (md:block) */}
         </div>
       </div>
     </section>
