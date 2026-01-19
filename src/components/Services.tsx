@@ -48,7 +48,7 @@ const Services = () => {
       ]
     },
     {
-      title: "Kamlesh Enterprises",
+      title: "KE Garments",
       description: "Your one-stop destination for premium sublimation-ready apparel. From polyester t-shirts to nylon wear, we offer high-quality blank garments perfect for custom printing with 18+ years of expertise.",
       link: "/products/t-shirts",
       isExternal: false,

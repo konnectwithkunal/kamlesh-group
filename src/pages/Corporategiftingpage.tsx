@@ -521,6 +521,30 @@ const Corporategiftingpage: React.FC = () => {
               </div>
               <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-[#EE4343] group-hover:translate-x-1 transition-all" />
             </motion.a>
+
+            {/* Generic Catalog */}
+            <motion.a
+              href="/corporategallery/generic.pdf"
+              download="Kamlesh-Group-Generic-Catalog.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ scale: 1.02 }}
+              className="group flex items-center gap-6 p-6 bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 rounded-2xl hover:border-[#EE4343] hover:shadow-lg transition-all cursor-pointer"
+            >
+              <div className="w-16 h-16 bg-[#EE4343]/10 rounded-xl flex items-center justify-center group-hover:bg-[#EE4343] transition-colors">
+                <Download className="w-8 h-8 text-[#EE4343] group-hover:text-white transition-colors" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#EE4343] transition-colors">Generic Catalog</h3>
+                <p className="text-gray-600 text-sm">Complete corporate gifting collection</p>
+                <span className="text-xs text-gray-400 mt-1 inline-block">PDF Download</span>
+              </div>
+              <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-[#EE4343] group-hover:translate-x-1 transition-all" />
+            </motion.a>
           </div>
         </div>
       </section>

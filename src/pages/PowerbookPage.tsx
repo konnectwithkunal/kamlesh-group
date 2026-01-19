@@ -74,7 +74,7 @@ const generateMediaItems = (): MediaItem[] => {
     });
 
     // Vertical product videos (9:16)
-    const verticalProductVideos = [36, 48, 49, 50, 51, 52, 56, 60];
+    const verticalProductVideos = [36, 48, 49, 50, 51, 52, 56, 60, 61];
     verticalProductVideos.forEach(num => {
         items.push({
             id: id++,
