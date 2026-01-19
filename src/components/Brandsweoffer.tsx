@@ -80,6 +80,14 @@ const brandCategories = [
     ]
   },
   {
+    id: 'automobile',
+    title: "Automobile",
+    color: "#dc2626",
+    brands: [
+      { name: "Citroen", logo: "/brands/citroen.png" }
+    ]
+  },
+  {
     id: 'drinkware',
     title: "Drinkware & Bottles",
     color: "#06b6d4",
@@ -94,29 +102,29 @@ const brandCategories = [
 ];
 
 // Get all brands flattened for the marquee
-const allBrands = brandCategories.flatMap(cat => 
+const allBrands = brandCategories.flatMap(cat =>
   cat.brands.map(brand => ({ ...brand, category: cat.id, color: cat.color }))
 );
 
 // --- COMPONENTS ---
 
-const MarqueeRow = ({ 
-  brands, 
-  direction = 'left', 
-  speed = 30 
-}: { 
-  brands: typeof allBrands; 
-  direction?: 'left' | 'right'; 
+const MarqueeRow = ({
+  brands,
+  direction = 'left',
+  speed = 30
+}: {
+  brands: typeof allBrands;
+  direction?: 'left' | 'right';
   speed?: number;
 }) => {
   const duplicatedBrands = [...brands, ...brands, ...brands];
-  
+
   return (
     <div className="overflow-hidden py-4 relative">
       {/* Gradient masks for smooth fade in/out */}
       <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
-      
+
       <motion.div
         className="flex gap-8 md:gap-12"
         animate={{
@@ -136,9 +144,9 @@ const MarqueeRow = ({
             key={`${brand.name}-${index}`}
             className="flex-shrink-0 flex items-center justify-center min-w-[100px] h-16 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300 cursor-pointer"
           >
-            <img 
-              src={brand.logo} 
-              alt={brand.name} 
+            <img
+              src={brand.logo}
+              alt={brand.name}
               className="h-full w-auto object-contain max-h-12"
               loading="lazy"
             />
@@ -149,13 +157,13 @@ const MarqueeRow = ({
   );
 };
 
-const BrandCard = ({ 
-  brand, 
-  index, 
-  isInView 
-}: { 
-  brand: { name: string; logo: string }; 
-  index: number; 
+const BrandCard = ({
+  brand,
+  index,
+  isInView
+}: {
+  brand: { name: string; logo: string };
+  index: number;
   isInView: boolean;
 }) => (
   <motion.div
@@ -165,20 +173,20 @@ const BrandCard = ({
     transition={{ duration: 0.3, delay: index * 0.02 }}
     whileHover={{ y: -4, scale: 1.02 }}
   >
-    <img 
-      src={brand.logo} 
-      alt={brand.name} 
+    <img
+      src={brand.logo}
+      alt={brand.name}
       className="max-h-[60px] max-w-[90%] w-auto h-auto object-contain filter grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100 transition-all duration-300"
       loading="lazy"
     />
   </motion.div>
 );
 
-const CategorySection = ({ 
-  category, 
-  index 
-}: { 
-  category: typeof brandCategories[0]; 
+const CategorySection = ({
+  category,
+  index
+}: {
+  category: typeof brandCategories[0];
   index: number;
 }) => {
   const ref = React.useRef(null);
@@ -194,7 +202,7 @@ const CategorySection = ({
     >
       {/* Category Header */}
       <div className="flex items-center gap-3 mb-6">
-        <span 
+        <span
           className="w-1.5 h-8 rounded-full"
           style={{ backgroundColor: category.color }}
         />
@@ -209,9 +217,9 @@ const CategorySection = ({
       {/* Brands Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {category.brands.map((brand, brandIndex) => (
-          <BrandCard 
-            key={brand.name} 
-            brand={brand} 
+          <BrandCard
+            key={brand.name}
+            brand={brand}
             index={brandIndex}
             isInView={isInView}
           />
@@ -230,8 +238,8 @@ function BrandsWeOffer() {
   const row2 = allBrands.slice(Math.ceil(allBrands.length / 2));
 
   return (
-    <section 
-      id="brands" 
+    <section
+      id="brands"
       className="w-full bg-gradient-to-b from-gray-50 to-white py-16 md:py-24 overflow-hidden"
       ref={ref}
     >
@@ -255,7 +263,7 @@ function BrandsWeOffer() {
             Brands We <span className="text-[#EE4343]">Offer</span>
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Partner with world-renowned brands for sublimation, corporate gifting, 
+            Partner with world-renowned brands for sublimation, corporate gifting,
             and promotional merchandise solutions.
           </p>
         </motion.div>
@@ -270,9 +278,9 @@ function BrandsWeOffer() {
       {/* Category Sections */}
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {brandCategories.map((category, index) => (
-          <CategorySection 
-            key={category.id} 
-            category={category} 
+          <CategorySection
+            key={category.id}
+            category={category}
             index={index}
           />
         ))}
@@ -290,7 +298,7 @@ function BrandsWeOffer() {
             { number: "100%", label: "Authentic Products", icon: "✓" },
             { number: "Pan India", label: "Delivery Network", icon: "🚚" }
           ].map((stat) => (
-            <motion.div 
+            <motion.div
               key={stat.label}
               className="text-center p-5 md:p-6 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
               whileHover={{ y: -4 }}

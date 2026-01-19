@@ -126,28 +126,30 @@ const Footer = () => {
       {/* Main footer content */}
       <section aria-label="Footer navigation" className="bg-white">
         <div className="container mx-auto px-6 py-12 md:py-16">
-          <div className="grid md:grid-cols-4 gap-12">
-            <div className="md:col-span-2">
-              <img src="/img/colorblack.png" alt="Kamlesh Group Logo" className="h-14 mb-6" />
-              <p className="text-gray-700 mb-8 max-w-md text-xl leading-relaxed text-justify">
-                Kamlesh Group is a distinguished and trusted industry leader with over 18 years of excellence in imports, exports, and manufacturing in India. We specialize in delivering premium-quality corporate solutions tailored to meet the evolving needs of modern businesses.
-                <br />
-                <br />
-                Founded by Mr. Hitesh Dhawan, Kamlesh Group was built on a singular vision — uncompromising quality and exceptional service in every order we undertake. This philosophy continues to guide our operations and long-term partnerships.
-                <br /> <br />
-                We proudly serve an elite clientele that includes Government Offices across India, Multinational Corporations (MNCs), Public Sector Undertakings (PSUs), and reputed NGOs. Our robust distribution ecosystem of 3,500+ authorized distributors in India and overseas ensures seamless reach, reliability, and timely execution at scale.
-                <br />
-                Renowned as masters in sublimation products, Kamlesh Group is a preferred partner for large-scale and bulk corporate orders, delivering precision-crafted products that reflect brand value, consistency, and sophistication. From concept to execution, we uphold the highest standards of manufacturing excellence, quality control, and customer satisfaction.
-
-                With a strong focus on innovation, reliability, and long-term value, Kamlesh Group continues to set benchmarks in the corporate gifting, sublimation printing, and bulk manufacturing industry—both in India and internationally."
-              </p>
-              <div className="flex space-x-6">
-                <a href="#" className="text-gray-700 hover:text-primary transition-colors text-xl" aria-label="LinkedIn">LinkedIn</a>
-                <a href="#" className="text-gray-700 hover:text-primary transition-colors text-xl" aria-label="Twitter">Twitter</a>
-                <a href="#" className="text-gray-700 hover:text-primary transition-colors text-xl" aria-label="Instagram">Instagram</a>
-              </div>
+          {/* Full width about section */}
+          <div className="w-full mb-12">
+            <img src="/img/colorblack.png" alt="Kamlesh Group Logo" className="h-14 mb-6" />
+            <p className="text-gray-700 mb-8 text-xl leading-relaxed text-justify">
+              Kamlesh Group is a distinguished and trusted industry leader with over 18 years of excellence in imports, exports, and manufacturing in India. We specialize in delivering premium-quality corporate solutions tailored to meet the evolving needs of modern businesses.
+              <br />
+              <br />
+              Founded by Mr. Hitesh Dhawan, Kamlesh Group was built on a singular vision — uncompromising quality and exceptional service in every order we undertake. This philosophy continues to guide our operations and long-term partnerships.
+              <br /> <br />
+              We proudly serve an elite clientele that includes Government Offices across India, Multinational Corporations (MNCs), Public Sector Undertakings (PSUs), and reputed NGOs. Our robust distribution ecosystem of 3,500+ authorized distributors in India and overseas ensures seamless reach, reliability, and timely execution at scale.
+              <br /><br />
+              Renowned as masters in sublimation products, Kamlesh Group is a preferred partner for large-scale and bulk corporate orders, delivering precision-crafted products that reflect brand value, consistency, and sophistication. From concept to execution, we uphold the highest standards of manufacturing excellence, quality control, and customer satisfaction.
+              <br /><br />
+              With a strong focus on innovation, reliability, and long-term value, Kamlesh Group continues to set benchmarks in the corporate gifting, sublimation printing, and bulk manufacturing industry—both in India and internationally.
+            </p>
+            <div className="flex space-x-6">
+              <a href="#" className="text-gray-700 hover:text-primary transition-colors text-xl" aria-label="LinkedIn">LinkedIn</a>
+              <a href="#" className="text-gray-700 hover:text-primary transition-colors text-xl" aria-label="Twitter">Twitter</a>
+              <a href="#" className="text-gray-700 hover:text-primary transition-colors text-xl" aria-label="Instagram">Instagram</a>
             </div>
+          </div>
 
+          {/* Services and Company sections side by side below */}
+          <div className="grid md:grid-cols-2 gap-12">
             {/* Services - Updated with hover logos */}
             <nav aria-label="Services" className="relative">
               <h4 className="font-semibold mb-6 text-black text-2xl">Services</h4>
