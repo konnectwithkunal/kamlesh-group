@@ -79,7 +79,7 @@ const Contact = () => {
       });
 
       form.reset();
-      
+
       // --- End of Changes ---
 
     } catch (error) {
@@ -246,22 +246,30 @@ const Contact = () => {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h3 className="text-xl font-semibold mb-4 text-black">Contact Number</h3>
-                <a
-                  href="callto:9819416689"
-                  className="text-primary hover:text-primary/80 transition-colors text-lg"
-                >
-                  +91 9819416689
-                </a>
+                <h3 className="text-xl font-semibold mb-4 text-black">Contact Numbers</h3>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="tel:+919811700286"
+                    className="text-primary hover:text-primary/80 transition-colors text-lg"
+                  >
+                    Mobile: +91 9811700286
+                  </a>
+                  <a
+                    href="tel:01140347851"
+                    className="text-primary hover:text-primary/80 transition-colors text-lg"
+                  >
+                    Landline: 011-403-478-51
+                  </a>
+                </div>
               </div>
 
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-black">General enquiries</h3>
                 <a
-                  href="mailto:Team@newsmakermediagroup.com"
+                  href="mailto:kamleshgroupexports@gmail.com"
                   className="text-primary hover:text-primary/80 transition-colors text-lg"
                 >
-                  Team@newsmakermediagroup.com
+                  kamleshgroupexports@gmail.com
                 </a>
               </div>
             </div>

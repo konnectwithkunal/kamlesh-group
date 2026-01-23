@@ -159,9 +159,9 @@ const SidebarContent: React.FC<{
       <div className="p-4 mt-4 border-t border-[#E8E4DC]">
         <h4 className="font-semibold text-[#2D2A26] mb-3">Need Help?</h4>
         <div className="space-y-2 text-sm">
-          <a href="tel:+919819416689" className="flex items-center gap-2 text-[#6B6560] hover:text-[#C17F59] transition-colors">
+          <a href="tel:+919811700286" className="flex items-center gap-2 text-[#6B6560] hover:text-[#C17F59] transition-colors">
             <Phone className="w-4 h-4" />
-            +91 9819416689
+            +91 9811700286
           </a>
           <a href="mailto:contact@kamleshgroup.in" className="flex items-center gap-2 text-[#6B6560] hover:text-[#C17F59] transition-colors">
             <Mail className="w-4 h-4" />
@@ -745,14 +745,14 @@ const TShirtsPage: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="tel:+919819416689"
+                href="tel:+919811700286"
                 className="flex items-center gap-2 px-6 py-3 bg-[#C17F59] text-white rounded-lg font-medium hover:bg-[#A66B48] transition-colors"
               >
                 <Phone className="w-5 h-5" />
-                Call Now: +91 9819416689
+                Call Now: +91 9811700286
               </a>
               <a
-                href="mailto:contact@kamleshgroup.in"
+                href="mailto:kamleshgroupexports@gmail.com"
                 className="flex items-center gap-2 px-6 py-3 border border-white/30 text-white rounded-lg font-medium hover:bg-white/10 transition-colors"
               >
                 <Mail className="w-5 h-5" />

@@ -45,8 +45,9 @@ const serviceBrands = [
 const Footer = () => {
   const [showCookieBanner, setShowCookieBanner] = useState(false);
   const [hoveredBrand, setHoveredBrand] = useState<string | null>(null);
-  const email = "contact@kamleshgroup.in";
-  const phone = "+91 9819416689";
+  const email = "kamleshgroupexports@gmail.com";
+  const phone = "+91 9811700286";
+  const landlineNumber = "011-403-478-51";
 
   useEffect(() => {
     const consent = localStorage.getItem("cookieConsent");
@@ -111,15 +112,26 @@ const Footer = () => {
 
           <div className="mx-auto mt-6 h-1 w-40 bg-white" />
 
-          <p className="mt-6 text-lg md:text-xl text-white/90">
-            Or call us at
-            <a
-              href={`tel:${phone.replace(/[^+\d]/g, "")}`}
-              className="ml-2 text-white font-bold hover:underline"
-            >
-              {phone}
-            </a>
-          </p>
+          <div className="mt-6 flex flex-col items-center gap-2">
+            <p className="text-lg md:text-xl text-white/90">
+              Mobile:
+              <a
+                href={`tel:${phone.replace(/[^+\d]/g, "")}`}
+                className="ml-2 text-white font-bold hover:underline"
+              >
+                {phone}
+              </a>
+            </p>
+            <p className="text-lg md:text-xl text-white/90">
+              Landline:
+              <a
+                href={`tel:${landlineNumber.replace(/[^+\d]/g, "")}`}
+                className="ml-2 text-white font-bold hover:underline"
+              >
+                {landlineNumber}
+              </a>
+            </p>
+          </div>
         </div>
       </section>
 

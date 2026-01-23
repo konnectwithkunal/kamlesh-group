@@ -274,7 +274,7 @@ const Corporategiftingpage: React.FC = () => {
                       {banner.cta}
                     </a>
                     <a
-                      href="tel:+919876543210"
+                      href="tel:+919811700286"
                       className="px-8 py-4 bg-white/20 backdrop-blur text-white font-semibold rounded-xl hover:bg-white/30 transition-colors flex items-center gap-2"
                     >
                       <Phone className="w-5 h-5" />
@@ -560,7 +560,7 @@ const Corporategiftingpage: React.FC = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://wa.me/919876543210"
+              href="https://wa.me/919811700286"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 bg-green-500 text-white font-semibold rounded-xl hover:bg-green-600 transition-colors flex items-center gap-2"

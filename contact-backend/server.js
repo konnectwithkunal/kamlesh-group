@@ -40,8 +40,8 @@ app.get("/", (req, res) => {
   res.send("Server is up and running.");
 });
 
-// Email sending route
-app.post("/send", async (req, res) => {
+// Email sending route - Matching Vercel API path
+app.post("/api/send-email", async (req, res) => {
   const { firstName, lastName, email, phone, jobTitle, company, message } = req.body;
 
   if (!firstName || !lastName || !email || !message) {
@@ -51,15 +51,15 @@ app.post("/send", async (req, res) => {
   const mailOptions = {
     from: process.env.MAIL_USER,
     replyTo: email,
-    to: "Newsmakerdesk@gmail.com, konnectwithkunal@gmail.com",
-    subject: `New Inquiry on News Maker Group Website from ${firstName} ${lastName}`,
+    to: "kamleshgroupexports@gmail.com, konnectwithkunal@gmail.com",
+    subject: `New Inquiry on Kamlesh Group Website from ${firstName} ${lastName}`,
     html: `
       <p><strong>Name:</strong> ${firstName} ${lastName}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone || "-"}</p>
       <p><strong>Job Title:</strong> ${jobTitle || "-"}</p>
       <p><strong>Company:</strong> ${company || "-"}</p>
-      <p><strong>Message:</strong><br/>${message}</p>
+      <p><strong>Message:</strong><br/>${message.replace(/\n/g, '<br>')}</p>
     `,
   };
 

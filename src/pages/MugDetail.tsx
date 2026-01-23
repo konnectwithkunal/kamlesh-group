@@ -11,13 +11,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Droplets, 
-  Microwave, 
-  Palette, 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Droplets,
+  Microwave,
+  Palette,
   Sun,
   Shield,
   Sparkles,
@@ -62,6 +62,7 @@ const MugDetail = () => {
   const { toast } = useToast();
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -83,13 +84,51 @@ const MugDetail = () => {
     );
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Order Request Sent!",
-      description: "We'll contact you shortly to discuss your order.",
-    });
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      // Split name into first and last name for backend compatibility
+      const nameParts = formData.name.trim().split(" ");
+      const firstName = nameParts[0] || formData.name;
+      const lastName = nameParts.slice(1).join(" ") || "."; // Backend requires last name, use placeholder if single name
+
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email: formData.email,
+          phone: formData.phone,
+          message: `Product Inquiry: ${product?.name}\n\nQuantity: ${quantity}\nSize: ${selectedSize || "Not selected"}\n\nMessage: ${formData.message}`,
+          company: "Individual Inquiry", // Optional field
+          jobTitle: "Customer", // Optional field
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      toast({
+        title: "Order Request Sent!",
+        description: "We'll contact you shortly to discuss your order.",
+      });
+      setFormData({ name: "", email: "", phone: "", message: "" });
+    } catch (error) {
+      console.error("Error sending form:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send your request. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (
@@ -177,11 +216,10 @@ const MugDetail = () => {
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`px-6 py-3 rounded-lg border-2 font-medium transition-all ${
-                        selectedSize === size
-                          ? "border-primary bg-primary text-white"
-                          : "border-[#D4D4C4] bg-white hover:border-primary text-[#3D3D29]"
-                      }`}
+                      className={`px-6 py-3 rounded-lg border-2 font-medium transition-all ${selectedSize === size
+                        ? "border-primary bg-primary text-white"
+                        : "border-[#D4D4C4] bg-white hover:border-primary text-[#3D3D29]"
+                        }`}
                     >
                       {size}
                     </button>
@@ -420,7 +458,7 @@ const MugDetail = () => {
                   <Phone className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <h4 className="font-semibold text-lg mb-1 text-[#3D3D29]">Phone</h4>
-                    <p className="text-[#5C5C3D]">+91 9819416689</p>
+                    <p className="text-[#5C5C3D]">+91 9811700286</p>
                     <p className="text-sm text-[#8A8A6D] mt-1">
                       Mon-Fri: 9:00 AM - 6:00 PM
                     </p>
@@ -431,7 +469,7 @@ const MugDetail = () => {
                   <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <h4 className="font-semibold text-lg mb-1 text-[#3D3D29]">Email</h4>
-                    <p className="text-[#5C5C3D]">contact@kamleshgroup.in</p>
+                    <p className="text-[#5C5C3D]">kamleshgroupexports@gmail.com</p>
                     <p className="text-sm text-[#8A8A6D] mt-1">
                       We'll respond within 24 hours
                     </p>

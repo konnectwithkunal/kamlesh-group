@@ -169,8 +169,8 @@ const ImageGallery: React.FC<{ product: UnifiedProduct }> = ({ product }) => {
               key={idx}
               onClick={() => setActiveImage(idx)}
               className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${activeImage === idx
-                  ? 'border-[#EE4343] ring-2 ring-[#EE4343]/20'
-                  : 'border-gray-200 hover:border-gray-300'
+                ? 'border-[#EE4343] ring-2 ring-[#EE4343]/20'
+                : 'border-gray-200 hover:border-gray-300'
                 }`}
               aria-label={`View image ${idx + 1}`}
             >
@@ -208,8 +208,8 @@ const ColorSelector: React.FC<{
             key={idx}
             onClick={() => onSelect(idx)}
             className={`group relative flex items-center gap-2 px-4 py-2 rounded-lg border-2 transition-all ${selected === idx
-                ? 'border-[#EE4343] bg-red-50'
-                : 'border-gray-200 hover:border-gray-300'
+              ? 'border-[#EE4343] bg-red-50'
+              : 'border-gray-200 hover:border-gray-300'
               }`}
           >
             <span
@@ -523,7 +523,7 @@ const Giftingproductpage: React.FC = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
-                  href={`https://wa.me/919876543210?text=Hi, I'm interested in ${product.name} (${product.model}) - Quantity: ${quantity} pieces, Color: ${product.variants[selectedColor].color}`}
+                  href={`https://wa.me/919811700286?text=Hi, I'm interested in ${product.name} (${product.model}) - Quantity: ${quantity} pieces, Color: ${product.variants[selectedColor].color}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition-colors"
@@ -564,7 +564,7 @@ const Giftingproductpage: React.FC = () => {
               { icon: Truck, title: "Pan India Delivery", desc: "Free on bulk orders" },
               { icon: Shield, title: "Quality Assured", desc: "Premium materials" },
               { icon: Star, title: "Logo Printing", desc: "Custom branding" },
-              { icon: Phone, title: "Support", desc: "+91 98XXX XXXXX" }
+              { icon: Phone, title: "Support", desc: "+91 9811700286" }
             ].map((item, idx) => (
               <div key={idx} className="flex items-center gap-3 p-4">
                 <div className="p-2 bg-gray-100 rounded-lg">
