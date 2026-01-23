@@ -163,9 +163,9 @@ const SidebarContent: React.FC<{
             <Phone className="w-4 h-4" />
             +91 9811700286
           </a>
-          <a href="mailto:contact@kamleshgroup.in" className="flex items-center gap-2 text-[#6B6560] hover:text-[#C17F59] transition-colors">
+          <a href="mailto:contact@kamleshgroup.com" className="flex items-center gap-2 text-[#6B6560] hover:text-[#C17F59] transition-colors">
             <Mail className="w-4 h-4" />
-            contact@kamleshgroup.in
+            contact@kamleshgroup.com
           </a>
         </div>
       </div>
@@ -752,7 +752,7 @@ const TShirtsPage: React.FC = () => {
                 Call Now: +91 9811700286
               </a>
               <a
-                href="mailto:kamleshgroupexports@gmail.com"
+                href="mailto:contact@kamleshgroup.com"
                 className="flex items-center gap-2 px-6 py-3 border border-white/30 text-white rounded-lg font-medium hover:bg-white/10 transition-colors"
               >
                 <Mail className="w-5 h-5" />

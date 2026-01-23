@@ -266,10 +266,10 @@ const Contact = () => {
               <div>
                 <h3 className="text-xl font-semibold mb-4 text-black">General enquiries</h3>
                 <a
-                  href="mailto:kamleshgroupexports@gmail.com"
+                  href="mailto:contact@kamleshgroup.com"
                   className="text-primary hover:text-primary/80 transition-colors text-lg"
                 >
-                  kamleshgroupexports@gmail.com
+                  contact@kamleshgroup.com
                 </a>
               </div>
             </div>

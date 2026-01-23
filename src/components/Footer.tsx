@@ -45,7 +45,7 @@ const serviceBrands = [
 const Footer = () => {
   const [showCookieBanner, setShowCookieBanner] = useState(false);
   const [hoveredBrand, setHoveredBrand] = useState<string | null>(null);
-  const email = "kamleshgroupexports@gmail.com";
+  const email = "contact@kamleshgroup.com";
   const phone = "+91 9811700286";
   const landlineNumber = "011-403-478-51";
 

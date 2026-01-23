@@ -271,8 +271,8 @@ function BrandsWeOffer() {
 
       {/* Infinite Marquee - Full Width */}
       <div className="mb-16 md:mb-24 bg-white border-y border-gray-100 py-4">
-        <MarqueeRow brands={row1} direction="left" speed={20} />
-        <MarqueeRow brands={row2} direction="right" speed={22} />
+        <MarqueeRow brands={row1} direction="left" speed={10} />
+        <MarqueeRow brands={row2} direction="right" speed={12} />
       </div>
 
       {/* Category Sections */}

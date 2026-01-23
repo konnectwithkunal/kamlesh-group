@@ -54,7 +54,7 @@ export default async function handler(req, res) {
   const mailOptions = {
     from: process.env.MAIL_USER,
     replyTo: email,
-    to: "kamleshgroupexports@gmail.com, konnectwithkunal@gmail.com",
+    to: "contact@kamleshgroup.com, konnectwithkunal@gmail.com",
     subject: `New Inquiry on Kamlesh Group Website from ${firstName} ${lastName}`,
     html: `
       <p><strong>Name:</strong> ${firstName} ${lastName}</p>

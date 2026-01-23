@@ -469,7 +469,7 @@ const MugDetail = () => {
                   <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                   <div>
                     <h4 className="font-semibold text-lg mb-1 text-[#3D3D29]">Email</h4>
-                    <p className="text-[#5C5C3D]">kamleshgroupexports@gmail.com</p>
+                    <p className="text-[#5C5C3D]">contact@kamleshgroup.com</p>
                     <p className="text-sm text-[#8A8A6D] mt-1">
                       We'll respond within 24 hours
                     </p>
