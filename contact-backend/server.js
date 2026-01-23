@@ -51,7 +51,7 @@ app.post("/api/send-email", async (req, res) => {
   const mailOptions = {
     from: process.env.MAIL_USER,
     replyTo: email,
-    to: "contact@kamleshgroup.com, konnectwithkunal@gmail.com",
+    to: "contact@kamleshgroup.com, kamleshgroupexports@gmail.com, konnectwithkunal@gmail.com",
     subject: `New Inquiry on Kamlesh Group Website from ${firstName} ${lastName}`,
     html: `
       <p><strong>Name:</strong> ${firstName} ${lastName}</p>
