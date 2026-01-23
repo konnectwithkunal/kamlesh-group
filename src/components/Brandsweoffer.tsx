@@ -108,6 +108,7 @@ const allBrands = brandCategories.flatMap(cat =>
 
 // --- COMPONENTS ---
 
+
 const MarqueeRow = ({
   brands,
   direction = 'left',
@@ -118,6 +119,20 @@ const MarqueeRow = ({
   speed?: number;
 }) => {
   const duplicatedBrands = [...brands, ...brands, ...brands];
+  const [isDesktop, setIsDesktop] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Adjust speed for desktop (slower) vs mobile (faster)
+  const actualSpeed = isDesktop ? speed * 2.5 : speed;
 
   return (
     <div className="overflow-hidden py-4 relative">
@@ -134,7 +149,7 @@ const MarqueeRow = ({
           x: {
             repeat: Infinity,
             repeatType: 'loop',
-            duration: speed,
+            duration: actualSpeed,
             ease: 'linear'
           }
         }}
@@ -271,8 +286,8 @@ function BrandsWeOffer() {
 
       {/* Infinite Marquee - Full Width */}
       <div className="mb-16 md:mb-24 bg-white border-y border-gray-100 py-4">
-        <MarqueeRow brands={row1} direction="left" speed={10} />
-        <MarqueeRow brands={row2} direction="right" speed={12} />
+        <MarqueeRow brands={row1} direction="left" speed={3} />
+        <MarqueeRow brands={row2} direction="right" speed={4} />
       </div>
 
       {/* Category Sections */}

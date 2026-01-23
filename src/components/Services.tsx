@@ -318,8 +318,7 @@ const Services = () => {
           {/* Right - Description (60% = 3/5) */}
           <div className="md:col-span-3">
             <p className="text-lg md:text-xl text-white/90 leading-relaxed md:pl-10 lg:pl-20 md:pr-10 text-center md:text-left">
-              <span className="text-4xl md:text-5xl lg:text-6xl font-bold float-left mr-2 md:mr-3 mt-1 leading-none">W</span>
-              e deliver specialized Sublimation Printing, Corporate Gifting, and Branding solutions, driven by a commitment to quality and a deep understanding of your business needs.
+              We deliver specialized Sublimation Printing, Corporate Gifting, and Branding solutions, driven by a commitment to quality and a deep understanding of your business needs.
             </p>
           </div>
         </div>

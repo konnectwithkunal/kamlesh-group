@@ -57,7 +57,7 @@ const Clients = () => {
     { name: "Pulp Strategy", logo: "/icons/55.png" },
     { name: "Percept", logo: "/icons/56.png" },
     { name: "Matrix", logo: "/icons/57.png" },
-  
+
     { name: "Unknown 60", logo: "/icons/60.png" },
     { name: "SAE India", logo: "/icons/61.png" },
     { name: "Autonom India 2021", logo: "/icons/62.png" },
@@ -78,8 +78,8 @@ const Clients = () => {
 
   return (
     <section id="people" className="py-20 bg-[#fff] overflow-hidden">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl text-black md:text-5xl font-bold mb-12 text-center">
+      <div className="container mx-auto px-0 md:px-6">
+        <h2 className="text-4xl text-black md:text-5xl font-bold mb-12 text-center px-6 md:px-0">
           Clients
         </h2>
 
@@ -158,13 +158,26 @@ const Clients = () => {
 
       <style jsx>{`
         .animate-scroll-slow {
-          animation: scroll-left 50s linear infinite;
+          animation: scroll-left 5s linear infinite;
         }
         .animate-scroll-medium {
-          animation: scroll-left 10s linear infinite;
+          animation: scroll-left 4s linear infinite;
         }
         .animate-scroll-fast-reverse {
-          animation: scroll-right 30s linear infinite;
+          animation: scroll-right 4s linear infinite;
+        }
+
+        /* Slower speeds for desktop */
+        @media (min-width: 768px) {
+          .animate-scroll-slow {
+            animation: scroll-left 10s linear infinite;
+          }
+          .animate-scroll-medium {
+            animation: scroll-left 8s linear infinite;
+          }
+          .animate-scroll-fast-reverse {
+            animation: scroll-right 8s linear infinite;
+          }
         }
 
         @keyframes scroll-left {
