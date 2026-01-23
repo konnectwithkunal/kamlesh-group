@@ -97,7 +97,7 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <HeaderTwo />
+      <Header />
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-[#EF4343] grid-overlay-light">
@@ -133,7 +133,7 @@ const Contact = () => {
                         <FormItem>
                           <FormLabel className="text-black">First name *</FormLabel>
                           <FormControl>
-                            <Input placeholder="First name" className="h-12" {...field} />
+                            <Input placeholder="First name" className="h-12 bg-white text-black border-gray-200" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -147,7 +147,7 @@ const Contact = () => {
                         <FormItem>
                           <FormLabel className="text-black">Last name *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Last name" className="h-12" {...field} />
+                            <Input placeholder="Last name" className="h-12 bg-white text-black border-gray-200" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -162,7 +162,7 @@ const Contact = () => {
                         <FormItem>
                           <FormLabel className="text-black">Email *</FormLabel>
                           <FormControl>
-                            <Input type="email" placeholder="Email" className="h-12" {...field} />
+                            <Input type="email" placeholder="Email" className="h-12 bg-white text-black border-gray-200" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -175,7 +175,7 @@ const Contact = () => {
                         <FormItem>
                           <FormLabel className="text-black">Phone *</FormLabel>
                           <FormControl>
-                            <Input type="tel" placeholder="Phone number" className="h-12" {...field} />
+                            <Input type="tel" placeholder="Phone number" className="h-12 bg-white text-black border-gray-200" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -192,7 +192,7 @@ const Contact = () => {
                         <FormItem>
                           <FormLabel className="text-black">Job Title</FormLabel>
                           <FormControl>
-                            <Input placeholder="Job Title" className="h-12" {...field} />
+                            <Input placeholder="Job Title" className="h-12 bg-white text-black border-gray-200" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -206,7 +206,7 @@ const Contact = () => {
                         <FormItem>
                           <FormLabel className="text-black">Company</FormLabel>
                           <FormControl>
-                            <Input placeholder="Company" className="h-12" {...field} />
+                            <Input placeholder="Company" className="h-12 bg-white text-black border-gray-200" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -223,7 +223,7 @@ const Contact = () => {
                         <FormControl>
                           <Textarea
                             placeholder="Tell us about your project..."
-                            className="min-h-[120px] text-gray-500"
+                            className="min-h-[120px] bg-white text-black border-gray-200"
                             {...field}
                           />
                         </FormControl>
